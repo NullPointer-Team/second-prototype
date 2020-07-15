@@ -28,14 +28,14 @@ public class GameIntroduction {
                     "    \"go north\"\n" +
                     "    \"go south\"\n" +
                     "    \"go east\"\n" +
-                    "    \"go west\"\n"
+                    "    \"go west\"\n" +
                     "To navigate from room to room, type 'get' followed by the name of the item, such as:\n" +
                     "    \"get wand\"\n" +
                     "    \" - or -\"\n" +
                     "    \"get coin\"\n" +
                     "    \" - or -\"\n" +
                     "    \"get 'insert name of item as listed'\"\n" +
-                    "Grab all the resources you can. You will need them on your journey as challenged come your way.\n"
+                    "Grab all the resources you can. You will need them on your journey as challenged come your way.\n" +
                     "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!");
         }
     }

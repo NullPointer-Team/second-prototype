@@ -1,8 +1,5 @@
 package coregamefiles;
 
-import playerfiles.ComputerPlayer;
-import playerfiles.HumanPlayer;
-
 public class WinLoseTextArt {
 
     // This method will display the word art when the human player wins the game.

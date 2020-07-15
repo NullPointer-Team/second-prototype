@@ -23,7 +23,6 @@ public class GameMenu {
     public void startGame() {
         displayMenuText();
         startGameMenu();
-
     }
 
 //    private void enterNamePrompt() {
@@ -35,14 +34,14 @@ public class GameMenu {
         GameMenuTextArt.welcome();
         GameMenuTextArt.gameMenuDisplayText();
     }
-
+/*
     // This method will handle all of the user input logic and start the user specified game version.
     private void startGameMenu() {
         boolean isValid = false;
         BasicGameEngine basicGameEngine = new BasicGameEngine();
         AdvancedGameEngine advancedGameEngine = new AdvancedGameEngine();
         Scanner userInput = new Scanner(System.in);
-//        enterNamePrompt();
+        enterNamePrompt();
         while (!(isValid)) {
             try {
                 switch (userInput.nextLine().toUpperCase()) {
@@ -65,6 +64,7 @@ public class GameMenu {
             }
         }
     }
+*/
 
 //    //create and store player name for game
 //    public void enterName() {

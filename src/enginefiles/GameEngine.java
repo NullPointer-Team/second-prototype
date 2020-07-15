@@ -1,10 +1,11 @@
 package enginefiles;
 
-import playerfiles.ComputerPlayer;
-import playerfiles.HumanPlayer;
+import coregamefiles.GameMap;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 public class GameEngine {
 
@@ -15,7 +16,7 @@ public class GameEngine {
 
     public void playGame() {
         printIntroduction();
-        createMap();
+        GameMap.createMap();
         currentRoom = "Dining Room";
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
