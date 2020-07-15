@@ -36,8 +36,8 @@ public class GameMenu {
         GameMenuTextArt.gameMenuDisplayText();
     }
 
-    //TODO: Implement the GameEngine playGame method here, make it run
-    // This method will handle all of the user input logic and start the user specified game version.
+    //DONE: Implement the GameEngine playGame method here, make it run
+    // This method will handle all of the user input logic and start the game.
     private void startGameMenu() {
         boolean isValid = false;
         GameEngine gameEngine = new GameEngine();

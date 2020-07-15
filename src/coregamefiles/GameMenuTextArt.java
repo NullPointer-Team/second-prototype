@@ -15,8 +15,13 @@ public class GameMenuTextArt extends GameMenu {
 
     static void gameMenuDisplayText() {
         System.out.println( "_______________________________________________________\n" +
+                            "|     ▄▄▌ ▐ ▄▄▄▄ ▄▄▌  ▄▄        ▌ ▄   ▄▄▄             |\n" +
+                            "|     ██  █▌▐▀▄ ▀██  ▐█ ▌      ██ ▐███▀▄ ▀            |\n" +
+                            "|     ██ ▐█▐▐▐▀▀ ██  ██ ▄▄▄█▀▄▐█ ▌▐▌▐█▐▀▀ ▄           |\n" +
+                            "|     ▐█▌██▐█▐█▄▄▐█▌▐▐███▐█▌ ▐██ ██▌▐█▐█▄▄▌           |\n" +
+                            "|      ▀▀▀▀ ▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀█▄▀▀▀  █ ▀▀▀▀▀▀            |\n" +
                             "|                                                     |\n" +
-                            "|  Welcome to Stranger Game, the Java Console Game!!  |\n" +
+                            "|  Welcome to Stranger Game, the Java Console Game!   |\n" +
                             "|  Please select an option from the choices below:    |\n" +
                             "|                                                     |\n" +
                             "|  Play the Game            [Command: Play]           |\n" +
