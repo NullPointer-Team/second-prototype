@@ -20,12 +20,16 @@ public class GameMenu {
 
     private static String name;
 
-    // This will be the method to start the game.
+    /**
+     * gameMenu.startGame in the GameEngineClient starts the game from here.
+     * This will be the method to start the game.
+     */
     public void startGame() {
         displayMenuText();
         startGameMenu();
     }
 
+    //could be used to prompt for user name, then store in-memory for later use
 //    private void enterNamePrompt() {
 //        this.enterName();
 //    }
@@ -37,7 +41,8 @@ public class GameMenu {
     }
 
     //DONE: Implement the GameEngine playGame method here, make it run
-    // This method will handle all of the user input logic and start the game.
+    // This method will handle all of the user input logic from game menu choice,
+    // and start the game.
     private void startGameMenu() {
         boolean isValid = false;
         GameEngine gameEngine = new GameEngine();
