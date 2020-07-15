@@ -19,7 +19,7 @@ public class GameMenuTextArt extends GameMenu {
                             "|  Welcome to Stranger Game, the Java Console Game!!  |\n" +
                             "|  Please select an option from the choices below:    |\n" +
                             "|                                                     |\n" +
-                            "|  Play the Basic Game      [Command: Basic]          |\n" +
+                            "|  Play the Game            [Command: Play]           |\n" +
                             "|  Exit this Program        [Command: Exit]           |\n" +
                             "|_____________________________________________________|\n");
     }

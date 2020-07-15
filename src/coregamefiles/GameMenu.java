@@ -11,6 +11,7 @@
 
 package coregamefiles;
 
+import enginefiles.GameEngine;
 import exceptionfiles.InvalidGameMenuSelectionException;
 
 import java.util.Scanner;
@@ -34,23 +35,18 @@ public class GameMenu {
         GameMenuTextArt.welcome();
         GameMenuTextArt.gameMenuDisplayText();
     }
-/*
+
+    //TODO: Implement the GameEngine playGame method here, make it run
     // This method will handle all of the user input logic and start the user specified game version.
     private void startGameMenu() {
         boolean isValid = false;
-        BasicGameEngine basicGameEngine = new BasicGameEngine();
-        AdvancedGameEngine advancedGameEngine = new AdvancedGameEngine();
+        GameEngine gameEngine = new GameEngine();
         Scanner userInput = new Scanner(System.in);
-        enterNamePrompt();
         while (!(isValid)) {
             try {
                 switch (userInput.nextLine().toUpperCase()) {
-                    case "BASIC":
-                        basicGameEngine.playGame();
-                        isValid = true;
-                        break;
-                    case "ADVANCED":
-                        advancedGameEngine.playGame();
+                    case "PLAY":
+                        gameEngine.playGame();
                         isValid = true;
                         break;
                     case "EXIT":
@@ -64,7 +60,6 @@ public class GameMenu {
             }
         }
     }
-*/
 
 //    //create and store player name for game
 //    public void enterName() {

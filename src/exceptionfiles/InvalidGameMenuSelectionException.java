@@ -15,7 +15,7 @@ public class InvalidGameMenuSelectionException extends Exception {
 
     //ctor
     public InvalidGameMenuSelectionException() {
-        super("Invalid Menu Choice. Please type Basic, Advanced or Exit");
+        super("Invalid Menu Choice. Please type Play or Exit");
     }
 
     public InvalidGameMenuSelectionException(String message) {
