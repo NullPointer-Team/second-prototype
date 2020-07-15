@@ -15,14 +15,14 @@ public class GameEngine {
     private Scanner input;
 
     public void playGame() {
-        printIntroduction();
         GameMap.createMap();
         currentRoom = "Dining Room";
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
 
+        //TODO: fix rooms.get and showStatus method
         while (!gameOver) {
-            showStatus();
+            //showStatus();
             String move = "";
             while (move == "") {
                 System.out.println("What do you want to do?");

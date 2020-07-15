@@ -12,7 +12,7 @@ public class GameMap {
     private HashMap<String, String> garden = new HashMap<String, String>();
 
     //provide info for map
-    public void createMap() {
+    public static void createMap() {
         hall.put("south", "Kitchen");
         hall.put("east", "Dining Room");
         hall.put("item", "key");
