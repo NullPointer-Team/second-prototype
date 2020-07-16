@@ -5,14 +5,14 @@ import java.util.HashMap;
 public class GameMap {
 
     // MAP
-    private HashMap<String, HashMap<String, String>> rooms = new HashMap<>();
+    public HashMap<String, HashMap<String, String>> rooms = new HashMap<>();
     private HashMap<String, String> hall = new HashMap<String, String>();
     private HashMap<String, String> kitchen = new HashMap<String, String>();
     private HashMap<String, String> diningRoom = new HashMap<String, String>();
     private HashMap<String, String> garden = new HashMap<String, String>();
 
     //provide info for map
-    public static void createMap() {
+    public GameMap() {
         hall.put("south", "Kitchen");
         hall.put("east", "Dining Room");
         hall.put("item", "key");

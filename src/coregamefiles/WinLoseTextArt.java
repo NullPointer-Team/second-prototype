@@ -1,5 +1,5 @@
 package coregamefiles;
-
+/**
 public class WinLoseTextArt {
 
     // This method will display the word art when the human player wins the game.
@@ -28,3 +28,4 @@ public class WinLoseTextArt {
                 "                                                               \n");
     }
 }
+**/
