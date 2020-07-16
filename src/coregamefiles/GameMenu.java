@@ -18,8 +18,6 @@ import java.util.Scanner;
 
 public class GameMenu {
 
-
-
     /**
      * gameMenu.startGame in the GameEngineClient starts the game from here.
      * This will be the method to start the game.
@@ -28,11 +26,6 @@ public class GameMenu {
         displayMenuText();
         startGameMenu();
     }
-
-    //could be used to prompt for user name, then store in-memory for later use
-//    private void enterNamePrompt() {
-//        this.enterName();
-//    }
 
     // This method will display the welcome messaging and game menu text.
     private void displayMenuText() {
@@ -65,14 +58,4 @@ public class GameMenu {
             }
         }
     }
-
-//    //create and store player name for game
-//    public void enterName() {
-//        Scanner userInput = new Scanner(System.in);
-//        System.out.println("\nPlease enter your name: ");
-//        name = userInput.nextLine();
-//        System.out.println("Username has been set to: " + getName());
-//    }
-
-
 }
