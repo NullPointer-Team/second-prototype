@@ -12,6 +12,7 @@
 package enginefiles;
 
 import coregamefiles.GameMap;
+import coregamefiles.GameIntroduction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +30,7 @@ public class GameEngine {
     private HashMap<String, HashMap<String, String>> rooms;
 
     public void playGame() {
+        GameIntroduction.gameInformation();
         rooms = gameMap.rooms;
         currentRoom = "Dining Room";
         inventory = new ArrayList<String>();
