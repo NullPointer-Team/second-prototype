@@ -2,6 +2,7 @@ package coregamefiles;
 
 public class WinLoseTextArt {
 
+    /*
     // This method will display the word art when the human player wins the game.
     // This will be used in both Basic and Advanced Game Engine
     void humanWinTextDisplay(HumanPlayer humanPlayer) {
@@ -27,4 +28,5 @@ public class WinLoseTextArt {
                 "   ██     ██████   ██████      ███████ ██████  ███████ ███████ \n" +
                 "                                                               \n");
     }
+    */
 }
