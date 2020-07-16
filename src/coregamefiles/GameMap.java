@@ -6,21 +6,24 @@ public class GameMap {
 
     // MAP
     public HashMap<String, HashMap<String, String>> rooms = new HashMap<>();
+
     private HashMap<String, String> atrium = new HashMap<String, String>();
     private HashMap<String, String> breakfastNook = new HashMap<String, String>();
     private HashMap<String, String> menagerie = new HashMap<String, String>();
     private HashMap<String, String> conservatory = new HashMap<String, String>();
     private HashMap<String, String> panicRoom = new HashMap<String, String>();
+
     private HashMap<String, String> fireSwamps = new HashMap<String, String>();
     private HashMap<String, String> hall = new HashMap<String, String>();
     private HashMap<String, String> diningRoom = new HashMap<String, String>();
     private HashMap<String, String> arcade = new HashMap<String, String>();
     private HashMap<String, String> observatory = new HashMap<String, String>();
-    private HashMap<String, String> kitchen = new HashMap<String, String>();
-    private HashMap<String, String> laboratory = new HashMap<String, String>();
-    private HashMap<String, String> garden = new HashMap<String, String>();
-    private HashMap<String, String> library = new HashMap<String, String>();
+
     private HashMap<String, String> courtyard = new HashMap<String, String>();
+    private HashMap<String, String> library = new HashMap<String, String>();
+    private HashMap<String, String> garden = new HashMap<String, String>();
+    private HashMap<String, String> laboratory = new HashMap<String, String>();
+    private HashMap<String, String> kitchen = new HashMap<String, String>();
 
 
     //provide info for map

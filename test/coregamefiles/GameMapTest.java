@@ -64,6 +64,7 @@ public class GameMapTest {
     public void testRooms(){
         allRooms = rooms.keySet();
         assertEquals(allRooms.size(), 15);
+        
         assertTrue(allRooms.contains("Atrium"));
         assertTrue(allRooms.contains("Breakfast Nook"));
         assertTrue(allRooms.contains("Menagerie"));
