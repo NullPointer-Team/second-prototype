@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class GameMenu {
 
-    private static String name;
+
 
     /**
      * gameMenu.startGame in the GameEngineClient starts the game from here.
@@ -74,11 +74,5 @@ public class GameMenu {
 //        System.out.println("Username has been set to: " + getName());
 //    }
 
-    public static String getName() {
-        return name;
-    }
 
-    public static void setName(String name) {
-        GameMenu.name = name;
-    }
 }
