@@ -31,6 +31,7 @@ public class GameMenu {
     private void displayMenuText() {
         GameMenuTextArt.welcome();
         GameMenuTextArt.gameMenuDisplayText();
+        GameMenuTextArt.gameMenuPrompt();
     }
 
     //DONE: Implement the GameEngine playGame method here, make it run
