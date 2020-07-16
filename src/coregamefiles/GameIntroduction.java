@@ -27,9 +27,9 @@ public class GameIntroduction {
                     "    \"go west\"\n" +
                     "To navigate from room to room, type 'get' followed by the name of the item, such as:\n" +
                     "    \"get wand\"\n" +
-                    "    \" - or -\"\n" +
+                    "       - or -   \n" +
                     "    \"get coin\"\n" +
-                    "    \" - or -\"\n" +
+                    "       - or -   \n" +
                     "    \"get 'insert name of item as listed'\"\n" +
                     "Grab all the resources you can. You will need them on your journey as challenged come your way.\n" +
                     "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!");
@@ -38,9 +38,10 @@ public class GameIntroduction {
 
     // This private method will prompt the user if they want to hear the rules for the game or not.
     private static String ruleDisplaySelection() {
-        System.out.println("\nWould you like to hear the rules of the game?\n" +
-                           "Type Y or Yes to hear the rules.\n" +
-                           "Type anything else to continue to the game.\n");
+        System.out.println(
+                "\nWould you like to hear the rules of the game?\n" +
+                "Type Y or Yes to hear the rules.\n" +
+                "Type anything else to continue to the game.\n");
 
         Scanner userInput = new Scanner(System.in);
         return userInput.nextLine().toUpperCase();
