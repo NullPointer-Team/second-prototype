@@ -45,7 +45,7 @@ public class GameMenuTextArt extends GameMenu {
                 "                 ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝                \n" +
                 "                                                                    \n");
 
-        System.out.println(" Built by Team BullPointer (Team 5)\n" +
+        System.out.println(" Built by Team NullPointer (Team 5)\n" +
                 " Neill Perry (https://github.com/neillperry)\n" +
                 " Bruce West (https://github.com/BruceBAWest)\n" +
                 " Tapan Trivedi (https://github.com/tapantriv)\n" +
