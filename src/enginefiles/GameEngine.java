@@ -25,7 +25,7 @@ public class GameEngine {
 
         //TODO: fix rooms.get and showStatus method
         while (!gameOver) {
-            showStatus();
+            //showStatus();
             String move = "";
             while (move == "") {
                 System.out.println("What do you want to do?");
@@ -78,5 +78,5 @@ public class GameEngine {
     public void setInventory(ArrayList<String> inventory) {
         this.inventory = inventory;
     }
-    
+
 }
