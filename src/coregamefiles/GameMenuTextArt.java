@@ -12,24 +12,10 @@
 package coregamefiles;
 
 public class GameMenuTextArt extends GameMenu {
-
-    static void gameMenuDisplayText() {
-        System.out.println("\n" +
-                "       _______________________________________________________\n" +
-                "       |     ▄▄▌ ▐ ▄▄▄▄ ▄▄▌  ▄▄        ▌ ▄   ▄▄▄             |\n" +
-                "       |     ██  █▌▐▀▄ ▀██  ▐█ ▌      ██ ▐███▀▄ ▀            |\n" +
-                "       |     ██ ▐█▐▐▐▀▀ ██  ██ ▄▄▄█▀▄▐█ ▌▐▌▐█▐▀▀ ▄           |\n" +
-                "       |     ▐█▌██▐█▐█▄▄▐█▌▐▐███▐█▌ ▐██ ██▌▐█▐█▄▄▌           |\n" +
-                "       |      ▀▀▀▀ ▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀█▄▀▀▀  █ ▀▀▀▀▀▀            |\n" +
-                "       |                                                     |\n" +
-                "       |  Welcome to Stranger Game, the Java Console Game!   |\n" +
-                "       |  Please select an option from the choices below:    |\n" +
-                "       |                                                     |\n" +
-                "       |  Play the Game            [Command: Play]           |\n" +
-                "       |  Exit this Program        [Command: Exit]           |\n" +
-                "       |_____________________________________________________|\n");
-    }
-
+    /**
+     * Game intro text Art
+     * displays in main game menu
+     */
     static void welcome() {
         System.out.println("\n" +
                 "███████╗████████╗██████╗  █████╗ ███╗   ██╗ ██████╗ ███████╗██████╗ \n" +
@@ -54,6 +40,36 @@ public class GameMenuTextArt extends GameMenu {
                 "           https://github.com/NullPointer-Team");
     }
 
+    /**
+     * Game menu
+     * displays in main game menu
+     * when you first run game, or return to menu
+     */
+    static void gameMenuDisplayText() {
+        System.out.println("\n" +
+                "       _______________________________________________________\n" +
+                "       |     ▄▄▌ ▐ ▄▄▄▄ ▄▄▌  ▄▄        ▌ ▄   ▄▄▄             |\n" +
+                "       |     ██  █▌▐▀▄ ▀██  ▐█ ▌      ██ ▐███▀▄ ▀            |\n" +
+                "       |     ██ ▐█▐▐▐▀▀ ██  ██ ▄▄▄█▀▄▐█ ▌▐▌▐█▐▀▀ ▄           |\n" +
+                "       |     ▐█▌██▐█▐█▄▄▐█▌▐▐███▐█▌ ▐██ ██▌▐█▐█▄▄▌           |\n" +
+                "       |      ▀▀▀▀ ▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀█▄▀▀▀  █ ▀▀▀▀▀▀            |\n" +
+                "       |                                                     |\n" +
+                "       |  Welcome to Stranger Game, the Java Console Game!   |\n" +
+                "       |  Please select an option from the choices below:    |\n" +
+                "       |                                                     |\n" +
+                "       |  Play the Game            [Command: Play]           |\n" +
+                "       |  Exit this Program        [Command: Exit]           |\n" +
+                "       |_____________________________________________________|\n");
+    }
+
+    static void gameMenuPrompt() {
+        System.out.println("\n" + "Enter response below: ");
+    }
+
+    /**
+     * Goodbye Message
+     * displays when you exit game via main menu
+     */
     static void goodbye() {
         System.out.println("Goodbye!  Thanks for playing.");
         System.out.println("\n" +
