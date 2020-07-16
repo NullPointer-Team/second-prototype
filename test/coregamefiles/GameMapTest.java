@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.swing.text.IconView;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -87,6 +88,7 @@ public class GameMapTest {
         atrium = rooms.get("Atrium");
         assertTrue(atrium.get("east").equals("Breakfast Nook"));
         assertTrue(atrium.get("south").equals("Fire Swamps"));
+        assertTrue(atrium.get("item").equals("Treasure Chest"));
     }
 
     @Test
@@ -94,6 +96,113 @@ public class GameMapTest {
         nook = rooms.get("Breakfast Nook");
         assertTrue(nook.get("east").equals("Menagerie"));
         assertTrue(nook.get("west").equals("Atrium"));
+        assertTrue(nook.get("item").equals("Gold Beetle"));
     }
 
+    @Test
+    public void testMenagerie() {
+        menagerie = rooms.get("Menagerie");
+        assertTrue(menagerie.get("west").equals("Breakfast Nook"));
+        assertTrue(menagerie.get("south").equals("Dining Room"));
+        assertTrue(menagerie.get("secret").equals("Courtyard"));
+        assertTrue(menagerie.get("item").equals("Amulet"));
+    }
+
+    @Test
+    public void testConservatory() {
+        conservatory = rooms.get("Conservatory");
+        assertTrue(conservatory.get("east").equals("Panic Room"));
+        assertTrue(conservatory.get("south").equals("Arcade"));
+        assertTrue(conservatory.get("item").equals("Quick Sand"));
+    }
+
+    @Test
+    public void testPanicRoom() {
+        panicRoom = rooms.get("Panic Room");
+        assertTrue(panicRoom.get("west").equals("Conservatory"));
+        assertTrue(panicRoom.get("south").equals("Observatory"));
+        assertTrue(panicRoom.get("item").equals("sword"));
+    }
+
+    @Test
+    public void testFireSwamp() {
+        fireSwamps = rooms.get("Fire Swamps");
+        assertTrue(fireSwamps.get("north").equals("Atrium"));
+        assertTrue(fireSwamps.get("east").equals("Hall"));
+        assertTrue(fireSwamps.get("item").equals("Rodents of Unusual Size (ROUS)"));
+    }
+
+    @Test
+    public void testHall() {
+        hall = rooms.get("Hall");
+        assertTrue(hall.get("west").equals("Fire Swamps"));
+        assertTrue(hall.get("east").equals("Dining Room"));
+        assertTrue(hall.get("item").equals("key"));
+    }
+
+    @Test
+    public void testDiningRoom() {
+        diningRoom = rooms.get("Dining Room");
+        assertTrue(diningRoom.get("north").equals("Menagerie"));
+        assertTrue(diningRoom.get("east").equals("Arcade"));
+        assertTrue(diningRoom.get("west").equals("Hall"));
+        assertTrue(diningRoom.get("item").equals("potion"));
+    }
+
+    @Test
+    public void testArcade() {
+        arcade = rooms.get("Arcade");
+        assertTrue(arcade.get("north").equals("Conservatory"));
+        assertTrue(arcade.get("south").equals("Library"));
+        assertTrue(arcade.get("east").equals("Observatory"));
+        assertTrue(arcade.get("west").equals("Dining Room"));
+        assertTrue(arcade.get("item").equals("Game Boy"));
+    }
+
+    @Test
+    public void testObservatory() {
+        observatory = rooms.get("Observatory");
+        assertTrue(observatory.get("north").equals("Panic Room"));
+        assertTrue(observatory.get("west").equals("Arcade"));
+        assertTrue(observatory.get("item").equals("fire"));
+    }
+
+    @Test
+    public void testCourtyard() {
+        courtyard = rooms.get("Courtyard");
+        assertTrue(courtyard.get("secret").equals("Menagerie"));
+        assertTrue(courtyard.get("west").equals("Library"));
+    }
+
+    @Test
+    public void testLibrary() {
+        library = rooms.get("Library");
+        assertTrue(library.get("east").equals("Courtyard"));
+        assertTrue(library.get("west").equals("Garden"));
+        assertTrue(library.get("north").equals("Arcade"));
+        assertTrue(library.get("item").equals("Book of Spells"));
+    }
+
+    @Test
+    public void testGarden() {
+        garden = rooms.get("Garden");
+        assertTrue(garden.get("east").equals("Library"));
+        assertTrue(garden.get("west").equals("Laboratory"));
+        assertTrue(garden.get("item").equals("True Love"));
+    }
+
+    @Test
+    public void testLaboratory() {
+        laboratory = rooms.get("Laboratory");
+        assertTrue(laboratory.get("east").equals("Garden"));
+        assertTrue(laboratory.get("west").equals("Kitchen"));
+        assertTrue(laboratory.get("item").equals("Flux Capacitor"));
+    }
+
+    @Test
+    public void testKitchen() {
+        kitchen = rooms.get("Kitchen");
+        assertTrue(kitchen.get("east").equals("Laboratory"));
+        assertTrue(kitchen.get("item").equals("monster"));
+    }
 }
