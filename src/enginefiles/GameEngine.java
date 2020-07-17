@@ -28,12 +28,16 @@ public class GameEngine {
     private GameMap gameMap = new GameMap();
     private HashMap<String, HashMap<String, String>> rooms;
 
-    public void playGame() {
-        GameIntroduction.gameInformation();
+    public GameEngine() {
         rooms = gameMap.rooms;
         currentRoom = "Atrium";
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
+    }
+
+
+    public void playGame() {
+        GameIntroduction.gameInformation();
 
         while (!gameOver) {
             showStatus();
@@ -43,8 +47,8 @@ public class GameEngine {
         }
     }
 
-    private void checkIfGameOver() {
-        if (getCurrentRoom().equals("Kitchen")) {
+    public void checkIfGameOver() {
+        if (currentRoom.equals("Kitchen")) {
             if (inventory.contains("sword")) {
                 WinLoseTextArt.winArt();
             } else {
@@ -81,7 +85,7 @@ public class GameEngine {
         }
     }
 
-    private String[] getUserCommand() {
+    public String[] getUserCommand() {
         String move = "";
         while (move.equals("")) {
             System.out.println("What do you want to do?");
