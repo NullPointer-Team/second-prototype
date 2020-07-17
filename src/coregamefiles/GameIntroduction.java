@@ -44,7 +44,7 @@ public class GameIntroduction {
                 "Type anything else to continue to the game.\n");
 
         Scanner userInput = new Scanner(System.in);
-        return userInput.nextLine().toUpperCase();
+        return userInput.nextLine().toUpperCase().trim();
     }
 
     // This method contains the welcome information text.

@@ -88,12 +88,12 @@ public class GameEngine {
         String move = "";
         while (move.equals("")) {
             System.out.println("What do you want to do?");
-            move = input.nextLine();
+            move = input.nextLine().trim();
         }
-        if (move.toUpperCase().equals("QUIT")) {
+        if (move.toUpperCase().trim().equals("QUIT")) {
             gameOver = true;
         }
-        if (move.toUpperCase().equals("RULES")) {
+        if (move.toUpperCase().trim().equals("RULES")) {
             GameRules.printRules();
         }
 
@@ -104,6 +104,8 @@ public class GameEngine {
         System.out.println(" -------------------- ");
         System.out.println("You are in the "+ currentRoom);
         showInventory();
+        System.out.println("For game rules, type \"rules\"");
+        System.out.println(" -------------------- ");
     }
 
     private void showInventory() {

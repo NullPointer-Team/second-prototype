@@ -17,9 +17,7 @@ public class GameRules {
                 "       - or -   \n" +
                 "    \"get coin\"\n" +
                 "       - or -   \n" +
-                "    \"get 'insert name of some item in the room'\"\n");
-
-//        Scanner userInput = new Scanner(System.in);
-//        return userInput.nextLine().toUpperCase();
+                "    \"get 'insert name of some item in the room'\"\n" +
+                "To quit the game, type \"quit\"");
     }
 }
