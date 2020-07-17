@@ -44,7 +44,7 @@ public class GameEngine {
     }
 
     private void checkIfGameOver() {
-        if (currentRoom.equals("Kitchen")) {
+        if (getCurrentRoom().equals("Kitchen")) {
             if (inventory.contains("sword")) {
                 WinLoseTextArt.winArt();
             } else {
