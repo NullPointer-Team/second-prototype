@@ -22,22 +22,26 @@ import java.util.Scanner;
 public class GameEngine {
     //setup fields
     public Boolean gameOver = false;
-    private String currentRoom;
+    //    private String currentRoom = "Atrium";
+    private CurrentRoom currentRoom;
     private ArrayList<String> inventory;
-    private final Scanner input;
+    private Scanner input;
     private GameMap gameMap = new GameMap();
-    private HashMap<String, HashMap<String, String>> rooms;
+    private HashMap<CurrentRoom, HashMap<String, String>> rooms;
 
-    //CTOR
+
+    /**
+     * CTOR Section
+     */
     public GameEngine() {
-        rooms = gameMap.rooms;
-        currentRoom = "Atrium";
-        inventory = new ArrayList<String>();
-        input = new Scanner(System.in);
+        //no-op ctor
     }
 
 
     public void playGame() {
+        rooms = gameMap.rooms;
+        inventory = new ArrayList<>();
+        input = new Scanner(System.in);
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
@@ -48,8 +52,40 @@ public class GameEngine {
         }
     }
 
+    /**
+     * Begin Accessor Method Section
+     * let's remove all this junk below, build objects out of them,
+     * return necessary info, and access them here instead
+     * example:
+     *
+     * in the top of this class, in the attributes/fields, have:
+     *
+     * private Inventory inventory;
+     *
+     * then down here have getters and setters like:
+     *
+     * public Inventory getInventory() {
+     *     return inventory;
+     * }
+     * &
+     * public void setInventory(Inventory inventory) {
+     *     this.inventory = inventory;
+     * }
+     *
+     * then in the CTOR above, have a no-op CTOR, and have
+     * @param currentRoom
+     */
+
+    public void setCurrentRoom(CurrentRoom currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    public CurrentRoom getCurrentRoom(){
+        return currentRoom;
+    }
+
     public void checkIfGameOver() {
-        if (getCurrentRoom().equals("Kitchen")) {
+        if (getCurrentRoom().toString().equals("Kitchen")) {
             if (inventory.contains("sword")) {
                 WinLoseTextArt.winArt();
             } else {
@@ -80,7 +116,7 @@ public class GameEngine {
 
     private void moveToRoom(String command) {
         if (rooms.get(currentRoom).containsKey(command.toLowerCase())) {
-            currentRoom = rooms.get(currentRoom).get(command);
+            setCurrentRoom((rooms.get(currentRoom).get(command)));
         } else {
             System.out.println("You can\'t go that way!");
         }
@@ -122,13 +158,6 @@ public class GameEngine {
         }
     }
 
-    public String getCurrentRoom(){
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(String currentRoom) {
-        this.currentRoom = currentRoom;
-    }
 
     public ArrayList<String> getInventory() {
         return inventory;

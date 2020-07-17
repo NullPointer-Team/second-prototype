@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class GameMap {
 
     // MAP
-    public HashMap<String, HashMap<String, String>> rooms = new HashMap<>();
+    public HashMap<CurrentRoom, HashMap<String, String>> rooms = new HashMap<>();
 
     private HashMap<String, String> atrium = new HashMap<String, String>();
     private HashMap<String, String> breakfastNook = new HashMap<String, String>();

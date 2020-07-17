@@ -2,8 +2,19 @@ package coregamefiles;
 
 public class CurrentRoom {
 
-    //create CurrentRoom class to store currentRoom method,
-    //with getters/setters, to break it away from GameEngine
-    //in GameEngine, at top, do CurrentRoom currentRoom = new CurrentRoom();
+    //field instantiates room
+    private String currentRoom;
 
+    //CTOR
+    public CurrentRoom(String currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    public String getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(String currentRoom) {
+        this.currentRoom = currentRoom;
+    }
 }
