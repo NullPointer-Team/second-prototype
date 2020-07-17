@@ -13,7 +13,7 @@ import java.util.ArrayList;
 class GameEngineTest {
     private GameEngine gameEngine = new GameEngine();
     private String commands;
-    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();;
+    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private PrintStream testOut;
     private PrintStream originalOut;
 
