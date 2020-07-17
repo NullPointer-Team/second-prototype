@@ -83,7 +83,7 @@ public class GameEngine {
         }
     }
 
-    private String[] getUserCommand() {
+    public String[] getUserCommand() {
         String move = "";
         while (move.equals("")) {
             System.out.println("What do you want to do?");
