@@ -70,9 +70,10 @@ public class GameMenuTextArt extends GameMenu {
      * Goodbye Message
      * displays when you exit game via main menu
      */
-    static void goodbye() {
+    static void printGoodbyeMessage() {
         System.out.println("Goodbye!  Thanks for playing.");
         System.out.println("\n" +
+                "                                                           \n" +
                 " ██████   ██████   ██████  ██████  ██████ ██    ██ ███████ \n" +
                 "██       ██    ██ ██    ██ ██   ██ ██   ██ ██  ██  ██      \n" +
                 "██   ███ ██    ██ ██    ██ ██   ██ ██████   ████   █████   \n" +
@@ -80,6 +81,11 @@ public class GameMenuTextArt extends GameMenu {
                 " ██████   ██████   ██████  ██████  ██████    ██    ███████ \n" +
                 "                                                           \n" +
                 "                                                           \n");
+    }
+
+
+    static void goodbye() {
+        printGoodbyeMessage();
         System.exit(0);
     }
 }
