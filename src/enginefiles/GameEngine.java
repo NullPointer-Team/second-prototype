@@ -21,12 +21,12 @@ import java.util.Scanner;
 
 public class GameEngine {
     //setup fields
+    public Boolean gameOver = false;
     private String currentRoom;
     private ArrayList<String> inventory;
     private final Scanner input;
     private GameMap gameMap = new GameMap();
     private HashMap<String, HashMap<String, String>> rooms;
-    public Boolean gameOver = false;
 
     //CTOR
     public GameEngine() {
