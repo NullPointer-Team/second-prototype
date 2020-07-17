@@ -44,7 +44,6 @@ public class GameMenu {
             try {
                 switch (userInput.nextLine().toUpperCase().trim()) {
                     case "PLAY":
-//                        gameEngine.gameOver = true;
                         gameEngine.playGame();
                         break;
                     case "EXIT":
