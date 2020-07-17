@@ -30,12 +30,16 @@ public class GameEngine {
     private GameMap gameMap = new GameMap();
     private HashMap<String, HashMap<String, String>> rooms;
 
-    public void playGame() {
-        GameIntroduction.gameInformation();
+    public GameEngine() {
         rooms = gameMap.rooms;
         currentRoom = "Atrium";
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
+    }
+
+
+    public void playGame() {
+        GameIntroduction.gameInformation();
 
         //TODO: fix rooms.get and showStatus method
         while (!gameOver) {
