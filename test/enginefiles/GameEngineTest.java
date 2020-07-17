@@ -40,7 +40,9 @@ class GameEngineTest {
 
     @Test
     public void testGameEnding() {
-        
+        gameEngine.setCurrentRoom("Kitchen");
+        gameEngine.checkIfGameOver();
+        assertEquals("You lost!! You are dead. You are not alive", outContent.toString());
     }
 
     @Test

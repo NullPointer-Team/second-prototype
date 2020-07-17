@@ -45,7 +45,7 @@ public class GameEngine {
         }
     }
 
-    private void checkIfGameOver() {
+    public void checkIfGameOver() {
         if (currentRoom.equals("Kitchen")) {
             if (inventory.contains("sword")) {
                 System.out.println("You won!! Good job!!");
