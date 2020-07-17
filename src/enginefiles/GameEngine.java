@@ -85,9 +85,12 @@ public class GameEngine {
 
     private String[] getUserCommand() {
         String move = "";
-        while (move == "") {
+        while (move.equals("")) {
             System.out.println("What do you want to do?");
             move = input.nextLine();
+        }
+        if (move.toUpperCase().equals("QUIT")) {
+            gameOver = true;
         }
 
         return move.toLowerCase().split("\\s+", 2);
