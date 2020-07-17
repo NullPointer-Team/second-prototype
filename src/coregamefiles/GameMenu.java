@@ -16,12 +16,16 @@ import exceptionfiles.InvalidGameMenuSelectionException;
 
 import java.util.Scanner;
 
+/**
+ * Game Menu is where you choose to begin or end game
+ * gameMenu.startGame in the GameClient executes the game from here.
+ */
 public class GameMenu {
 
-    /**
-     * gameMenu.startGame in the GameEngineClient starts the game from here.
-     * This will be the method to start the game.
-     */
+    GameEngine gameEngine = new GameEngine();
+    Scanner userInput = new Scanner(System.in);
+
+    // This method starts the game.
     public void startGame() {
         displayMenuText();
         startGameMenu();
@@ -34,22 +38,17 @@ public class GameMenu {
         GameMenuTextArt.gameMenuPrompt();
     }
 
-    //DONE: Implement the GameEngine playGame method here, make it run
-    // This method will handle all of the user input logic from game menu choice,
-    // and start the game.
+    // This method handles user input logic from game menu choices
     private void startGameMenu() {
-        boolean isValid = false;
-        GameEngine gameEngine = new GameEngine();
-        Scanner userInput = new Scanner(System.in);
-        while (!(isValid)) {
+        while (!gameEngine.gameOver) {
             try {
                 switch (userInput.nextLine().toUpperCase().trim()) {
                     case "PLAY":
+                        gameEngine.gameOver = true;
                         gameEngine.playGame();
-                        isValid = true;
                         break;
                     case "EXIT":
-                        isValid = true;
+                        gameEngine.gameOver = false;
                         GameMenuTextArt.goodbye();
                     default:
                         throw new InvalidGameMenuSelectionException();

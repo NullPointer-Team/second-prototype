@@ -11,7 +11,7 @@
 
 package client;
 
-public class GameEngineClient {
+public class GameClient {
     public static void main(String[] args) {
         coregamefiles.GameMenu gameMenu = new coregamefiles.GameMenu();
         gameMenu.startGame();
