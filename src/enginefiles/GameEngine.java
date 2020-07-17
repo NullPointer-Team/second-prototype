@@ -11,9 +11,7 @@
 
 package enginefiles;
 
-import coregamefiles.GameMap;
-import coregamefiles.GameIntroduction;
-import coregamefiles.GameRules;
+import coregamefiles.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +23,7 @@ public class GameEngine {
 
     private String currentRoom;
     private ArrayList<String> inventory;
-    private Boolean gameOver = false;
+    public Boolean gameOver = false;
     private Scanner input;
     private GameMap gameMap = new GameMap();
     private HashMap<String, HashMap<String, String>> rooms;
@@ -41,7 +39,6 @@ public class GameEngine {
     public void playGame() {
         GameIntroduction.gameInformation();
 
-        //TODO: fix rooms.get and showStatus method
         while (!gameOver) {
             showStatus();
             String[] moves = getUserCommand();
@@ -53,11 +50,11 @@ public class GameEngine {
     public void checkIfGameOver() {
         if (currentRoom.equals("Kitchen")) {
             if (inventory.contains("sword")) {
-                System.out.println("You won!! Good job!!");
+                WinLoseTextArt.winArt();
             } else {
-                System.out.println("You lost!! You are dead. You are not alive");
+                WinLoseTextArt.loseArt();
             }
-            gameOver = true;
+            PlayAgainPrompt.playAgain();
         }
     }
 
@@ -95,7 +92,8 @@ public class GameEngine {
             move = input.nextLine().trim();
         }
         if (move.toUpperCase().trim().equals("QUIT")) {
-            gameOver = true;
+            GameMenu gameMenu = new GameMenu();
+            gameMenu.startGame();
         }
         if (move.toUpperCase().trim().equals("RULES")) {
             GameRules.printRules();

@@ -75,6 +75,10 @@ public class Music {
 
     public static void main(String[] args) throws Exception {
         Music music = new Music();
+        /*
+        Uncomment below line to use,
+        To do , while user navigate to diff room ,we going to call method
+         */
 //        music.monster();
 //        music.garden();
 //        music.fire();
