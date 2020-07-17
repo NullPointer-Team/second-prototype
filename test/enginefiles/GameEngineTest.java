@@ -23,34 +23,34 @@ class GameEngineTest {
     }
 
     @Test
-    public void testPrint() {
+    void testShowStatus() {
         System.setOut(new PrintStream(outContent));
-        System.out.print("test");
-        String test = "test";
-        assertEquals(test, outContent.toString());
-    }
-
-
-    @Test
-    public void testGameEndingDefeat() {
-        System.setOut(new PrintStream(outContent));
-        gameEngine.setCurrentRoom("Kitchen");
-        gameEngine.checkIfGameOver();
-        String expectedOutput = "You lost!! You are dead. You are not alive\n";
+        gameEngine.setCurrentRoom("Panic Room");
+        gameEngine.showStatus();
+        String expectedOutput = " -------------------- \n" +
+                "You are in the Panic Room\n" +
+                "You have nothing in your inventory\n" +
+                "For game rules, type \"rules\"\n" +
+                " -------------------- \n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
     @Test
-    public void testGameEndingVictory() {
+    void testShowInventory() {
+        System.setOut(new PrintStream(outContent));
         ArrayList<String> inventory = new ArrayList<String>();
+        inventory.add("Gold Beetle");
         inventory.add("sword");
-        System.setOut(new PrintStream(outContent));
-        gameEngine.setCurrentRoom("Kitchen");
+        inventory.add("amulet");
         gameEngine.setInventory(inventory);
-        gameEngine.checkIfGameOver();
-        String expectedOutput = "You won!! Good job!!\n";
+        gameEngine.showInventory();
+        String expectedOutput = "In your inventory, you have:     \n" +
+                "      - a Gold Beetle\n" +
+                "      - a sword\n" +
+                        "      - a amulet\n";
         assertEquals(expectedOutput, outContent.toString());
     }
+    
 
     @Test
     void getCurrentRoom() {

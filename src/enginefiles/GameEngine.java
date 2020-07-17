@@ -102,7 +102,7 @@ public class GameEngine {
         return move.toLowerCase().split("\\s+", 2);
     }
 
-    private void showStatus() {
+    void showStatus() {
         System.out.println(" -------------------- ");
         System.out.println("You are in the "+ currentRoom);
         showInventory();
@@ -110,7 +110,7 @@ public class GameEngine {
         System.out.println(" -------------------- ");
     }
 
-    private void showInventory() {
+    void showInventory() {
         if (getInventory().isEmpty()) {
             System.out.println("You have nothing in your inventory");
         } else {
