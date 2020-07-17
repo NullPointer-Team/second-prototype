@@ -20,14 +20,15 @@ import java.util.Scanner;
 
 
 public class GameEngine {
-
+    //setup fields
     private String currentRoom;
     private ArrayList<String> inventory;
-    public Boolean gameOver = false;
-    private Scanner input;
+    private final Scanner input;
     private GameMap gameMap = new GameMap();
     private HashMap<String, HashMap<String, String>> rooms;
+    public Boolean gameOver = false;
 
+    //CTOR
     public GameEngine() {
         rooms = gameMap.rooms;
         currentRoom = "Atrium";
@@ -48,7 +49,7 @@ public class GameEngine {
     }
 
     public void checkIfGameOver() {
-        if (currentRoom.equals("Kitchen")) {
+        if (getCurrentRoom().equals("Kitchen")) {
             if (inventory.contains("sword")) {
                 WinLoseTextArt.winArt();
             } else {
