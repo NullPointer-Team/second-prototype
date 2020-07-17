@@ -1,5 +1,6 @@
 package enginefiles;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
@@ -22,6 +23,14 @@ class GameEngineTest {
         errContent = new ByteArrayOutputStream();
         originalOut = System.out;
         originalErr = System.err;
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+    }
+
+    @After
+    public void restoreSettings() {
+        System.setOut(originalOut);
+        System.setErr(originalErr);
     }
 
     @Test
@@ -30,9 +39,13 @@ class GameEngineTest {
     }
 
     @Test
+    public void testGameEnding() {
+        
+    }
+
+    @Test
     void getCurrentRoom() {
-        System.out.println(gameEngine.getCurrentRoom());
-        assertTrue(gameEngine.getCurrentRoom().equals("Atrium"));
+
     }
 
     @Test
