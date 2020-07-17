@@ -50,7 +50,6 @@ public class GameEngine {
             } else {
                 WinLoseTextArt.loseArt();
             }
-            //gameOver = true;    //leaving here for now, but unnecessary, I believe. it just exits the program. we'd rather return to menut to exit program.
             PlayAgainPrompt.playAgain();
         }
     }
