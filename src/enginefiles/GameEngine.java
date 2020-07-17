@@ -23,7 +23,7 @@ public class GameEngine {
 
     private String currentRoom;
     private ArrayList<String> inventory;
-    private Boolean gameOver = false;
+    public Boolean gameOver = false;
     private Scanner input;
     private GameMap gameMap = new GameMap();
     private HashMap<String, HashMap<String, String>> rooms;
