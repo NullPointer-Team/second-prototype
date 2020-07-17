@@ -46,7 +46,7 @@ public class GameEngine {
     }
 
     private void checkIfGameOver() {
-        if (rooms.get(currentRoom).equals("Kitchen")) {
+        if (currentRoom.equals("Kitchen")) {
             if (inventory.contains("sword")) {
                 System.out.println("You won!! Good job!!");
             } else {
@@ -78,7 +78,6 @@ public class GameEngine {
     private void moveToRoom(String command) {
         if (rooms.get(currentRoom).containsKey(command.toLowerCase())) {
             currentRoom = rooms.get(currentRoom).get(command);
-            System.out.println("New room is " + currentRoom);
         } else {
             System.out.println("You can\'t go that way!");
         }
@@ -91,12 +90,12 @@ public class GameEngine {
             move = input.nextLine();
         }
 
-        return move.toLowerCase().split("\\s+");
+        return move.toLowerCase().split("\\s+", 2);
     }
 
     private void showStatus() {
         System.out.println(" -------------------- ");
-        System.out.println(" You are in the "+ currentRoom);
+        System.out.println("You are in the "+ currentRoom);
         showInventory();
     }
 
