@@ -13,6 +13,7 @@ package enginefiles;
 
 import coregamefiles.GameMap;
 import coregamefiles.GameIntroduction;
+import coregamefiles.GameRules;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,6 +92,9 @@ public class GameEngine {
         }
         if (move.toUpperCase().equals("QUIT")) {
             gameOver = true;
+        }
+        if (move.toUpperCase().equals("RULES")) {
+            GameRules.printRules();
         }
 
         return move.toLowerCase().split("\\s+", 2);
