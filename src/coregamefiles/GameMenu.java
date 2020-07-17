@@ -43,7 +43,7 @@ public class GameMenu {
         Scanner userInput = new Scanner(System.in);
         while (!(isValid)) {
             try {
-                switch (userInput.nextLine().toUpperCase()) {
+                switch (userInput.nextLine().toUpperCase().trim()) {
                     case "PLAY":
                         gameEngine.playGame();
                         isValid = true;

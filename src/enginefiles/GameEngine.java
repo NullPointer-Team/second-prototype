@@ -11,8 +11,7 @@
 
 package enginefiles;
 
-import coregamefiles.GameMap;
-import coregamefiles.GameIntroduction;
+import coregamefiles.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +35,6 @@ public class GameEngine {
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
 
-        //TODO: fix rooms.get and showStatus method
         while (!gameOver) {
             showStatus();
             String[] moves = getUserCommand();
@@ -46,13 +44,14 @@ public class GameEngine {
     }
 
     private void checkIfGameOver() {
-        if (rooms.get(currentRoom).equals("Kitchen")) {
+        if (currentRoom.equals("Kitchen")) {
             if (inventory.contains("sword")) {
-                System.out.println("You won!! Good job!!");
+                WinLoseTextArt.winArt();
             } else {
-                System.out.println("You lost!! You are dead. You are not alive");
+                WinLoseTextArt.loseArt();
             }
-            gameOver = true;
+            //gameOver = true;    //leaving here for now, but unnecessary, I believe. it just exits the program. we'd rather return to menut to exit program.
+            PlayAgainPrompt.playAgain();
         }
     }
 
@@ -78,7 +77,6 @@ public class GameEngine {
     private void moveToRoom(String command) {
         if (rooms.get(currentRoom).containsKey(command.toLowerCase())) {
             currentRoom = rooms.get(currentRoom).get(command);
-            System.out.println("New room is " + currentRoom);
         } else {
             System.out.println("You can\'t go that way!");
         }
@@ -86,18 +84,27 @@ public class GameEngine {
 
     private String[] getUserCommand() {
         String move = "";
-        while (move == "") {
+        while (move.equals("")) {
             System.out.println("What do you want to do?");
-            move = input.nextLine();
+            move = input.nextLine().trim();
+        }
+        if (move.toUpperCase().trim().equals("QUIT")) {
+            GameMenu gameMenu = new GameMenu();
+            gameMenu.startGame();
+        }
+        if (move.toUpperCase().trim().equals("RULES")) {
+            GameRules.printRules();
         }
 
-        return move.toLowerCase().split("\\s+");
+        return move.toLowerCase().split("\\s+", 2);
     }
 
     private void showStatus() {
         System.out.println(" -------------------- ");
-        System.out.println(" You are in the "+ currentRoom);
+        System.out.println("You are in the "+ currentRoom);
         showInventory();
+        System.out.println("For game rules, type \"rules\"");
+        System.out.println(" -------------------- ");
     }
 
     private void showInventory() {

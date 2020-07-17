@@ -25,12 +25,12 @@ public class GameIntroduction {
                     "    \"go south\"\n" +
                     "    \"go east\"\n" +
                     "    \"go west\"\n" +
-                    "To navigate from room to room, type 'get' followed by the name of the item, such as:\n" +
+                    "To retrieve items in a room, type 'get' followed by the name of the item, such as:\n" +
                     "    \"get wand\"\n" +
                     "       - or -   \n" +
                     "    \"get coin\"\n" +
                     "       - or -   \n" +
-                    "    \"get 'insert name of item as listed'\"\n" +
+                    "    \"get 'insert name of some item in the room'\"\n" +
                     "Grab all the resources you can. You will need them on your journey as challenged come your way.\n" +
                     "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!");
         }
@@ -44,7 +44,7 @@ public class GameIntroduction {
                 "Type anything else to continue to the game.\n");
 
         Scanner userInput = new Scanner(System.in);
-        return userInput.nextLine().toUpperCase();
+        return userInput.nextLine().toUpperCase().trim();
     }
 
     // This method contains the welcome information text.
