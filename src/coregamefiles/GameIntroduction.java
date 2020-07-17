@@ -19,36 +19,43 @@ public class GameIntroduction {
         welcomeMessage();
         String userInput = ruleDisplaySelection();
         if (userInput.equals("Y") || userInput.equals("YES")) {
-            System.out.println(
-                    "To navigate from room to room, type these commands:\n" +
-                    "    \"go north\"\n" +
-                    "    \"go south\"\n" +
-                    "    \"go east\"\n" +
-                    "    \"go west\"\n" +
-                    "To retrieve items in a room, type 'get' followed by the name of the item, such as:\n" +
-                    "    \"get wand\"\n" +
-                    "       - or -   \n" +
-                    "    \"get coin\"\n" +
-                    "       - or -   \n" +
-                    "    \"get 'insert name of some item in the room'\"\n" +
-                    "Grab all the resources you can. You will need them on your journey as challenged come your way.\n" +
-                    "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!");
+            printRules();
         }
     }
 
-    // This private method will prompt the user if they want to hear the rules for the game or not.
-    private static String ruleDisplaySelection() {
+    static void printRules() {
         System.out.println(
-                "\nWould you like to hear the rules of the game?\n" +
-                "Type Y or Yes to hear the rules.\n" +
-                "Type anything else to continue to the game.\n");
+                "To navigate from room to room, type these commands:\n" +
+                        "    \"go north\"\n" +
+                        "    \"go south\"\n" +
+                        "    \"go east\"\n" +
+                        "    \"go west\"\n" +
+                        "To retrieve items in a room, type 'get' followed by the name of the item, such as:\n" +
+                        "    \"get wand\"\n" +
+                        "       - or -   \n" +
+                        "    \"get coin\"\n" +
+                        "       - or -   \n" +
+                        "    \"get 'insert name of some item in the room'\"\n" +
+                        "Grab all the resources you can. You will need them on your journey as challenged come your way.\n" +
+                        "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!");
+    }
 
+    // This private method will prompt the user if they want to hear the rules for the game or not.
+    static String ruleDisplaySelection() {
+        printReadRulesQuestion();
         Scanner userInput = new Scanner(System.in);
         return userInput.nextLine().toUpperCase().trim();
     }
 
+    static void printReadRulesQuestion() {
+        System.out.println(
+                "\nWould you like to hear the rules of the game?\n" +
+                "Type Y or Yes to hear the rules.\n" +
+                "Type anything else to continue to the game.\n");
+    }
+
     // This method contains the welcome information text.
-    private static void welcomeMessage() {
+    static void welcomeMessage() {
         System.out.println(
                 "Welcome to Stranger Game, a text-based Java console RPG game.  Please read the rules below:\n" +
                 "Although the basic game has a lot of complexity to it, the rules to play it are simple.\n" +
