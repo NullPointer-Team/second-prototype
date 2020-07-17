@@ -25,7 +25,8 @@ public class GameEngine {
     private String currentRoom;
     private ArrayList<String> inventory;
     private Boolean gameOver = false;
-    private final GameMap gameMap = new GameMap();
+    private Scanner input;
+    private GameMap gameMap = new GameMap();
     private HashMap<String, HashMap<String, String>> rooms;
 
     public void playGame() {
@@ -33,7 +34,7 @@ public class GameEngine {
         rooms = gameMap.rooms;
         currentRoom = "Atrium";
         inventory = new ArrayList<String>();
-        Scanner input = new Scanner(System.in);
+        input = new Scanner(System.in);
 
         //TODO: fix rooms.get and showStatus method
         while (!gameOver) {
