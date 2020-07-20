@@ -77,11 +77,18 @@ public class GameEngine {
                 GameRules.printRules();
                 break;
             default:
-                System.out.println("I did not understand. Please re-enter you command.");
+                System.out.println("I did not understand. Please re-enter your command.");
         }
 
     }
 
+    //this little guy tells you when there's an item in the room
+    public void listItem() {
+        rooms.get(currentRoom).get("item");
+        System.out.println(rooms.get(currentRoom).get("item"));
+    }
+
+    //this here fella retreives an item in a room
     public void acquireItem(String command) {
         if (rooms.get(currentRoom).get("item").toLowerCase().equals(command.toLowerCase())) {
             inventory.add(command);
@@ -112,6 +119,7 @@ public class GameEngine {
     void showStatus() {
         System.out.println(" -------------------- ");
         System.out.println("You are in the "+ currentRoom);
+        System.out.println("This room has a(n) " + rooms.get(currentRoom).get("item"));
         showInventory();
         System.out.println("For game rules, type \"rules\"");
         System.out.println(" -------------------- ");
