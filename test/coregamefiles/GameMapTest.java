@@ -89,7 +89,7 @@ public class GameMapTest {
         atrium = rooms.get("Atrium");
         assertTrue(atrium.get("east").equals("Breakfast Nook"));
         assertTrue(atrium.get("south").equals("Fire Swamps"));
-        assertTrue(atrium.get("item").equals("Treasure Chest"));
+        assertTrue(atrium.get("item").equals("fighting skills"));
     }
 
     @Test
@@ -97,7 +97,9 @@ public class GameMapTest {
         nook = rooms.get("Breakfast Nook");
         assertTrue(nook.get("east").equals("Menagerie"));
         assertTrue(nook.get("west").equals("Atrium"));
-        assertTrue(nook.get("item").equals("Gold Beetle"));
+        assertTrue(nook.get("challenge").equals("Gold Beetles"));
+        assertTrue(nook.get("solution").equals("fighting skills"));
+        assertTrue(nook.get("solved").equals("false"));
     }
 
     @Test
@@ -105,8 +107,8 @@ public class GameMapTest {
         menagerie = rooms.get("Menagerie");
         assertTrue(menagerie.get("west").equals("Breakfast Nook"));
         assertTrue(menagerie.get("south").equals("Dining Room"));
-        assertTrue(menagerie.get("secret").equals("Courtyard"));
-        assertTrue(menagerie.get("item").equals("Amulet"));
+        assertTrue(menagerie.get("secret").equals("Observatory"));
+        assertTrue(menagerie.get("item").equals("Rope"));
     }
 
     @Test
@@ -114,7 +116,9 @@ public class GameMapTest {
         conservatory = rooms.get("Conservatory");
         assertTrue(conservatory.get("east").equals("Panic Room"));
         assertTrue(conservatory.get("south").equals("Arcade"));
-        assertTrue(conservatory.get("item").equals("Quick Sand"));
+        assertTrue(conservatory.get("challenge").equals("Quick Sand"));
+        assertTrue(conservatory.get("solution").equals("Rope"));
+        assertTrue(conservatory.get("solved").equals("false"));
     }
 
     @Test
@@ -122,7 +126,10 @@ public class GameMapTest {
         panicRoom = rooms.get("Panic Room");
         assertTrue(panicRoom.get("west").equals("Conservatory"));
         assertTrue(panicRoom.get("south").equals("Observatory"));
-        assertTrue(panicRoom.get("item").equals("sword"));
+        assertTrue(panicRoom.get("solution").equals("Book of Spells"));
+        assertTrue(panicRoom.get("challenge").equals("ghost"));
+        assertTrue(panicRoom.get("item").equals("key"));
+        assertTrue(panicRoom.get("solved").equals("false"));
     }
 
     @Test
@@ -130,7 +137,9 @@ public class GameMapTest {
         fireSwamps = rooms.get("Fire Swamps");
         assertTrue(fireSwamps.get("north").equals("Atrium"));
         assertTrue(fireSwamps.get("east").equals("Hall"));
-        assertTrue(fireSwamps.get("item").equals("Rodents of Unusual Size (ROUS)"));
+        assertTrue(fireSwamps.get("solution").equals("fighting skills"));
+        assertTrue(fireSwamps.get("challenge").equals("Rodents of Unusual Size (ROUS)"));
+        assertTrue(fireSwamps.get("solved").equals("false"));
     }
 
     @Test
@@ -138,7 +147,7 @@ public class GameMapTest {
         hall = rooms.get("Hall");
         assertTrue(hall.get("west").equals("Fire Swamps"));
         assertTrue(hall.get("east").equals("Dining Room"));
-        assertTrue(hall.get("item").equals("key"));
+        assertTrue(hall.get("item").equals("Super Soaker"));
     }
 
     @Test
@@ -147,7 +156,7 @@ public class GameMapTest {
         assertTrue(diningRoom.get("north").equals("Menagerie"));
         assertTrue(diningRoom.get("east").equals("Arcade"));
         assertTrue(diningRoom.get("west").equals("Hall"));
-        assertTrue(diningRoom.get("item").equals("potion"));
+        assertTrue(diningRoom.get("item").equals("Game Boy"));
     }
 
     @Test
@@ -157,7 +166,9 @@ public class GameMapTest {
         assertTrue(arcade.get("south").equals("Library"));
         assertTrue(arcade.get("east").equals("Observatory"));
         assertTrue(arcade.get("west").equals("Dining Room"));
-        assertTrue(arcade.get("item").equals("Game Boy"));
+        assertTrue(arcade.get("challenge").equals("fire"));
+        assertTrue(arcade.get("solution").equals("Super Soaker"));
+        assertTrue(arcade.get("solved").equals("false"));
     }
 
     @Test
@@ -165,14 +176,17 @@ public class GameMapTest {
         observatory = rooms.get("Observatory");
         assertTrue(observatory.get("north").equals("Panic Room"));
         assertTrue(observatory.get("west").equals("Arcade"));
-        assertTrue(observatory.get("item").equals("fire"));
+        assertTrue(observatory.get("item").equals("potion"));
+        assertTrue(observatory.get("secret").equals("Menagerie"));
     }
 
     @Test
     public void testCourtyard() {
         courtyard = rooms.get("Courtyard");
-        assertTrue(courtyard.get("secret").equals("Menagerie"));
+        assertTrue(courtyard.get("challenge").equals("lock"));
+        assertTrue(courtyard.get("solution").equals("key"));
         assertTrue(courtyard.get("west").equals("Library"));
+        assertTrue(courtyard.get("solved").equals("false"));
     }
 
     @Test
@@ -204,6 +218,8 @@ public class GameMapTest {
     public void testKitchen() {
         kitchen = rooms.get("Kitchen");
         assertTrue(kitchen.get("east").equals("Laboratory"));
-        assertTrue(kitchen.get("item").equals("monster"));
+        assertTrue(kitchen.get("solution").equals("sword"));
+        assertTrue(kitchen.get("challenge").equals("monster"));
+        assertTrue(kitchen.get("solved").equals("false"));
     }
 }

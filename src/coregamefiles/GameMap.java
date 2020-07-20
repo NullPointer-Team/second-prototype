@@ -30,50 +30,65 @@ public class GameMap {
     public GameMap() {
         atrium.put("south", "Fire Swamps");
         atrium.put("east", "Breakfast Nook");
-        atrium.put("item", "Treasure Chest");
+        atrium.put("item", "fighting skills");
 
         breakfastNook.put("east", "Menagerie");
         breakfastNook.put("west", "Atrium");
-        breakfastNook.put("item", "Gold Beetle");
+        breakfastNook.put("challenge", "Gold Beetles");
+        breakfastNook.put("solution", "fighting skills");
+        breakfastNook.put("solved", "false");
 
         menagerie.put("west", "Breakfast Nook");
         menagerie.put("south", "Dining Room");
-        menagerie.put("secret", "Courtyard");
-        menagerie.put("item", "Amulet");
+        menagerie.put("secret", "Observatory");
+        menagerie.put("item", "Rope");
 
         conservatory.put("south", "Arcade");
         conservatory.put("east", "Panic Room");
-        conservatory.put("item", "Quick Sand");
+        conservatory.put("challenge", "Quick Sand");
+        conservatory.put("solution", "Rope");
+        conservatory.put("solved", "false");
 
         panicRoom.put("west", "Conservatory");
         panicRoom.put("south", "Observatory");
-        panicRoom.put("item", "sword");
+        panicRoom.put("item", "key");
+        panicRoom.put("challenge", "ghost");
+        panicRoom.put("solution", "Book of Spells");
+        panicRoom.put("solved", "false");
 
         fireSwamps.put("north", "Atrium");
         fireSwamps.put("east", "Hall");
-        fireSwamps.put("item", "Rodents of Unusual Size (ROUS)");
+        fireSwamps.put("challenge", "Rodents of Unusual Size (ROUS)");
+        fireSwamps.put("solution", "fighting skills");
+        fireSwamps.put("solved", "false");
 
         hall.put("east", "Dining Room");
         hall.put("west", "Fire Swamps");
-        hall.put("item", "key");
+        hall.put("item", "Super Soaker");
 
         diningRoom.put("west", "Hall");
         diningRoom.put("east", "Arcade");
         diningRoom.put("north", "Menagerie");
-        diningRoom.put("item", "potion");
+        diningRoom.put("item", "Game Boy");
 
         arcade.put("west", "Dining Room");
         arcade.put("east", "Observatory");
         arcade.put("north", "Conservatory");
         arcade.put("south", "Library");
-        arcade.put("item", "Game Boy");
+        arcade.put("challenge", "fire");
+        arcade.put("solution", "Super Soaker");
+        arcade.put("solved", "false");
 
         observatory.put("north", "Panic Room");
         observatory.put("west", "Arcade");
-        observatory.put("item", "fire");
+        observatory.put("item", "potion");
+        observatory.put("secret", "Menagerie");
 
         courtyard.put("west", "Library");
-        courtyard.put("secret", "Menagerie");
+        courtyard.put("item", "sword");
+        courtyard.put("solution", "key");
+        courtyard.put("challenge", "lock");
+        courtyard.put("solved", "false");
 
         library.put("east", "Courtyard");
         library.put("west", "Garden");
@@ -89,7 +104,9 @@ public class GameMap {
         laboratory.put("item", "Flux Capacitor");
 
         kitchen.put("east", "Laboratory");
-        kitchen.put("item", "monster");
+        kitchen.put("challenge", "monster");
+        kitchen.put("solution", "sword");
+        kitchen.put("solved", "false");
 
         rooms.put("Atrium", atrium);
         rooms.put("Breakfast Nook", breakfastNook);
