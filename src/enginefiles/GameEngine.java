@@ -21,6 +21,7 @@ import java.util.Scanner;
 
 public class GameEngine {
 
+    //these are our fields. we're like farmers, but not
     private String currentRoom;
     private ArrayList<String> inventory;
     public Boolean gameOver;
@@ -30,6 +31,7 @@ public class GameEngine {
     private GameMap gameMap;
     private HashMap<String, HashMap<String, String>> rooms;
 
+    //i think this is a CTOR, maybe
     public GameEngine() {
         gameOver = false;
         guesses = 3;
@@ -41,7 +43,7 @@ public class GameEngine {
         input = new Scanner(System.in);
     }
 
-
+    //do you like to play games?
     public void playGame() {
         GameIntroduction.gameInformation();
 
@@ -55,6 +57,7 @@ public class GameEngine {
         PlayAgainPrompt.playAgain();
     }
 
+    //did you done gone and done won? or is you dead, and is you done?
     public void checkIfGameOver() {
         if (currentRoom.equals("Kitchen")) {
             if (inventory.contains("sword")) {
@@ -66,6 +69,7 @@ public class GameEngine {
         }
     }
 
+    //whatcha wanna do?
     public void terminateGame(Boolean wonGame) {
         if (wonGame) {
             WinLoseTextArt.winArt();
@@ -106,8 +110,7 @@ public class GameEngine {
         System.out.println(rooms.get(currentRoom).get("item"));
     }
 
-    //this here fella retreives an item in a room
-
+    //this here fella retrieves an item in a room
     public void useItem(String item) {
         if (!itemInInventory(item)) {
             System.out.println("You don\'t have that item in your inventory!");
@@ -117,6 +120,7 @@ public class GameEngine {
         }
     }
 
+    //it's time to fight!
     public void solveChallengeAttempt(String item) {
 
         if (rooms.get(currentRoom).get("solution").toLowerCase().equals(item.toLowerCase())) {
@@ -135,10 +139,12 @@ public class GameEngine {
         }
     }
 
+    //do you have it in your satchel?
     public Boolean itemInInventory(String item) {
         return inventory.contains(item);
     }
 
+    //get the thing
     public void acquireItem(String command) {
         if (rooms.get(currentRoom).get("item").toLowerCase().equals(command.toLowerCase())) {
             inventory.add(command);
@@ -148,14 +154,16 @@ public class GameEngine {
         }
     }
 
+    //this dude lets you move room-to-room
     public void moveToRoom(String command) {
         if (rooms.get(currentRoom).containsKey(command.toLowerCase())) {
             currentRoom = rooms.get(currentRoom).get(command);
         } else {
-            System.out.println("You can\'t go that way!");
+            System.out.println("You can't go that way!");
         }
     }
 
+    //this pardner prompts the player for precepts (lol... it gets commands)
     public String[] getUserCommand() {
         String command = "";
         while (command.equals("")) {
@@ -166,6 +174,7 @@ public class GameEngine {
         return command.toLowerCase().split("\\s+", 2);
     }
 
+    //lets you know what's what
     void showStatus() {
         System.out.println(" -------------------- ");
         System.out.println("You are in the "+ currentRoom);
@@ -175,6 +184,7 @@ public class GameEngine {
         System.out.println(" -------------------- ");
     }
 
+    //what's in the box?! What's in the box?!
     void showInventory() {
         if (getInventory().isEmpty()) {
             System.out.println("You have nothing in your inventory");
