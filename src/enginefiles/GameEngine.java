@@ -110,8 +110,7 @@ public class GameEngine {
         System.out.println(rooms.get(currentRoom).get("item"));
     }
 
-    //this here fella retreives an item in a room
-
+    //this here fella retrieves an item in a room
     public void useItem(String item) {
         if (!itemInInventory(item)) {
             System.out.println("You don\'t have that item in your inventory!");
@@ -121,6 +120,7 @@ public class GameEngine {
         }
     }
 
+    //it's time to fight!
     public void solveChallengeAttempt(String item) {
 
         if (rooms.get(currentRoom).get("solution").toLowerCase().equals(item.toLowerCase())) {
@@ -139,10 +139,12 @@ public class GameEngine {
         }
     }
 
+    //do you have it in your satchel?
     public Boolean itemInInventory(String item) {
         return inventory.contains(item);
     }
 
+    //get the thing
     public void acquireItem(String command) {
         if (rooms.get(currentRoom).get("item").toLowerCase().equals(command.toLowerCase())) {
             inventory.add(command);
