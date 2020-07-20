@@ -77,12 +77,12 @@ class GameEngineTest {
     @Test
     void testAcquireItem_Success() {
         System.setOut(new PrintStream(outContent));
-        gameEngine.setCurrentRoom("Panic Room");
-        gameEngine.acquireItem("sword");
-        String expectedOutput = "sword acquired!!\n";
+        gameEngine.setCurrentRoom("Hall");
+        gameEngine.acquireItem("Super Soaker");
+        String expectedOutput = "Super Soaker acquired!!\n";
         ArrayList<String> updatedInventory = gameEngine.getInventory();
         assertEquals(expectedOutput, outContent.toString());
-        assertTrue(updatedInventory.contains("sword"));
+        assertTrue(updatedInventory.contains("Super Soaker"));
     }
 
     @Test
