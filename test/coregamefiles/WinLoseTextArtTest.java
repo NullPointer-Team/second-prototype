@@ -13,7 +13,7 @@ class WinLoseTextArtTest {
     @Test
     void winArt() {
         System.setOut(new PrintStream(outContent));
-        winLoseTextArt.winArt();
+        WinLoseTextArt.winArt();
         String expectedOutput = "You won!! Good job!!\n\n" +
                 "██    ██  ██████  ██    ██     ██     ██ ██ ███    ██ \n" +
                 " ██  ██  ██    ██ ██    ██     ██     ██ ██ ████   ██ \n" +
@@ -27,7 +27,7 @@ class WinLoseTextArtTest {
     @Test
     void loseArt() {
         System.setOut(new PrintStream(outContent));
-        winLoseTextArt.loseArt();
+        WinLoseTextArt.loseArt();
         String expectedOutput = "You lost!! You are dead. You are not alive\n\n" +
                 "██    ██  ██████  ██    ██     ██      ██████  ███████ ███████ \n" +
                 " ██  ██  ██    ██ ██    ██     ██     ██    ██ ██      ██      \n" +
