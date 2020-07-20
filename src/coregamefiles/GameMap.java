@@ -34,7 +34,8 @@ public class GameMap {
 
         breakfastNook.put("east", "Menagerie");
         breakfastNook.put("west", "Atrium");
-        breakfastNook.put("challenge", "Gold Beetle");
+        breakfastNook.put("challenge", "Gold Beetles");
+        breakfastNook.put("solution", "fighting skills");
         breakfastNook.put("solved", "false");
 
         menagerie.put("west", "Breakfast Nook");
@@ -45,17 +46,20 @@ public class GameMap {
         conservatory.put("south", "Arcade");
         conservatory.put("east", "Panic Room");
         conservatory.put("challenge", "Quick Sand");
+        conservatory.put("solution", "Rope");
         conservatory.put("solved", "false");
 
         panicRoom.put("west", "Conservatory");
         panicRoom.put("south", "Observatory");
         panicRoom.put("item", "key");
         panicRoom.put("challenge", "ghost");
+        panicRoom.put("solution", "Book of Spells");
         panicRoom.put("solved", "false");
 
         fireSwamps.put("north", "Atrium");
         fireSwamps.put("east", "Hall");
         fireSwamps.put("challenge", "Rodents of Unusual Size (ROUS)");
+        fireSwamps.put("solution", "fighting skills");
         fireSwamps.put("solved", "false");
 
         hall.put("east", "Dining Room");
@@ -71,8 +75,8 @@ public class GameMap {
         arcade.put("east", "Observatory");
         arcade.put("north", "Conservatory");
         arcade.put("south", "Library");
-        arcade.put("item", "Game Boy");
         arcade.put("challenge", "fire");
+        arcade.put("solution", "Super Soaker");
         arcade.put("solved", "false");
 
         observatory.put("north", "Panic Room");
@@ -82,6 +86,7 @@ public class GameMap {
 
         courtyard.put("west", "Library");
         courtyard.put("item", "sword");
+        courtyard.put("solution", "key");
         courtyard.put("challenge", "lock");
         courtyard.put("solved", "false");
 
@@ -100,6 +105,7 @@ public class GameMap {
 
         kitchen.put("east", "Laboratory");
         kitchen.put("challenge", "monster");
+        kitchen.put("solution", "sword");
         kitchen.put("solved", "false");
 
         rooms.put("Atrium", atrium);

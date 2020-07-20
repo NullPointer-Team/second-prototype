@@ -24,13 +24,18 @@ public class GameEngine {
     //these are our fields. we're like farmers, but not
     private String currentRoom;
     private ArrayList<String> inventory;
-    public Boolean gameOver = false;
+    public Boolean gameOver;
+    public Integer guesses;
+    public Boolean isPlayerMobile;
     private Scanner input;
     private GameMap gameMap;
     private HashMap<String, HashMap<String, String>> rooms;
 
     //i think this is a CTOR, maybe
     public GameEngine() {
+        gameOver = false;
+        guesses = 3;
+        isPlayerMobile = true;
         gameMap = new GameMap();
         rooms = gameMap.rooms;
         currentRoom = "Atrium";
@@ -48,6 +53,8 @@ public class GameEngine {
             executeUserCommand(moves);
             checkIfGameOver();
         }
+
+        PlayAgainPrompt.playAgain();
     }
 
     //did you done gone and done won? or is you dead, and is you done?
@@ -63,6 +70,15 @@ public class GameEngine {
     }
 
     //whatcha wanna do?
+    public void terminateGame(Boolean wonGame) {
+        if (wonGame) {
+            WinLoseTextArt.winArt();
+        } else {
+            WinLoseTextArt.loseArt();
+        }
+        gameOver = true;
+    }
+
     public void executeUserCommand(String[] moves) {
         String first_word = moves[0].toLowerCase();
 
@@ -74,7 +90,7 @@ public class GameEngine {
                 acquireItem(moves[1]);
                 break;
             case "use":
-                // run method that checks whether Player is using the right item to solve challenge
+                useItem(moves[1]);
                 break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
@@ -88,7 +104,6 @@ public class GameEngine {
         }
 
     }
-
     //this little guy tells you when there's an item in the room
     public void listItem() {
         rooms.get(currentRoom).get("item");
@@ -96,6 +111,38 @@ public class GameEngine {
     }
 
     //this here fella retreives an item in a room
+
+    public void useItem(String item) {
+        if (!itemInInventory(item)) {
+            System.out.println("You don\'t have that item in your inventory!");
+            guesses++;
+        } else {
+            solveChallengeAttempt(item);
+        }
+    }
+
+    public void solveChallengeAttempt(String item) {
+
+        if (rooms.get(currentRoom).get("solution").toLowerCase().equals(item.toLowerCase())) {
+            System.out.println("You solved the challenge!");
+            rooms.get(currentRoom).replace("solved", "true");
+            isPlayerMobile = true;
+            
+        } else if (!itemInInventory(item)) {
+            guesses--;
+            System.out.println("You don\'t have that item in your inventory!");
+            System.out.println("You have " + guesses + " more chance(s) left to solve this challenge.");
+
+        } else if (guesses < 1) {
+            // print out clue that is specific to the room, i.e., it would help to have a key!
+            terminateGame(false);
+        }
+    }
+
+    public Boolean itemInInventory(String item) {
+        return inventory.contains(item);
+    }
+
     public void acquireItem(String command) {
         if (rooms.get(currentRoom).get("item").toLowerCase().equals(command.toLowerCase())) {
             inventory.add(command);
