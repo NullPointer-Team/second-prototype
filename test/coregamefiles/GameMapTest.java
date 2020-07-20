@@ -97,7 +97,7 @@ public class GameMapTest {
         nook = rooms.get("Breakfast Nook");
         assertTrue(nook.get("east").equals("Menagerie"));
         assertTrue(nook.get("west").equals("Atrium"));
-        assertTrue(nook.get("challenge").equals("Gold Beetle"));
+        assertTrue(nook.get("challenge").equals("Gold Beetles"));
         assertTrue(nook.get("solved").equals("false"));
     }
 

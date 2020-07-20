@@ -34,7 +34,7 @@ public class GameMap {
 
         breakfastNook.put("east", "Menagerie");
         breakfastNook.put("west", "Atrium");
-        breakfastNook.put("challenge", "Gold Beetle");
+        breakfastNook.put("challenge", "Gold Beetles");
         breakfastNook.put("solved", "false");
 
         menagerie.put("west", "Breakfast Nook");
@@ -71,7 +71,6 @@ public class GameMap {
         arcade.put("east", "Observatory");
         arcade.put("north", "Conservatory");
         arcade.put("south", "Library");
-        arcade.put("item", "Game Boy");
         arcade.put("challenge", "fire");
         arcade.put("solved", "false");
 
