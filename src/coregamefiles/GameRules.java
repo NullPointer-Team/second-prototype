@@ -6,6 +6,11 @@ public class GameRules {
     public static void printRules() {
         System.out.println(
                 "__________________________________________________________________________________\n" +
+                "         _         \n" +
+                " ___ _ _| |___ ___ \n" +
+                "|  _| | | | -_|_ -|\n" +
+                "|_| |___|_|___|___|\n" +
+                "__________________________________________________________________________________\n" +
                 "To navigate from room to room, type these commands:\n" +
                 "    \"go north\"\n" +
                 "    \"go south\"\n" +
@@ -22,7 +27,7 @@ public class GameRules {
                 "       - or -   \n" +
                 "    \"use sword\"\n" +
                 "To quit the game, type \"quit\"\n" +
-                "__________________________________________________________________________________\n" +
+                "__________________________________________________________________________________\n\n" +
                 "Grab all the resources you can. You will need them on your journey as challenges come your way.\n" +
                 "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!\n");
     }
