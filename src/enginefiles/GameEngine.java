@@ -59,13 +59,26 @@ public class GameEngine {
     }
 
     private void executeUserCommand(String[] moves) {
-        if (moves[0].toLowerCase().equals("go")) {
-            moveToRoom(moves[1]);
+        String first_word = moves[0].toLowerCase();
+
+        switch(first_word) {
+            case "go":
+                moveToRoom(moves[1]);
+                break;
+            case "get":
+                acquireItem(moves[1]);
+                break;
+            case "quit":
+                GameMenu gameMenu = new GameMenu();
+                gameMenu.startGame();
+                break;
+            case "rules":
+                GameRules.printRules();
+                break;
+            default:
+                System.out.println("I did not understand. Please re-enter you command.");
         }
 
-        if (moves[0].toLowerCase().equals("get")) {
-            acquireItem(moves[1]);
-        }
     }
 
     private void acquireItem(String command) {
@@ -90,13 +103,6 @@ public class GameEngine {
         while (move.equals("")) {
             System.out.println("What do you want to do?");
             move = input.nextLine().trim();
-        }
-        if (move.toUpperCase().trim().equals("QUIT")) {
-            GameMenu gameMenu = new GameMenu();
-            gameMenu.startGame();
-        }
-        if (move.toUpperCase().trim().equals("RULES")) {
-            GameRules.printRules();
         }
 
         return move.toLowerCase().split("\\s+", 2);

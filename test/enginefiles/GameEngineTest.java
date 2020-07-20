@@ -50,22 +50,5 @@ class GameEngineTest {
                         "      - a amulet\n";
         assertEquals(expectedOutput, outContent.toString());
     }
-    
 
-    @Test
-    void getCurrentRoom() {
-
-    }
-
-    @Test
-    void setCurrentRoom() {
-    }
-
-    @Test
-    void getInventory() {
-    }
-
-    @Test
-    void setInventory() {
-    }
 }
