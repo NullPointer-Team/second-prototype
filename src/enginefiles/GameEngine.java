@@ -25,10 +25,11 @@ public class GameEngine {
     private ArrayList<String> inventory;
     public Boolean gameOver = false;
     private Scanner input;
-    private GameMap gameMap = new GameMap();
+    private GameMap gameMap;
     private HashMap<String, HashMap<String, String>> rooms;
 
     public GameEngine() {
+        gameMap = new GameMap();
         rooms = gameMap.rooms;
         currentRoom = "Atrium";
         inventory = new ArrayList<String>();
