@@ -69,6 +69,9 @@ public class GameEngine {
             case "get":
                 acquireItem(moves[1]);
                 break;
+            case "use":
+                // run method that checks whether Player is using the right item to solve challenge
+                break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
                 gameMenu.startGame();
