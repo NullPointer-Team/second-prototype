@@ -97,7 +97,7 @@ public class GameEngine {
                 gameMenu.startGame();
                 break;
             case "rules":
-                GameRules.printRules();
+                getRules();
                 break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
@@ -108,6 +108,11 @@ public class GameEngine {
     public void listItem() {
         rooms.get(currentRoom).get("item");
         System.out.println(rooms.get(currentRoom).get("item"));
+    }
+
+    //retrieve rules from GameRules for above case: "rules"
+    public void getRules() {
+        GameRules.printRules();
     }
 
     //this here fella retrieves an item in a room
