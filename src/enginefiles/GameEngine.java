@@ -70,7 +70,7 @@ public class GameEngine {
                 acquireItem(moves[1]);
                 break;
             case "use":
-                // run method that checks whether Player is using the right item to solve challenge
+                useItem(moves[1]);
                 break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
@@ -83,6 +83,22 @@ public class GameEngine {
                 System.out.println("I did not understand. Please re-enter you command.");
         }
 
+    }
+
+    public void useItem(String item) {
+        if (!itemInInventory(item)) {
+            System.out.println("You don\'t have that item in your inventory!");
+        } else {
+            solveChallengeAttempt(item);
+        }
+    }
+
+    public void solveChallengeAttempt(String item) {
+
+    }
+
+    public Boolean itemInInventory(String item) {
+        return inventory.contains(item);
     }
 
     public void acquireItem(String command) {
