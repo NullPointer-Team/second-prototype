@@ -86,6 +86,31 @@ class GameEngineTest {
         assertTrue(updatedInventory.contains("sword"));
     }
 
+    @Test
+    void testExecuteUserCommand_Invalid() {
+        String[] moves = {"test", "move"};
+        System.setOut(new PrintStream(outContent));
+        gameEngine.executeUserCommand(moves);
+        String expectedOutput = "I did not understand. Please re-enter you command.\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testExecuteUserCommand_Valid() {
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Library");
+        String[] movesNewRoom = {"go", "west"};
+        String[] movesGetItem = {"get", "Book of Spells"};
+        gameEngine.executeUserCommand(movesGetItem);
+        gameEngine.executeUserCommand(movesNewRoom);
+        String expectedRoom = "Garden";
+        String expectedOutput = "Book of Spells acquired!!\n";
+        ArrayList<String> updatedInventory = gameEngine.getInventory();
+        assertEquals(gameEngine.getCurrentRoom(), expectedRoom);
+        assertTrue(updatedInventory.contains("Book of Spells"));
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
 
     @Test
     void testShowStatus() {

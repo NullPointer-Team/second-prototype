@@ -59,7 +59,7 @@ public class GameEngine {
         }
     }
 
-    private void executeUserCommand(String[] moves) {
+    public void executeUserCommand(String[] moves) {
         String first_word = moves[0].toLowerCase();
 
         switch(first_word) {
