@@ -21,6 +21,7 @@ import java.util.Scanner;
 
 public class GameEngine {
 
+    //these are our fields. we're like farmers, but not
     private String currentRoom;
     private ArrayList<String> inventory;
     public Boolean gameOver = false;
@@ -28,6 +29,7 @@ public class GameEngine {
     private GameMap gameMap;
     private HashMap<String, HashMap<String, String>> rooms;
 
+    //i think this is a CTOR, maybe
     public GameEngine() {
         gameMap = new GameMap();
         rooms = gameMap.rooms;
@@ -36,7 +38,7 @@ public class GameEngine {
         input = new Scanner(System.in);
     }
 
-
+    //do you like to play games?
     public void playGame() {
         GameIntroduction.gameInformation();
 
@@ -48,6 +50,7 @@ public class GameEngine {
         }
     }
 
+    //did you done gone and done won? or is you dead, and is you done?
     public void checkIfGameOver() {
         if (currentRoom.equals("Kitchen")) {
             if (inventory.contains("sword")) {
@@ -59,6 +62,7 @@ public class GameEngine {
         }
     }
 
+    //whatcha wanna do?
     public void executeUserCommand(String[] moves) {
         String first_word = moves[0].toLowerCase();
 
@@ -101,14 +105,16 @@ public class GameEngine {
         }
     }
 
+    //this dude lets you move room-to-room
     public void moveToRoom(String command) {
         if (rooms.get(currentRoom).containsKey(command.toLowerCase())) {
             currentRoom = rooms.get(currentRoom).get(command);
         } else {
-            System.out.println("You can\'t go that way!");
+            System.out.println("You can't go that way!");
         }
     }
 
+    //this pardner prompts the player for precepts (lol... it gets commands)
     public String[] getUserCommand() {
         String command = "";
         while (command.equals("")) {
@@ -119,6 +125,7 @@ public class GameEngine {
         return command.toLowerCase().split("\\s+", 2);
     }
 
+    //lets you know what's what
     void showStatus() {
         System.out.println(" -------------------- ");
         System.out.println("You are in the "+ currentRoom);
@@ -128,6 +135,7 @@ public class GameEngine {
         System.out.println(" -------------------- ");
     }
 
+    //what's in the box?! What's in the box?!
     void showInventory() {
         if (getInventory().isEmpty()) {
             System.out.println("You have nothing in your inventory");
