@@ -18,9 +18,74 @@ class GameEngineTest {
     private PrintStream originalOut;
 
     @Test
-    public void testGetUserCommand() {
-        //String[] formattedCommands = gameEngine.getUserCommand();
+    public void testMoveToRoomNegative() {
+        String east = "east";
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Panic Room");
+        gameEngine.moveToRoom(east);
+        String expectedOutput = "You can\'t go that way!\n";
+        assertEquals(expectedOutput, outContent.toString());
     }
+
+    @Test
+    public void testMoveToRoomPositive() {
+        String east = "east";
+        String west = "west";
+        String south = "south";
+        String north = "north";
+
+        String atrium = "Atrium";
+        String observatory = "Observatory";
+        String nook = "Breakfast Nook";
+        String hall = "Hall";
+        String fireSwamps = "Fire Swamps";
+        String diningRoom = "Dining Room";
+        String menagerie = "Menagerie";
+
+
+        gameEngine.setCurrentRoom(atrium);
+        gameEngine.moveToRoom(east);
+        assertEquals(gameEngine.getCurrentRoom(), nook);
+        gameEngine.moveToRoom(west);
+        assertEquals(gameEngine.getCurrentRoom(), atrium);
+        gameEngine.moveToRoom(south);
+        assertEquals(gameEngine.getCurrentRoom(), fireSwamps);
+        gameEngine.moveToRoom(north);
+        assertEquals(gameEngine.getCurrentRoom(), atrium);
+
+        gameEngine.moveToRoom(east);
+        assertEquals(gameEngine.getCurrentRoom(), nook);
+        gameEngine.moveToRoom(east);
+        assertEquals(gameEngine.getCurrentRoom(), menagerie);
+        gameEngine.moveToRoom(south);
+        assertEquals(gameEngine.getCurrentRoom(), diningRoom);
+        gameEngine.moveToRoom(west);
+        assertEquals(gameEngine.getCurrentRoom(), hall);
+        gameEngine.moveToRoom(east);
+        assertEquals(gameEngine.getCurrentRoom(), diningRoom);
+
+    }
+
+    @Test
+    void testAcquireItemNegative() {
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Panic Room");
+        gameEngine.acquireItem("potion");
+        String expectedOutput = "That item is not available in this room!\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testAcquireItemPositive() {
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Panic Room");
+        gameEngine.acquireItem("sword");
+        String expectedOutput = "sword acquired!!\n";
+        ArrayList<String> updatedInventory = gameEngine.getInventory();
+        assertEquals(expectedOutput, outContent.toString());
+        assertTrue(updatedInventory.contains("sword"));
+    }
+
 
     @Test
     void testShowStatus() {

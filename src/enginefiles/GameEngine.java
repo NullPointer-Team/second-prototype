@@ -82,7 +82,7 @@ public class GameEngine {
 
     }
 
-    private void acquireItem(String command) {
+    public void acquireItem(String command) {
         if (rooms.get(currentRoom).get("item").toLowerCase().equals(command.toLowerCase())) {
             inventory.add(command);
             System.out.println(command + " acquired!!");
@@ -91,7 +91,7 @@ public class GameEngine {
         }
     }
 
-    private void moveToRoom(String command) {
+    public void moveToRoom(String command) {
         if (rooms.get(currentRoom).containsKey(command.toLowerCase())) {
             currentRoom = rooms.get(currentRoom).get(command);
         } else {
@@ -100,13 +100,13 @@ public class GameEngine {
     }
 
     public String[] getUserCommand() {
-        String move = "";
-        while (move.equals("")) {
+        String command = "";
+        while (command.equals("")) {
             System.out.println("What do you want to do?");
-            move = input.nextLine().trim();
+            command = input.nextLine().trim();
         }
 
-        return move.toLowerCase().split("\\s+", 2);
+        return command.toLowerCase().split("\\s+", 2);
     }
 
     void showStatus() {
