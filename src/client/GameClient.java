@@ -11,9 +11,13 @@
 
 package client;
 
+import music.Music;
+
 public class GameClient {
-    public static void main(String[] args) {
-        coregamefiles.GameMenu gameMenu = new coregamefiles.GameMenu();
-        gameMenu.startGame();
+    public static void main(String[] args) throws Exception {
+        //coregamefiles.GameMenu gameMenu = new coregamefiles.GameMenu();
+        //gameMenu.startGame();
+        //Music music = new Music();
+        Music.win();
     }
 }

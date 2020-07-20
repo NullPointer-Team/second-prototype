@@ -18,7 +18,7 @@ class GameEngineTest {
     private PrintStream originalOut;
 
     @Test
-    public void testMoveToRoomNegative() {
+    public void testMoveToRoom_Failure() {
         String east = "east";
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Panic Room");
@@ -28,7 +28,7 @@ class GameEngineTest {
     }
 
     @Test
-    public void testMoveToRoomPositive() {
+    public void testMoveToRoom_Success() {
         String east = "east";
         String west = "west";
         String south = "south";
@@ -63,11 +63,10 @@ class GameEngineTest {
         assertEquals(gameEngine.getCurrentRoom(), hall);
         gameEngine.moveToRoom(east);
         assertEquals(gameEngine.getCurrentRoom(), diningRoom);
-
     }
 
     @Test
-    void testAcquireItemNegative() {
+    void testAcquireItem_NotAvailable() {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Panic Room");
         gameEngine.acquireItem("potion");
@@ -76,7 +75,7 @@ class GameEngineTest {
     }
 
     @Test
-    void testAcquireItemPositive() {
+    void testAcquireItem_Success() {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Panic Room");
         gameEngine.acquireItem("sword");
