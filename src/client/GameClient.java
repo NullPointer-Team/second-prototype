@@ -12,10 +12,11 @@
 package client;
 
 import music.Music;
+import coregamefiles.GameMenu;
 
 public class GameClient {
     public static void main(String[] args) throws Exception {
-        coregamefiles.GameMenu gameMenu = new coregamefiles.GameMenu();
+        GameMenu gameMenu = new GameMenu();
         gameMenu.startGame();
     }
 }

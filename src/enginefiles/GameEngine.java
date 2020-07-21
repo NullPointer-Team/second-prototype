@@ -24,7 +24,12 @@ import java.util.Scanner;
 
 public class GameEngine {
 
-    //these are our fields. we're like farmers, but not
+    /************************
+     ************************
+     * these are our fields.
+     * we're like farmers, but not
+     * **********************
+     ************************/
     private String currentRoom;
     private ArrayList<String> inventory;
 
@@ -44,7 +49,13 @@ public class GameEngine {
     private GameMap gameMap;
     private Map<String, HashMap<String, String>> rooms;
 
-    //i think this is a CTOR, maybe
+
+    /************************
+     ************************
+     * i think this is a CTOR,
+     * maybe
+     * **********************
+     ************************/
     public GameEngine() {
         gameOver = false;
         guesses = 3;
@@ -56,7 +67,15 @@ public class GameEngine {
         input = new Scanner(System.in);
     }
 
+
+    /************************
+     ************************
+     * Bread & Butter...
+     * Business methods below
+     * **********************
+     ************************/
     //do you like to play games?
+    //the here's the actual playGame method that... plays the game
     public void playGame() {
         GameIntroduction.gameInformation();
 
@@ -77,13 +96,19 @@ public class GameEngine {
             gameOver = true;
         }
 
+        if (roomHasUnsolvedChallenge() && getInventory().isEmpty()) {
+            listChallenge();
+            gameWon = false;
+            gameOver = true;
+        }
+
         if (guesses < 1) {
             gameWon = false;
             gameOver = true;
         }
     }
 
-    //whatcha wanna do?
+    // getchyo win or lose art here
     public void terminateGame() {
         if (gameWon) {
             WinLoseTextArt.winArt();
@@ -127,9 +152,14 @@ public class GameEngine {
     }
 
     public void listChallenge() {
-        if (roomHasUnsolvedChallenge()) {
-            System.out.println("Oh no!! The " + currentRoom + " has a " + rooms.get(currentRoom).get("challenge"));
-            System.out.println("You must defeat this challenge before you can continue your journey!");
+        if (rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
+            if ((!getInventory().isEmpty())) {
+                System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge"));
+                System.out.println("You must defeat this challenge before you can continue your journey!");
+            } else {
+                System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") +
+                        ",\nand you don't have anything in your inventory to fight it with.");
+            }
         }
     }
 
@@ -139,12 +169,7 @@ public class GameEngine {
         }
     }
 
-    //retrieve rules from GameRules for above case: "rules"
-    public void getRules() {
-        GameRules.printRules();
-    }
-
-    //this here fella retrieves an item in a room
+    //this here fella uses an item or not
     public void validateUseItem(String item) {
 
         if (!roomHasUnsolvedChallenge()) {
@@ -160,11 +185,11 @@ public class GameEngine {
     //it's time to fight!
     public void solveChallengeAttempt(String item) {
 
-        String challengeSolution = rooms.get(currentRoom).get("solution").toLowerCase();
-
+        String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
+//        while ((!getInventory().isEmpty())) {
         if (challengeSolution.equals(item.toLowerCase())) {
             System.out.println("You solved the challenge! Continue on your quest");
-            rooms.get(currentRoom).replace("solved", "true");
+            rooms.get(getCurrentRoom()).replace("solved", "true");
             isPlayerMobile = true;
             guesses = 3;
         } else {
@@ -172,7 +197,7 @@ public class GameEngine {
             System.out.println("Using the " + item + " has no effect!");
             System.out.println("You have " + guesses + " guesses left. Try again!");
         }
-
+//    }
     }
 
     //do you have it in your satchel?
@@ -193,7 +218,7 @@ public class GameEngine {
 
     //this dude lets you move room-to-room
     public void moveToRoom(String command) {
-        if (rooms.get(currentRoom).containsKey(command.toLowerCase()) && isPlayerMobile) {
+        if (rooms.get(getCurrentRoom()).containsKey(command.toLowerCase()) && isPlayerMobile) {
             setCurrentRoom(rooms.get(currentRoom).get(command));
         } else if (!isPlayerMobile) {
             System.out.println("You can't leave the room until you solve the challenge!");
@@ -236,27 +261,39 @@ public class GameEngine {
         }
     }
 
+    public Boolean roomHasUnsolvedChallenge() {
+        return rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false");
+    }
+
+
+    /************************
+     ************************
+     * Getters and Setters
+     * go below here, pardner
+     * **********************
+     ************************/
+    //retrieve rules from GameRules for above case: "rules"
+    public void getRules() {
+        GameRules.printRules();
+    }
+
+    //pretty obvs, this here method gets the current room
     public String getCurrentRoom(){
         return currentRoom;
     }
 
+    //gotta set the new room somehow
     public void setCurrentRoom(String currentRoom)  {
         this.currentRoom = currentRoom;
         isPlayerMobile = !roomHasUnsolvedChallenge();
     }
 
-    public Boolean roomHasUnsolvedChallenge() {
-        if (rooms.get(currentRoom).containsKey("challenge") && rooms.get(currentRoom).get("solved").equals("false")) {
-            return true;
-        }
-
-        return false;
-    }
-
+    //getchyo inventory
     public ArrayList<String> getInventory() {
         return inventory;
     }
 
+    //setchyo inventory
     public void setInventory(ArrayList<String> inventory) {
         this.inventory = inventory;
     }
