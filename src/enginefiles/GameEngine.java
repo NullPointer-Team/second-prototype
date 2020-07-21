@@ -158,7 +158,6 @@ public class GameEngine {
                 System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") +
                         ",\nand you don't have anything in your inventory to fight it with.");
             }
-
         }
     }
 
