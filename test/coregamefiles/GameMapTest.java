@@ -67,7 +67,7 @@ public class GameMapTest {
     public void failToAddRoom_NumberOfRoomsUnchanged() {
         try {
             rooms.put("foyer", foyer);
-            fail("Should have thrown UnsupportedOperation Exception");
+            fail("Should have thrown Unsupported Operation Exception");
         } catch (UnsupportedOperationException exception) {
             allRooms = rooms.keySet();
             assertEquals(allRooms.size(), 15);
