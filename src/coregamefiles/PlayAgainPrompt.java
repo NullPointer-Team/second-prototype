@@ -19,7 +19,7 @@ public class PlayAgainPrompt {
         boolean isValid = false;
 
         System.out.println("Would you like to replay the game?\n" +
-                "Type \"Yes\" to replay, or type \"Exit\" to return to menu.");
+                "Type \"Yes\" to replay, or type \"Quit\" to return to menu.");
         GameEngine gameEngine = new GameEngine();
         Scanner gameSelection = new Scanner(System.in);
 
@@ -31,7 +31,7 @@ public class PlayAgainPrompt {
                         gameEngine.playGame();
                         isValid = true;
                         break;
-                    case "EXIT":
+                    case "QUIT":
                         GameMenu gameMenu = new GameMenu();
                         gameMenu.startGame();
                         isValid = true;

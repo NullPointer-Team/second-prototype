@@ -85,6 +85,12 @@ public class GameEngine {
             gameOver = true;
         }
 
+        if (roomHasUnsolvedChallenge() && getInventory().isEmpty()) {
+            listChallenge();
+            gameWon = false;
+            gameOver = true;
+        }
+
         if (guesses < 1) {
             gameWon = false;
             gameOver = true;
@@ -136,8 +142,14 @@ public class GameEngine {
 
     public void listChallenge() {
         if (rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
-            System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge"));
-            System.out.println("You must defeat this challenge before you can continue your journey!");
+            if ((!getInventory().isEmpty())) {
+                System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge"));
+                System.out.println("You must defeat this challenge before you can continue your journey!");
+            } else {
+                System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") +
+                        ",\nand you don't have anything in your inventory to fight it with.");
+            }
+
         }
     }
 
@@ -158,21 +170,18 @@ public class GameEngine {
     public void solveChallengeAttempt(String item) {
 
         String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
-
-        if (itemInInventory(challengeSolution)) {
-            if (challengeSolution.equals(item.toLowerCase())) {
-                System.out.println("You solved the challenge! Continue on your quest");
-                rooms.get(getCurrentRoom()).replace("solved", "true");
-                isPlayerMobile = true;
-                guesses = 3;
-            } else {
-                guesses--;
-                System.out.println("Using the " + item + " has no effect!");
-                System.out.println("You have " + guesses + " guesses left. Try again!");
-            }
+//        while ((!getInventory().isEmpty())) {
+        if (challengeSolution.equals(item.toLowerCase())) {
+            System.out.println("You solved the challenge! Continue on your quest");
+            rooms.get(getCurrentRoom()).replace("solved", "true");
+            isPlayerMobile = true;
+            guesses = 3;
         } else {
-            guesses = 0;
+            guesses--;
+            System.out.println("Using the " + item + " has no effect!");
+            System.out.println("You have " + guesses + " guesses left. Try again!");
         }
+//    }
     }
 
     //do you have it in your satchel?
