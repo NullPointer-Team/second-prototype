@@ -14,7 +14,6 @@ package enginefiles;
 import coregamefiles.*;
 import music.Music;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -315,7 +314,7 @@ public class GameEngine {
     }
 
     public void greatSuccess() {
-        GreatSuccess.success();
+        GreatSuccessArt.success();
     }
 
 }

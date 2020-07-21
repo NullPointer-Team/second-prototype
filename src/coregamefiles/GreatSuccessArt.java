@@ -2,7 +2,7 @@ package coregamefiles;
 
 import static coregamefiles.GameTextColors.*;
 
-public class GreatSuccess {
+public class GreatSuccessArt {
     public static void success() {
         System.out.println(getAnsiGreen() +
                 "\n" +
@@ -12,7 +12,6 @@ public class GreatSuccess {
                 "██    ██ ██   ██ ██      ██   ██    ██                       \n" +
                 " ██████  ██   ██ ███████ ██   ██    ██                       \n" +
                 "                                                             \n" +
-                "                                                             \n" +
                 "███████ ██    ██  ██████  ██████ ███████ ███████ ███████     \n" +
                 "██      ██    ██ ██      ██      ██      ██      ██          \n" +
                 "███████ ██    ██ ██      ██      █████   ███████ ███████     \n" +
