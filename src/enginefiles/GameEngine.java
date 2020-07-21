@@ -61,7 +61,7 @@ public class GameEngine {
 
     //did you done gone and done won? or is you dead, and is you done?
     public void checkIfGameOver() {
-        if (currentRoom.equals("Kitchen") && rooms.get(currentRoom).get("solved").equals("true")) {
+        if (rooms.get("Kitchen").get("solved").equals("true")) {
             gameWon = true;
             gameOver = true;
         }
