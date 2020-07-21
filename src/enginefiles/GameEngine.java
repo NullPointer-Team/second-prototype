@@ -155,9 +155,11 @@ public class GameEngine {
     public void listChallenge() {
         if (rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
             if ((!getInventory().isEmpty())) {
+                AlertArt.alert();
                 System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge"));
                 System.out.println("You must defeat this challenge before you can continue your journey!");
             } else {
+                AlertArt.alert();
                 System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") +
                         ",\nand you don't have anything in your inventory to fight it with.");
             }
