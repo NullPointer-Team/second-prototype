@@ -151,6 +151,7 @@ public class GameEngine {
         }
     }
 
+    //this widget tells you if you fight or die!!!
     public void listChallenge() {
         if (rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
             if ((!getInventory().isEmpty())) {
