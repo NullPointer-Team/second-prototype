@@ -56,7 +56,7 @@ public class GameEngine {
     }
 
     //do you like to play games?
-    public void playGame() throws Exception {
+    public void playGame() {
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
@@ -83,7 +83,7 @@ public class GameEngine {
     }
 
     //whatcha wanna do?
-    public void terminateGame() throws Exception {
+    public void terminateGame() {
         if (gameWon) {
             WinLoseTextArt.winArt();
         } else {
@@ -92,7 +92,7 @@ public class GameEngine {
         PlayAgainPrompt.playAgain();
     }
 
-    public void validateUserCommand(String[] moves) throws Exception {
+    public void validateUserCommand(String[] moves) {
         String command = moves[0].toLowerCase();
         String commandArgument = moves.length > 1 ? moves[1] : " ";
 
@@ -191,7 +191,7 @@ public class GameEngine {
     }
 
     //this dude lets you move room-to-room
-    public void moveToRoom(String command) throws Exception {
+    public void moveToRoom(String command) {
         if (rooms.get(currentRoom).containsKey(command.toLowerCase()) && isPlayerMobile) {
             setCurrentRoom(rooms.get(currentRoom).get(command));
         } else if (!isPlayerMobile) {
@@ -239,10 +239,9 @@ public class GameEngine {
         return currentRoom;
     }
 
-    public void setCurrentRoom(String currentRoom) throws Exception {
+    public void setCurrentRoom(String currentRoom)  {
         this.currentRoom = currentRoom;
         isPlayerMobile = !roomHasUnsolvedChallenge();
-        playMusicIfUrl();
     }
 
     public Boolean roomHasUnsolvedChallenge() {

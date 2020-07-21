@@ -11,7 +11,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 class GameEngineTest {
-    /**
+
     private GameEngine gameEngine = new GameEngine();
     private String commands;
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -150,5 +150,5 @@ class GameEngineTest {
                         "      - a amulet\n";
         assertEquals(expectedOutput, outContent.toString());
     }
-**/
+
 }
