@@ -154,6 +154,67 @@ class GameEngineTest {
 
     @Test
     void testListChallenge_Positive() {
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Conservatory");
+        ArrayList<String> inventory = new ArrayList<String>();
+        inventory.add("Gold Beetle");
+        gameEngine.setInventory(inventory);
+
+        gameEngine.listChallenge();
+        String expectedOutput = "Oh no!! The Conservatory has a Quick Sand\n" +
+              "You must defeat this challenge before you can continue your journey!\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testListChallenge_Negative() {
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Breakfast Nook");
+
+        gameEngine.listChallenge();
+        String expectedOutput = "Oh no!! The Breakfast Nook has a Gold Beetles,\n" +
+                "and you don't have anything in your inventory to fight it with.\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testSolveChallengeAttempt_Success() {
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Fire Swamps");
+        assertTrue(gameEngine.roomHasUnsolvedChallenge());
+
+        String correctItemForChallenge = "fighting skills";
+        gameEngine.solveChallengeAttempt(correctItemForChallenge);
+
+        String expectedOutput = "You solved the challenge! Continue on your quest\n";
+        assertEquals(expectedOutput, outContent.toString());
+
+        assertFalse(gameEngine.roomHasUnsolvedChallenge());
+        assertEquals(gameEngine.getGuesses(), 3);
+        assertTrue(gameEngine.getPlayerMobile());
+        assertEquals(gameEngine.getRooms().get("Fire Swamps").get("solved"), "true");
+    }
+
+    @Test
+    void testSolveChallengeAttempt_Failure() {
+
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Courtyard");
+        assertTrue(gameEngine.roomHasUnsolvedChallenge());
+
+        String wrongItemForChallenge = "sword";
+        gameEngine.solveChallengeAttempt(wrongItemForChallenge);
+
+        String expectedOutput = "Using the sword has no effect!\nYou have 2 guesses left. Try again!\n";
+        assertEquals(expectedOutput, outContent.toString());
+
+        assertEquals(gameEngine.getGuesses(), 2);
+        assertFalse(gameEngine.getPlayerMobile());
+        assertTrue(gameEngine.roomHasUnsolvedChallenge());
+    }
+
+    @Test
+    void testRoomHasUnsolvedChallenge_Positive() {
         gameEngine.setCurrentRoom("Panic Room");
         assertTrue(gameEngine.roomHasUnsolvedChallenge());
         gameEngine.setCurrentRoom("Conservatory");
@@ -167,7 +228,7 @@ class GameEngineTest {
     }
 
     @Test
-    void testListChallenge_Negative() {
+    void testRoomHasUnsolvedChallenge_Negative() {
         gameEngine.setCurrentRoom("Menagerie");
         assertFalse(gameEngine.roomHasUnsolvedChallenge());
         gameEngine.setCurrentRoom("Observatory");
@@ -178,28 +239,5 @@ class GameEngineTest {
         assertFalse(gameEngine.roomHasUnsolvedChallenge());
         gameEngine.setCurrentRoom("Laboratory");
         assertFalse(gameEngine.roomHasUnsolvedChallenge());
-    }
-
-    @Test
-    void testSolveChallengeAttempt_Success() {
-        gameEngine.setCurrentRoom("Fire Swamps");
-        assertTrue(gameEngine.roomHasUnsolvedChallenge());
-
-        String[] successfulMove = {"use", "fighting skills"};
-    }
-
-    @Test
-    void testSolveChallengeAttempt_Failure() {
-
-    }
-
-    @Test
-    void testRoomHasUnsolvedChallenge_Positive() {
-
-    }
-
-    @Test
-    void testRoomHasUnsolvedChallenge_Negative() {
-
     }
 }
