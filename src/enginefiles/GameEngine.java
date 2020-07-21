@@ -25,10 +25,19 @@ public class GameEngine {
     //these are our fields. we're like farmers, but not
     private String currentRoom;
     private ArrayList<String> inventory;
-    public Boolean gameOver;
-    public Boolean gameWon;
-    public Integer guesses;
-    public Boolean isPlayerMobile;
+
+    public Boolean getGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(Boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    private Boolean gameOver;
+    private Boolean gameWon;
+    private Integer guesses;
+    private Boolean isPlayerMobile;
     private Scanner input;
     private GameMap gameMap;
     private HashMap<String, HashMap<String, String>> rooms;
@@ -39,7 +48,7 @@ public class GameEngine {
         guesses = 3;
         isPlayerMobile = true;
         gameMap = new GameMap();
-        rooms = gameMap.rooms;
+        rooms = gameMap.getRooms();
         currentRoom = "Atrium";
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
