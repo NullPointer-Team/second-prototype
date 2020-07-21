@@ -12,10 +12,12 @@
 package enginefiles;
 
 import coregamefiles.*;
+import music.Music;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -45,7 +47,7 @@ public class GameEngine {
     private Boolean isPlayerMobile;
     private Scanner input;
     private GameMap gameMap;
-    private HashMap<String, HashMap<String, String>> rooms;
+    private Map<String, HashMap<String, String>> rooms;
 
 
     /************************
@@ -80,7 +82,7 @@ public class GameEngine {
         while (!gameOver) {
             showStatus();
             String[] moves = getUserCommand();
-            validateUserCommand(moves);
+            validateAndExecuteUserCommand(moves);
             checkIfGameOver();
         }
 
@@ -89,7 +91,7 @@ public class GameEngine {
 
     //did you done gone and done won? or is you dead, and is you done?
     public void checkIfGameOver() {
-        if (currentRoom.equals("Kitchen") && rooms.get(currentRoom).get("solved").equals("true")) {
+        if (rooms.get("Kitchen").get("solved").equals("true")) {
             gameWon = true;
             gameOver = true;
         }
@@ -116,7 +118,7 @@ public class GameEngine {
         PlayAgainPrompt.playAgain();
     }
 
-    public void validateUserCommand(String[] moves) {
+    public void validateAndExecuteUserCommand(String[] moves) {
         String command = moves[0].toLowerCase();
         String commandArgument = moves.length > 1 ? moves[1] : " ";
 
@@ -158,6 +160,12 @@ public class GameEngine {
                 System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") +
                         ",\nand you don't have anything in your inventory to fight it with.");
             }
+        }
+    }
+
+    public void playMusicIfUrl() throws Exception {
+        if (rooms.get(currentRoom).containsKey("url")) {
+            Music.playMusic(rooms.get(currentRoom).get("url"));
         }
     }
 
@@ -275,7 +283,7 @@ public class GameEngine {
     }
 
     //gotta set the new room somehow
-    public void setCurrentRoom(String currentRoom) {
+    public void setCurrentRoom(String currentRoom)  {
         this.currentRoom = currentRoom;
         isPlayerMobile = !roomHasUnsolvedChallenge();
     }
