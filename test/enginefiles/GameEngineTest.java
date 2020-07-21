@@ -97,7 +97,7 @@ class GameEngineTest {
     void testValidateUserCommand_InvalidInput() {
         String[] moves = {"bad", "input"};
         System.setOut(new PrintStream(outContent));
-        gameEngine.validateUserCommand(moves);
+        gameEngine.validateAndExecuteUserCommand(moves);
         String expectedOutput = "I did not understand. Please re-enter your command.\n";
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -108,8 +108,8 @@ class GameEngineTest {
         gameEngine.setCurrentRoom("Library");
         String[] movesNewRoom = {"go", "west"};
         String[] movesGetItem = {"get", "Book of Spells"};
-        gameEngine.validateUserCommand(movesGetItem);
-        gameEngine.validateUserCommand(movesNewRoom);
+        gameEngine.validateAndExecuteUserCommand(movesGetItem);
+        gameEngine.validateAndExecuteUserCommand(movesNewRoom);
         String expectedRoom = "Garden";
         String expectedOutput = "Book of Spells acquired!!\n";
         ArrayList<String> updatedInventory = gameEngine.getInventory();

@@ -17,6 +17,7 @@ import music.Music;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -41,7 +42,7 @@ public class GameEngine {
     private Boolean isPlayerMobile;
     private Scanner input;
     private GameMap gameMap;
-    private HashMap<String, HashMap<String, String>> rooms;
+    private Map<String, HashMap<String, String>> rooms;
 
     //i think this is a CTOR, maybe
     public GameEngine() {
@@ -62,7 +63,7 @@ public class GameEngine {
         while (!gameOver) {
             showStatus();
             String[] moves = getUserCommand();
-            validateUserCommand(moves);
+            validateAndExecuteUserCommand(moves);
             checkIfGameOver();
         }
 
@@ -92,7 +93,7 @@ public class GameEngine {
         PlayAgainPrompt.playAgain();
     }
 
-    public void validateUserCommand(String[] moves) {
+    public void validateAndExecuteUserCommand(String[] moves) {
         String command = moves[0].toLowerCase();
         String commandArgument = moves.length > 1 ? moves[1] : " ";
 

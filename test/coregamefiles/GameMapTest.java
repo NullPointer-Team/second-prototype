@@ -5,16 +5,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.swing.text.IconView;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameMapTest {
     private GameMap gameMap;
-    private HashMap<String, HashMap<String, String>> rooms;
+    private Map<String, HashMap<String, String>> rooms;
     private Set<String> allRooms;
 
     private HashMap<String, String> atrium;
@@ -35,6 +32,7 @@ public class GameMapTest {
     private HashMap<String, String> laboratory;
     private HashMap<String, String> kitchen;
 
+    private HashMap<String, String> foyer;
 
     @Before
     public void setUp() {

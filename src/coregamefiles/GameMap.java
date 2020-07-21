@@ -1,11 +1,14 @@
 package coregamefiles;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class GameMap {
 
     // MAP
-    private HashMap<String, HashMap<String, String>> rooms;
+    private Map<String, HashMap<String, String>> rooms;
 
     private HashMap<String, String> atrium;
     private HashMap<String, String> breakfastNook;
@@ -28,26 +31,28 @@ public class GameMap {
 
     //provide info for map
     public GameMap() {
-        rooms = new HashMap<>();
+        HashMap<String, HashMap<String, String>> temporaryMap = new HashMap<>();
         instantiateIndividualRooms();
 
-        rooms.put("Atrium", atrium);
-        rooms.put("Breakfast Nook", breakfastNook);
-        rooms.put("Menagerie", menagerie);
-        rooms.put("Conservatory", conservatory);
-        rooms.put("Panic Room", panicRoom);
+        temporaryMap.put("Atrium", atrium);
+        temporaryMap.put("Breakfast Nook", breakfastNook);
+        temporaryMap.put("Menagerie", menagerie);
+        temporaryMap.put("Conservatory", conservatory);
+        temporaryMap.put("Panic Room", panicRoom);
 
-        rooms.put("Fire Swamps", fireSwamps);
-        rooms.put("Hall", hall);
-        rooms.put("Dining Room", diningRoom);
-        rooms.put("Arcade", arcade);
-        rooms.put("Observatory", observatory);
+        temporaryMap.put("Fire Swamps", fireSwamps);
+        temporaryMap.put("Hall", hall);
+        temporaryMap.put("Dining Room", diningRoom);
+        temporaryMap.put("Arcade", arcade);
+        temporaryMap.put("Observatory", observatory);
 
-        rooms.put("Courtyard", courtyard);
-        rooms.put("Library", library);
-        rooms.put("Garden", garden);
-        rooms.put("Laboratory", laboratory);
-        rooms.put("Kitchen", kitchen);
+        temporaryMap.put("Courtyard", courtyard);
+        temporaryMap.put("Library", library);
+        temporaryMap.put("Garden", garden);
+        temporaryMap.put("Laboratory", laboratory);
+        temporaryMap.put("Kitchen", kitchen);
+
+        rooms = Collections.unmodifiableMap(temporaryMap);
     }
 
 
@@ -156,7 +161,7 @@ public class GameMap {
     }
 
 
-    public HashMap<String, HashMap<String, String>> getRooms() {
+    public Map<String, HashMap<String, String>> getRooms() {
         return rooms;
     }
 }
