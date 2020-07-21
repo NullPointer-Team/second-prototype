@@ -11,13 +11,15 @@
 
 package coregamefiles;
 
+import static coregamefiles.GameTextColors.*;
+
 public class GameMenuTextArt extends GameMenu {
     /**
      * Game intro text Art
      * displays in main game menu
      */
     static void welcome() {
-        System.out.println("\n" +
+        System.out.println(getAnsiRed() + "\n" +
                 "███████╗████████╗██████╗  █████╗ ███╗   ██╗ ██████╗ ███████╗██████╗ \n" +
                 "██╔════╝╚══██╔══╝██╔══██╗██╔══██╗████╗  ██║██╔════╝ ██╔════╝██╔══██╗\n" +
                 "███████╗   ██║   ██████╔╝███████║██╔██╗ ██║██║  ███╗█████╗  ██████╔╝\n" +
@@ -29,7 +31,8 @@ public class GameMenuTextArt extends GameMenu {
                 "                ██║  ███╗███████║██╔████╔██║█████╗                  \n" +
                 "                ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝                  \n" +
                 "                ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗                \n" +
-                "                 ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝                \n");
+                "                 ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝                \n" +
+                getAnsiReset());
 
         System.out.println("\n" +
                 "           Built by Team NullPointer (Team 5)\n" +
