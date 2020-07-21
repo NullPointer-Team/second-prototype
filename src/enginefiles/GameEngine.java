@@ -144,7 +144,7 @@ public class GameEngine {
 
     //this widget tells you if you fight or die!!!
     public void listChallenge() {
-        if (rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
+        if (roomHasUnsolvedChallenge()) {
             if ((!getInventory().isEmpty())) {
                 System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge"));
                 System.out.println("You must defeat this challenge before you can continue your journey!");
