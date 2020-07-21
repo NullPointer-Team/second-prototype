@@ -89,6 +89,7 @@ class GameEngineTest {
         ArrayList<String> updatedInventory = gameEngine.getInventory();
         assertEquals(expectedOutput, outContent.toString());
         assertTrue(updatedInventory.contains("Super Soaker"));
+        assertFalse(gameEngine.getCurrentRoom().contains("Super Soaker"));
     }
 
     @Test
@@ -114,6 +115,7 @@ class GameEngineTest {
         assertEquals(gameEngine.getCurrentRoom(), expectedRoom);
         assertTrue(updatedInventory.contains("Book of Spells"));
         assertEquals(expectedOutput, outContent.toString());
+        assertFalse(gameEngine.getCurrentRoom().contains("Book of Spells"));
     }
 
 
