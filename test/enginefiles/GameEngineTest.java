@@ -127,8 +127,8 @@ class GameEngineTest {
         gameEngine.showStatus();
         String expectedOutput = " -------------------- \n" +
                 "You are in the Panic Room\n" +
-                "Oh no!! The Panic Room has a ghost\n" +
-                "You must defeat this challenge before you can continue your journey!\n" +
+                "Oh no!! The Panic Room has a ghost,\n" +
+                "and you don't have anything in your inventory to fight it with.\n" +
                 "You have nothing in your inventory\n" +
                 "For game rules, type \"rules\"\n" +
                 " -------------------- \n";
