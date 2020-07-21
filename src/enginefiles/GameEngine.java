@@ -87,16 +87,12 @@ public class GameEngine {
             gameOver = true;
         }
 
-        if (roomHasUnsolvedChallenge() && getInventory().isEmpty()) {
+        if ((roomHasUnsolvedChallenge() && getInventory().isEmpty()) || (guesses < 1)){
             listChallenge();
             gameWon = false;
             gameOver = true;
         }
 
-        if (guesses < 1) {
-            gameWon = false;
-            gameOver = true;
-        }
     }
 
     // getchyo win or lose art here

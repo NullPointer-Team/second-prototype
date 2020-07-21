@@ -73,7 +73,7 @@ class GameEngineTest {
     }
 
     @Test
-    void testAcquireItem_NotAvailable() {
+    void testAcquireItem_Failure() {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Panic Room");
         gameEngine.acquireItem("potion");
@@ -95,9 +95,9 @@ class GameEngineTest {
 
     @Test
     void testValidateAndExecuteUserCommand_InvalidInput() {
-        String[] moves = {"bad", "input"};
+        String[] invalidMove = {"bad", "input"};
         System.setOut(new PrintStream(outContent));
-        gameEngine.validateAndExecuteUserCommand(moves);
+        gameEngine.validateAndExecuteUserCommand(invalidMove);
         String expectedOutput = "I did not understand. Please re-enter your command.\n";
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -106,10 +106,10 @@ class GameEngineTest {
     void testValidateAndExecuteUserCommand_ValidInput() {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Library");
-        String[] movesNewRoom = {"go", "west"};
-        String[] movesGetItem = {"get", "Book of Spells"};
-        gameEngine.validateAndExecuteUserCommand(movesGetItem);
-        gameEngine.validateAndExecuteUserCommand(movesNewRoom);
+        String[] valid_moveToNewRoom = {"go", "west"};
+        String[] valid_getNewItem = {"get", "Book of Spells"};
+        gameEngine.validateAndExecuteUserCommand(valid_getNewItem);
+        gameEngine.validateAndExecuteUserCommand(valid_moveToNewRoom);
         String expectedRoom = "Garden";
         String expectedOutput = "Book of Spells acquired!!\n";
         ArrayList<String> updatedInventory = gameEngine.getInventory();

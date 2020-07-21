@@ -76,7 +76,6 @@ public class GameMap {
         kitchen = new HashMap<String, String>();
 
 
-
         atrium.put("south", "Fire Swamps");
         atrium.put("east", "Breakfast Nook");
         atrium.put("item", "fighting skills");
