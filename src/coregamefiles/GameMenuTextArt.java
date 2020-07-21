@@ -61,7 +61,7 @@ public class GameMenuTextArt extends GameMenu {
                 "       |  Please select an option from the choices below:    |\n" +
                 "       |                                                     |\n" +
                 "       |  Play the Game            [Command: Play]           |\n" +
-                "       |  Exit this Program        [Command: Exit]           |\n" +
+                "       |  Exit this Program        [Command: Quit]           |\n" +
                 "       |_____________________________________________________|\n");
     }
 
