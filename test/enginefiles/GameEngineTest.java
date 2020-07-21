@@ -90,7 +90,7 @@ class GameEngineTest {
         String[] moves = {"test", "move"};
         System.setOut(new PrintStream(outContent));
         gameEngine.executeUserCommand(moves);
-        String expectedOutput = "I did not understand. Please re-enter you command.\n";
+        String expectedOutput = "I did not understand. Please re-enter your command.\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
@@ -118,6 +118,7 @@ class GameEngineTest {
         gameEngine.showStatus();
         String expectedOutput = " -------------------- \n" +
                 "You are in the Panic Room\n" +
+                "This room has a(n) key\n" +
                 "You have nothing in your inventory\n" +
                 "For game rules, type \"rules\"\n" +
                 " -------------------- \n";
