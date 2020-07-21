@@ -19,10 +19,10 @@ class GameEngineTest {
 
     @Test
     public void testMoveToRoom_Failure() {
-        String east = "east";
+        String north = "north";
         System.setOut(new PrintStream(outContent));
-        gameEngine.setCurrentRoom("Panic Room");
-        gameEngine.moveToRoom(east);
+        gameEngine.setCurrentRoom("Menagerie");
+        gameEngine.moveToRoom(north);
         String expectedOutput = "You can\'t go that way!\n";
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -33,6 +33,7 @@ class GameEngineTest {
         String west = "west";
         String south = "south";
         String north = "north";
+        String secret = "secret";
 
         String atrium = "Atrium";
         String observatory = "Observatory";
@@ -46,23 +47,28 @@ class GameEngineTest {
         gameEngine.setCurrentRoom(atrium);
         gameEngine.moveToRoom(east);
         assertEquals(gameEngine.getCurrentRoom(), nook);
-        gameEngine.moveToRoom(west);
-        assertEquals(gameEngine.getCurrentRoom(), atrium);
+
+        gameEngine.setCurrentRoom(atrium);
         gameEngine.moveToRoom(south);
         assertEquals(gameEngine.getCurrentRoom(), fireSwamps);
-        gameEngine.moveToRoom(north);
-        assertEquals(gameEngine.getCurrentRoom(), atrium);
 
-        gameEngine.moveToRoom(east);
-        assertEquals(gameEngine.getCurrentRoom(), nook);
-        gameEngine.moveToRoom(east);
-        assertEquals(gameEngine.getCurrentRoom(), menagerie);
+        gameEngine.setCurrentRoom(menagerie);
         gameEngine.moveToRoom(south);
+        assertEquals(gameEngine.getCurrentRoom(), diningRoom);
+        gameEngine.moveToRoom(north);
+        assertEquals(gameEngine.getCurrentRoom(), menagerie);
+
+        gameEngine.setCurrentRoom(menagerie);
+        gameEngine.moveToRoom(secret);
+        assertEquals(gameEngine.getCurrentRoom(), observatory);
+        gameEngine.moveToRoom(secret);
+        assertEquals(gameEngine.getCurrentRoom(), menagerie);
+
+        gameEngine.setCurrentRoom(hall);
+        gameEngine.moveToRoom(east);
         assertEquals(gameEngine.getCurrentRoom(), diningRoom);
         gameEngine.moveToRoom(west);
         assertEquals(gameEngine.getCurrentRoom(), hall);
-        gameEngine.moveToRoom(east);
-        assertEquals(gameEngine.getCurrentRoom(), diningRoom);
     }
 
     @Test
@@ -70,7 +76,7 @@ class GameEngineTest {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Panic Room");
         gameEngine.acquireItem("potion");
-        String expectedOutput = "That item is not available in this room!\n";
+        String expectedOutput = "A potion is not available in this room!\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
@@ -86,22 +92,22 @@ class GameEngineTest {
     }
 
     @Test
-    void testExecuteUserCommand_Invalid() {
-        String[] moves = {"test", "move"};
+    void testValidateUserCommand_InvalidInput() {
+        String[] moves = {"bad", "input"};
         System.setOut(new PrintStream(outContent));
-        gameEngine.executeUserCommand(moves);
+        gameEngine.validateUserCommand(moves);
         String expectedOutput = "I did not understand. Please re-enter your command.\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
     @Test
-    void testExecuteUserCommand_Valid() {
+    void testValidateUserCommand_ValidInput() {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Library");
         String[] movesNewRoom = {"go", "west"};
         String[] movesGetItem = {"get", "Book of Spells"};
-        gameEngine.executeUserCommand(movesGetItem);
-        gameEngine.executeUserCommand(movesNewRoom);
+        gameEngine.validateUserCommand(movesGetItem);
+        gameEngine.validateUserCommand(movesNewRoom);
         String expectedRoom = "Garden";
         String expectedOutput = "Book of Spells acquired!!\n";
         ArrayList<String> updatedInventory = gameEngine.getInventory();

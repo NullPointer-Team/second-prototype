@@ -25,6 +25,7 @@ public class GameEngine {
     private String currentRoom;
     private ArrayList<String> inventory;
     public Boolean gameOver;
+    public Boolean gameWon;
     public Integer guesses;
     public Boolean isPlayerMobile;
     private Scanner input;
@@ -50,47 +51,49 @@ public class GameEngine {
         while (!gameOver) {
             showStatus();
             String[] moves = getUserCommand();
-            executeUserCommand(moves);
+            validateUserCommand(moves);
             checkIfGameOver();
         }
 
-        PlayAgainPrompt.playAgain();
+        terminateGame();
     }
 
     //did you done gone and done won? or is you dead, and is you done?
     public void checkIfGameOver() {
-        if (currentRoom.equals("Kitchen")) {
-            if (inventory.contains("sword")) {
-                WinLoseTextArt.winArt();
-            } else {
-                WinLoseTextArt.loseArt();
-            }
-            PlayAgainPrompt.playAgain();
+        if (currentRoom.equals("Kitchen") && rooms.get(currentRoom).get("solved").equals("true")) {
+            gameWon = true;
+            gameOver = true;
+        }
+
+        if (guesses < 1) {
+            gameWon = false;
+            gameOver = true;
         }
     }
 
     //whatcha wanna do?
-    public void terminateGame(Boolean wonGame) {
-        if (wonGame) {
+    public void terminateGame() {
+        if (gameWon) {
             WinLoseTextArt.winArt();
         } else {
             WinLoseTextArt.loseArt();
         }
-        gameOver = true;
+        PlayAgainPrompt.playAgain();
     }
 
-    public void executeUserCommand(String[] moves) {
-        String first_word = moves[0].toLowerCase();
+    public void validateUserCommand(String[] moves) {
+        String command = moves[0].toLowerCase();
+        String commandArgument = moves[1];
 
-        switch(first_word) {
+        switch(command) {
             case "go":
-                moveToRoom(moves[1]);
+                moveToRoom(commandArgument);
                 break;
             case "get":
-                acquireItem(moves[1]);
+                acquireItem(commandArgument);
                 break;
             case "use":
-                useItem(moves[1]);
+                validateUseItem(commandArgument);
                 break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
@@ -116,10 +119,13 @@ public class GameEngine {
     }
 
     //this here fella retrieves an item in a room
-    public void useItem(String item) {
-        if (!itemInInventory(item)) {
+    public void validateUseItem(String item) {
+
+        if (!roomHasUnsolvedChallenge()) {
+            System.out.println("There is nothing to use your " + item + " on. Continue to explore the maze.");
+        } else if (!itemInInventory(item)) {
             System.out.println("You don\'t have that item in your inventory!");
-            guesses++;
+            guesses--;
         } else {
             solveChallengeAttempt(item);
         }
@@ -128,20 +134,19 @@ public class GameEngine {
     //it's time to fight!
     public void solveChallengeAttempt(String item) {
 
-        if (rooms.get(currentRoom).get("solution").toLowerCase().equals(item.toLowerCase())) {
-            System.out.println("You solved the challenge!");
+        String challengeSolution = rooms.get(currentRoom).get("solution");
+
+        if (challengeSolution.equals(item.toLowerCase())) {
+            System.out.println("You solved the challenge! Continue on your quest");
             rooms.get(currentRoom).replace("solved", "true");
             isPlayerMobile = true;
-            
-        } else if (!itemInInventory(item)) {
+            guesses = 3;
+        } else {
             guesses--;
-            System.out.println("You don\'t have that item in your inventory!");
-            System.out.println("You have " + guesses + " more chance(s) left to solve this challenge.");
-
-        } else if (guesses < 1) {
-            // print out clue that is specific to the room, i.e., it would help to have a key!
-            terminateGame(false);
+            System.out.println("Using the " + item + " has no effect!");
+            System.out.println("You have " + guesses + " guesses left. Try again!");
         }
+
     }
 
     //do you have it in your satchel?
@@ -150,19 +155,21 @@ public class GameEngine {
     }
 
     //get the thing
-    public void acquireItem(String command) {
-        if (rooms.get(currentRoom).get("item").toLowerCase().equals(command.toLowerCase())) {
-            inventory.add(command);
-            System.out.println(command + " acquired!!");
+    public void acquireItem(String commandArgument) {
+        if (rooms.get(currentRoom).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
+            inventory.add(commandArgument);
+            System.out.println(commandArgument + " acquired!!");
         } else {
-            System.out.println("That item is not available in this room!");
+            System.out.println("A " + commandArgument + " is not available in this room!");
         }
     }
 
     //this dude lets you move room-to-room
     public void moveToRoom(String command) {
-        if (rooms.get(currentRoom).containsKey(command.toLowerCase())) {
-            currentRoom = rooms.get(currentRoom).get(command);
+        if (rooms.get(currentRoom).containsKey(command.toLowerCase()) && isPlayerMobile) {
+            setCurrentRoom(rooms.get(currentRoom).get(command));
+        } else if (!isPlayerMobile) {
+            System.out.println("You can't leave the room until you solve the challenge!");
         } else {
             System.out.println("You can't go that way!");
         }
@@ -207,6 +214,15 @@ public class GameEngine {
 
     public void setCurrentRoom(String currentRoom) {
         this.currentRoom = currentRoom;
+        isPlayerMobile = !roomHasUnsolvedChallenge();
+    }
+
+    public Boolean roomHasUnsolvedChallenge() {
+        if (rooms.get(currentRoom).containsKey("challenge") && rooms.get(currentRoom).get("solved").equals("false")) {
+            return true;
+        }
+
+        return false;
     }
 
     public ArrayList<String> getInventory() {
