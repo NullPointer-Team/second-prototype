@@ -3,7 +3,7 @@ package coregamefiles;
 public class GameTextColors {
 
     /**********************
-     *Text Font Colors
+     *TEXT FONT COLORS
      **********************/
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_BLACK = "\u001B[30m";
@@ -16,7 +16,7 @@ public class GameTextColors {
     private static final String ANSI_WHITE = "\u001B[37m";
 
     /**********************
-     *Text Background Colors
+     *TEXT BACKGROUND COLORS
      **********************/
     private static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
     private static final String ANSI_RED_BACKGROUND = "\u001B[41m";
@@ -28,7 +28,14 @@ public class GameTextColors {
     private static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
     /**********************
-     *Text Font Getters
+     *TEXT ATTRIBUTES
+     **********************/
+    private static final String ANSI_BOLD = "\u001B[1m";
+    private static final String ANSI_UNDERSCORE = "\u001B[4m";
+    private static final String ANSI_BLINK_ON = "\u001B[5m";
+
+    /**********************
+     *TEXT FONT GETTERS
      **********************/
     public static String getAnsiReset() {
         return ANSI_RESET;
@@ -67,7 +74,7 @@ public class GameTextColors {
     }
 
     /**********************
-     *Text Background Getters
+     *TEXT BACKGROUND GETTERS
      **********************/
     public static String getAnsiBlackBackground() {
         return ANSI_BLACK_BACKGROUND;
@@ -101,5 +108,19 @@ public class GameTextColors {
         return ANSI_WHITE_BACKGROUND;
     }
 
+    /**********************
+     *TEXT ATTRIBUTE GETTERS
+     **********************/
+    public static String getAnsiBold() {
+        return ANSI_BOLD;
+    }
+
+    public static String getAnsiUnderscore() {
+        return ANSI_UNDERSCORE;
+    }
+
+    public static String getAnsiBlinkOn() {
+        return ANSI_BLINK_ON;
+    }
 
 }
