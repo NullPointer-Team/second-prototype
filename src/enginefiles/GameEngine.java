@@ -26,9 +26,8 @@ public class GameEngine {
 
     /************************
      ************************
-     * these are our fields.
-     * we're like farmers, but not
-     * **********************
+     *THESE ARE OUR FIELDS
+     ************************
      ************************/
     private String currentRoom;
     private ArrayList<String> inventory;
@@ -43,9 +42,8 @@ public class GameEngine {
 
     /************************
      ************************
-     * i think this is a CTOR,
-     * maybe
-     * **********************
+     * CONSTRUCTOR
+     ************************
      ************************/
     public GameEngine() {
         gameOver = false;
@@ -53,7 +51,7 @@ public class GameEngine {
         isPlayerMobile = true;
         gameMap = new GameMap();
         rooms = gameMap.getRooms();
-        currentRoom = "Atrium";
+        setCurrentRoom("Atrium");
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
     }
@@ -61,8 +59,7 @@ public class GameEngine {
 
     /************************
      ************************
-     * Bread & Butter...
-     * Business methods below
+     * BUSINESS METHODS
      * **********************
      ************************/
     //do you like to play games?
@@ -133,8 +130,8 @@ public class GameEngine {
     }
     //this little guy tells you when there's an item in the room
     public void listItem() {
-        if (rooms.get(currentRoom).containsKey("item") && !roomHasUnsolvedChallenge()) {
-            System.out.println("Inside this room you can find a " + getAnsiYellow() + rooms.get(currentRoom).get("item") + getAnsiReset());
+        if (rooms.get(getCurrentRoom()).containsKey("item") && !roomHasUnsolvedChallenge()) {
+            System.out.println("Inside this room you can find a " + getAnsiRed() + getAnsiBold() + getAnsiUnderscore() + rooms.get(getCurrentRoom()).get("item") + getAnsiReset());
         }
     }
 
@@ -158,8 +155,8 @@ public class GameEngine {
     }
 
     public void playMusicIfUrl() throws Exception {
-        if (rooms.get(currentRoom).containsKey("url")) {
-            Music.playMusic(rooms.get(currentRoom).get("url"));
+        if (rooms.get(getCurrentRoom()).containsKey("url")) {
+            Music.playMusic(rooms.get(getCurrentRoom()).get("url"));
         }
     }
 
@@ -202,9 +199,9 @@ public class GameEngine {
 
     //get the thing
     public void acquireItem(String commandArgument) {
-        if (rooms.get(currentRoom).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
+        if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
             inventory.add(commandArgument);
-            rooms.get(currentRoom).remove("item");
+            rooms.get(getCurrentRoom()).remove("item");
             System.out.println(commandArgument + " acquired!!");
         } else {
             System.out.println("A " + commandArgument + " is not available in this room!");
@@ -236,7 +233,7 @@ public class GameEngine {
     //lets you know what's what
     void showStatus() {
         System.out.println(" -------------------- ");
-        System.out.println("You are in the "+ currentRoom);
+        System.out.println("You are in the "+ getCurrentRoom());
         listItem();
         listChallenge();
         showInventory();
@@ -247,7 +244,7 @@ public class GameEngine {
     //what's in the box?! What's in the box?!
     void showInventory() {
         if (getInventory().isEmpty()) {
-            System.out.println("You have nothing in your inventory");
+            System.out.println("You have " + getAnsiUnderscore() + getAnsiBold() + "nothing" + getAnsiReset() + " in your inventory");
         } else {
             System.out.println("In your inventory, you have:     ");
             for (String item: inventory) {
@@ -260,12 +257,10 @@ public class GameEngine {
         return rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false");
     }
 
-
     /************************
      ************************
-     * Getters and Setters
-     * go below here, pardner
-     * **********************
+     * GETTERS & SETTERS
+     ************************
      ************************/
     //retrieve rules from GameRules for above case: "rules"
     public void getRules() {

@@ -82,6 +82,7 @@ public class GameMenuTextArt extends GameMenu {
     static void printGoodbyeMessage() {
         System.out.println("Goodbye!  Thanks for playing.");
         System.out.println(getAnsiRed() + "\n" +
+                "___________________________________________________________\n" +
                 "                                                           \n" +
                 " ██████   ██████   ██████  ██████  ██████ ██    ██ ███████ \n" +
                 "██       ██    ██ ██    ██ ██   ██ ██   ██ ██  ██  ██      \n" +
@@ -89,7 +90,7 @@ public class GameMenuTextArt extends GameMenu {
                 "██    ██ ██    ██ ██    ██ ██   ██ ██   ██   ██    ██      \n" +
                 " ██████   ██████   ██████  ██████  ██████    ██    ███████ \n" +
                 "                                                           \n" +
-                "                                                           \n" +
+                "___________________________________________________________\n" +
                 getAnsiReset());
     }
 
