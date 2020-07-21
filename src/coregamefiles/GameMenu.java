@@ -40,14 +40,14 @@ public class GameMenu {
 
     // This method handles user input logic from game menu choices
     private void startGameMenu() {
-        while (!gameEngine.gameOver) {
+        while (!gameEngine.getGameOver()) {
             try {
                 switch (userInput.nextLine().toUpperCase().trim()) {
                     case "PLAY":
                         gameEngine.playGame();
                         break;
                     case "EXIT":
-                        gameEngine.gameOver = false;
+                        gameEngine.setGameOver(false);
                         GameMenuTextArt.goodbye();
                     default:
                         throw new InvalidGameMenuSelectionException();
