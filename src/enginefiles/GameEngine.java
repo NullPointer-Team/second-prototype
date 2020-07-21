@@ -116,7 +116,7 @@ public class GameEngine {
     }
 
     public void listChallenge() {
-        if (rooms.get(currentRoom).containsKey("challenge") && rooms.get(currentRoom).get("solved").equals("false")) {
+        if (roomHasUnsolvedChallenge()) {
             System.out.println("Oh no!! The " + currentRoom + " has a " + rooms.get(currentRoom).get("challenge"));
             System.out.println("You must defeat this challenge before you can continue your journey!");
         }
