@@ -32,15 +32,6 @@ public class GameEngine {
      ************************/
     private String currentRoom;
     private ArrayList<String> inventory;
-
-    public Boolean getGameOver() {
-        return gameOver;
-    }
-
-    public void setGameOver(Boolean gameOver) {
-        this.gameOver = gameOver;
-    }
-
     private Boolean gameOver;
     private Boolean gameWon;
     private Integer guesses;
@@ -297,6 +288,26 @@ public class GameEngine {
     //setchyo inventory
     public void setInventory(ArrayList<String> inventory) {
         this.inventory = inventory;
+    }
+
+    public Integer getGuesses() {
+        return guesses;
+    }
+
+    public Boolean getGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(Boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public Boolean getPlayerMobile() {
+        return isPlayerMobile;
+    }
+
+    public Map<String, HashMap<String, String>> getRooms() {
+        return rooms;
     }
 
 }
