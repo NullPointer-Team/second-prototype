@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import static coregamefiles.GameTextColors.*;
 
 
 public class GameEngine {
@@ -134,7 +135,7 @@ public class GameEngine {
     //this little guy tells you when there's an item in the room
     public void listItem() {
         if (rooms.get(currentRoom).containsKey("item") && !roomHasUnsolvedChallenge()) {
-            System.out.println("Inside this room you can find a " + rooms.get(currentRoom).get("item"));
+            System.out.println("Inside this room you can find a " + getAnsiYellow() + rooms.get(currentRoom).get("item") + getAnsiReset());
         }
     }
 
@@ -143,12 +144,16 @@ public class GameEngine {
         if (roomHasUnsolvedChallenge()) {
             if ((!getInventory().isEmpty())) {
                 AlertArt.alert();
-                System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge"));
-                System.out.println("You must defeat this challenge before you can continue your journey!");
+                System.out.println(getAnsiRed() +
+                        "Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") + ".\n" +
+                        "You must defeat this challenge before you can continue your journey!" +
+                        getAnsiReset());
             } else {
                 AlertArt.alert();
-                System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") +
-                        ",\nand you don't have anything in your inventory to fight it with.");
+                System.out.println(getAnsiRed() +
+                        "Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") + ",\n" +
+                        "and you don't have anything in your inventory to fight it with." +
+                        getAnsiReset());
             }
         }
     }
@@ -178,6 +183,7 @@ public class GameEngine {
         String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
 //        while ((!getInventory().isEmpty())) {
         if (challengeSolution.equals(item.toLowerCase())) {
+            greatSuccess();
             System.out.println("You solved the challenge! Continue on your quest");
             rooms.get(getCurrentRoom()).replace("solved", "true");
             isPlayerMobile = true;
@@ -306,6 +312,10 @@ public class GameEngine {
 
     public Map<String, HashMap<String, String>> getRooms() {
         return rooms;
+    }
+
+    public void greatSuccess() {
+        GreatSuccess.success();
     }
 
 }
