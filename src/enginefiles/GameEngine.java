@@ -110,7 +110,7 @@ public class GameEngine {
     }
     //this little guy tells you when there's an item in the room
     public void listItem() {
-        if (rooms.get(currentRoom).containsKey("item")) {
+        if (rooms.get(currentRoom).containsKey("item") && !roomHasUnsolvedChallenge()) {
             System.out.println("Inside this room you can find a " + rooms.get(currentRoom).get("item"));
         }
     }
@@ -167,6 +167,7 @@ public class GameEngine {
     public void acquireItem(String commandArgument) {
         if (rooms.get(currentRoom).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
             inventory.add(commandArgument);
+            rooms.get(currentRoom).remove("item");
             System.out.println(commandArgument + " acquired!!");
         } else {
             System.out.println("A " + commandArgument + " is not available in this room!");

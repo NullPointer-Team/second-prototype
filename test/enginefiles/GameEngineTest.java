@@ -124,7 +124,6 @@ class GameEngineTest {
         gameEngine.showStatus();
         String expectedOutput = " -------------------- \n" +
                 "You are in the Panic Room\n" +
-                "Inside this room you can find a key\n" +
                 "Oh no!! The Panic Room has a ghost\n" +
                 "You must defeat this challenge before you can continue your journey!\n" +
                 "You have nothing in your inventory\n" +
