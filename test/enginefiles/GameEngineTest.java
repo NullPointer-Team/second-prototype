@@ -94,7 +94,7 @@ class GameEngineTest {
     }
 
     @Test
-    void testValidateUserCommand_InvalidInput() {
+    void testValidateAndExecuteUserCommand_InvalidInput() {
         String[] moves = {"bad", "input"};
         System.setOut(new PrintStream(outContent));
         gameEngine.validateAndExecuteUserCommand(moves);
@@ -103,7 +103,7 @@ class GameEngineTest {
     }
 
     @Test
-    void testValidateUserCommand_ValidInput() {
+    void testValidateAndExecuteUserCommand_ValidInput() {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Library");
         String[] movesNewRoom = {"go", "west"};
