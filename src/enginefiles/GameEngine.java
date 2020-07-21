@@ -13,6 +13,7 @@ package enginefiles;
 
 import coregamefiles.*;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -83,7 +84,7 @@ public class GameEngine {
 
     public void validateUserCommand(String[] moves) {
         String command = moves[0].toLowerCase();
-        String commandArgument = moves[1];
+        String commandArgument = moves.length > 1 ? moves[1] : " ";
 
         switch(command) {
             case "go":
@@ -109,8 +110,16 @@ public class GameEngine {
     }
     //this little guy tells you when there's an item in the room
     public void listItem() {
-        rooms.get(currentRoom).get("item");
-        System.out.println(rooms.get(currentRoom).get("item"));
+        if (rooms.get(currentRoom).containsKey("item")) {
+            System.out.println("Inside this room you can find a " + rooms.get(currentRoom).get("item"));
+        }
+    }
+
+    public void listChallenge() {
+        if (rooms.get(currentRoom).containsKey("challenge") && rooms.get(currentRoom).get("solved").equals("false")) {
+            System.out.println("Oh no!! The " + currentRoom + " has a " + rooms.get(currentRoom).get("challenge"));
+            System.out.println("You must defeat this challenge before you can continue your journey!");
+        }
     }
 
     //retrieve rules from GameRules for above case: "rules"
@@ -134,7 +143,7 @@ public class GameEngine {
     //it's time to fight!
     public void solveChallengeAttempt(String item) {
 
-        String challengeSolution = rooms.get(currentRoom).get("solution");
+        String challengeSolution = rooms.get(currentRoom).get("solution").toLowerCase();
 
         if (challengeSolution.equals(item.toLowerCase())) {
             System.out.println("You solved the challenge! Continue on your quest");
@@ -190,7 +199,8 @@ public class GameEngine {
     void showStatus() {
         System.out.println(" -------------------- ");
         System.out.println("You are in the "+ currentRoom);
-        System.out.println("This room has a(n) " + rooms.get(currentRoom).get("item"));
+        listItem();
+        listChallenge();
         showInventory();
         System.out.println("For game rules, type \"rules\"");
         System.out.println(" -------------------- ");
