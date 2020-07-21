@@ -151,4 +151,55 @@ class GameEngineTest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
+
+    @Test
+    void testListChallenge_Positive() {
+        gameEngine.setCurrentRoom("Panic Room");
+        assertTrue(gameEngine.roomHasUnsolvedChallenge());
+        gameEngine.setCurrentRoom("Conservatory");
+        assertTrue(gameEngine.roomHasUnsolvedChallenge());
+        gameEngine.setCurrentRoom("Arcade");
+        assertTrue(gameEngine.roomHasUnsolvedChallenge());
+        gameEngine.setCurrentRoom("Courtyard");
+        assertTrue(gameEngine.roomHasUnsolvedChallenge());
+        gameEngine.setCurrentRoom("Kitchen");
+        assertTrue(gameEngine.roomHasUnsolvedChallenge());
+    }
+
+    @Test
+    void testListChallenge_Negative() {
+        gameEngine.setCurrentRoom("Menagerie");
+        assertFalse(gameEngine.roomHasUnsolvedChallenge());
+        gameEngine.setCurrentRoom("Observatory");
+        assertFalse(gameEngine.roomHasUnsolvedChallenge());
+        gameEngine.setCurrentRoom("Library");
+        assertFalse(gameEngine.roomHasUnsolvedChallenge());
+        gameEngine.setCurrentRoom("Garden");
+        assertFalse(gameEngine.roomHasUnsolvedChallenge());
+        gameEngine.setCurrentRoom("Laboratory");
+        assertFalse(gameEngine.roomHasUnsolvedChallenge());
+    }
+
+    @Test
+    void testSolveChallengeAttempt_Success() {
+        gameEngine.setCurrentRoom("Fire Swamps");
+        assertTrue(gameEngine.roomHasUnsolvedChallenge());
+
+        String[] successfulMove = {"use", "fighting skills"};
+    }
+
+    @Test
+    void testSolveChallengeAttempt_Failure() {
+
+    }
+
+    @Test
+    void testRoomHasUnsolvedChallenge_Positive() {
+
+    }
+
+    @Test
+    void testRoomHasUnsolvedChallenge_Negative() {
+
+    }
 }
