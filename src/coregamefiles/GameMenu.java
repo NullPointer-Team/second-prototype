@@ -26,7 +26,7 @@ public class GameMenu {
     Scanner userInput = new Scanner(System.in);
 
     // This method starts the game.
-    public void startGame() {
+    public void startGame() throws Exception {
         displayMenuText();
         startGameMenu();
     }
@@ -39,7 +39,7 @@ public class GameMenu {
     }
 
     // This method handles user input logic from game menu choices
-    private void startGameMenu() {
+    private void startGameMenu() throws Exception {
         while (!gameEngine.getGameOver()) {
             try {
                 switch (userInput.nextLine().toUpperCase().trim()) {

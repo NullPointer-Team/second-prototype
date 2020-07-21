@@ -32,11 +32,13 @@ public class GameMap {
         atrium.put("east", "Breakfast Nook");
         atrium.put("item", "fighting skills");
 
+
         breakfastNook.put("east", "Menagerie");
         breakfastNook.put("west", "Atrium");
         breakfastNook.put("challenge", "Gold Beetles");
         breakfastNook.put("solution", "fighting skills");
         breakfastNook.put("solved", "false");
+        breakfastNook.put("url", "https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav");
 
         menagerie.put("west", "Breakfast Nook");
         menagerie.put("south", "Dining Room");

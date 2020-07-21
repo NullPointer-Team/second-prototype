@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class PlayAgainPrompt {
 
-    public static void playAgain() {
+    public static void playAgain() throws Exception {
         playAgainFeedback();
     }
 
@@ -15,7 +15,7 @@ public class PlayAgainPrompt {
      * this method prompts the player after playing a game, or quitting a game, whether they
      * want to play again, or exit, which returns them to the main menu
      */
-    private static void playAgainFeedback() {
+    private static void playAgainFeedback() throws Exception {
         boolean isValid = false;
 
         System.out.println("Would you like to replay the game?\n" +

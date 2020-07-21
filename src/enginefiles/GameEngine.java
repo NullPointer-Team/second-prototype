@@ -12,6 +12,7 @@
 package enginefiles;
 
 import coregamefiles.*;
+import music.Music;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class GameEngine {
     }
 
     //do you like to play games?
-    public void playGame() {
+    public void playGame() throws Exception {
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
@@ -82,7 +83,7 @@ public class GameEngine {
     }
 
     //whatcha wanna do?
-    public void terminateGame() {
+    public void terminateGame() throws Exception {
         if (gameWon) {
             WinLoseTextArt.winArt();
         } else {
@@ -91,7 +92,7 @@ public class GameEngine {
         PlayAgainPrompt.playAgain();
     }
 
-    public void validateUserCommand(String[] moves) {
+    public void validateUserCommand(String[] moves) throws Exception {
         String command = moves[0].toLowerCase();
         String commandArgument = moves.length > 1 ? moves[1] : " ";
 
@@ -128,6 +129,12 @@ public class GameEngine {
         if (roomHasUnsolvedChallenge()) {
             System.out.println("Oh no!! The " + currentRoom + " has a " + rooms.get(currentRoom).get("challenge"));
             System.out.println("You must defeat this challenge before you can continue your journey!");
+        }
+    }
+
+    public void playMusicIfUrl() throws Exception {
+        if (rooms.get(currentRoom).containsKey("url")) {
+            Music.playMusic(rooms.get(currentRoom).get("url"));
         }
     }
 
@@ -184,7 +191,7 @@ public class GameEngine {
     }
 
     //this dude lets you move room-to-room
-    public void moveToRoom(String command) {
+    public void moveToRoom(String command) throws Exception {
         if (rooms.get(currentRoom).containsKey(command.toLowerCase()) && isPlayerMobile) {
             setCurrentRoom(rooms.get(currentRoom).get(command));
         } else if (!isPlayerMobile) {
@@ -232,9 +239,10 @@ public class GameEngine {
         return currentRoom;
     }
 
-    public void setCurrentRoom(String currentRoom) {
+    public void setCurrentRoom(String currentRoom) throws Exception {
         this.currentRoom = currentRoom;
         isPlayerMobile = !roomHasUnsolvedChallenge();
+        playMusicIfUrl();
     }
 
     public Boolean roomHasUnsolvedChallenge() {

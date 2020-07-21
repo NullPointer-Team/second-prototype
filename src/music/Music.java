@@ -38,8 +38,26 @@ public class Music {
             JOptionPane.showMessageDialog(null, "You are in Garden Relex!!!!");
         });
 
+    }
+
+    public static void playMusic(String room) throws Exception {
+        //when user/Gamer enter in garden relex music will play
+        URL url = new URL(room);
+        Clip clip = AudioSystem.getClip();
+
+        AudioInputStream ais = AudioSystem.getAudioInputStream(url);
+        clip.open(ais);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        SwingUtilities.invokeLater(() -> {
+            // Pop up will  display to user what user supposed to do.
+
+            JOptionPane.showMessageDialog(null, "You are in " + room + " Relex!!!!");
+        });
 
     }
+
+
+
     public static void fire() throws Exception {
         //when user/Gamer enter in room where Fire is there this sound will be play
         URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Horror-Rhythm-Pattern_DRAME01036.wav");
