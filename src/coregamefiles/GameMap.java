@@ -5,33 +5,76 @@ import java.util.HashMap;
 public class GameMap {
 
     // MAP
-    private HashMap<String, HashMap<String, String>> rooms = new HashMap<>();
+    private HashMap<String, HashMap<String, String>> rooms;
 
-    private HashMap<String, String> atrium = new HashMap<String, String>();
-    private HashMap<String, String> breakfastNook = new HashMap<String, String>();
-    private HashMap<String, String> menagerie = new HashMap<String, String>();
-    private HashMap<String, String> conservatory = new HashMap<String, String>();
-    private HashMap<String, String> panicRoom = new HashMap<String, String>();
+    private HashMap<String, String> atrium;
+    private HashMap<String, String> breakfastNook;
+    private HashMap<String, String> menagerie;
+    private HashMap<String, String> conservatory;
+    private HashMap<String, String> panicRoom;
 
-    private HashMap<String, String> fireSwamps = new HashMap<String, String>();
-    private HashMap<String, String> hall = new HashMap<String, String>();
-    private HashMap<String, String> diningRoom = new HashMap<String, String>();
-    private HashMap<String, String> arcade = new HashMap<String, String>();
-    private HashMap<String, String> observatory = new HashMap<String, String>();
+    private HashMap<String, String> fireSwamps;
+    private HashMap<String, String> hall;
+    private HashMap<String, String> diningRoom;
+    private HashMap<String, String> arcade;
+    private HashMap<String, String> observatory;
 
-    private HashMap<String, String> courtyard = new HashMap<String, String>();
-    private HashMap<String, String> library = new HashMap<String, String>();
-    private HashMap<String, String> garden = new HashMap<String, String>();
-    private HashMap<String, String> laboratory = new HashMap<String, String>();
-    private HashMap<String, String> kitchen = new HashMap<String, String>();
+    private HashMap<String, String> courtyard;
+    private HashMap<String, String> library;
+    private HashMap<String, String> garden;
+    private HashMap<String, String> laboratory;
+    private HashMap<String, String> kitchen;
 
 
     //provide info for map
     public GameMap() {
+        rooms = new HashMap<>();
+        instantiateIndividualRooms();
+
+        rooms.put("Atrium", atrium);
+        rooms.put("Breakfast Nook", breakfastNook);
+        rooms.put("Menagerie", menagerie);
+        rooms.put("Conservatory", conservatory);
+        rooms.put("Panic Room", panicRoom);
+
+        rooms.put("Fire Swamps", fireSwamps);
+        rooms.put("Hall", hall);
+        rooms.put("Dining Room", diningRoom);
+        rooms.put("Arcade", arcade);
+        rooms.put("Observatory", observatory);
+
+        rooms.put("Courtyard", courtyard);
+        rooms.put("Library", library);
+        rooms.put("Garden", garden);
+        rooms.put("Laboratory", laboratory);
+        rooms.put("Kitchen", kitchen);
+    }
+
+
+    private void instantiateIndividualRooms() {
+        atrium = new HashMap<String, String>();
+        breakfastNook = new HashMap<String, String>();
+        menagerie = new HashMap<String, String>();
+        conservatory = new HashMap<String, String>();
+        panicRoom = new HashMap<String, String>();
+
+        fireSwamps = new HashMap<String, String>();
+        hall = new HashMap<String, String>();
+        diningRoom = new HashMap<String, String>();
+        arcade = new HashMap<String, String>();
+        observatory = new HashMap<String, String>();
+
+        courtyard = new HashMap<String, String>();
+        library = new HashMap<String, String>();
+        garden = new HashMap<String, String>();
+        laboratory = new HashMap<String, String>();
+        kitchen = new HashMap<String, String>();
+
+
+
         atrium.put("south", "Fire Swamps");
         atrium.put("east", "Breakfast Nook");
         atrium.put("item", "fighting skills");
-
 
         breakfastNook.put("east", "Menagerie");
         breakfastNook.put("west", "Atrium");
@@ -110,24 +153,8 @@ public class GameMap {
         kitchen.put("solution", "sword");
         kitchen.put("solved", "false");
 
-        rooms.put("Atrium", atrium);
-        rooms.put("Breakfast Nook", breakfastNook);
-        rooms.put("Menagerie", menagerie);
-        rooms.put("Conservatory", conservatory);
-        rooms.put("Panic Room", panicRoom);
-
-        rooms.put("Fire Swamps", fireSwamps);
-        rooms.put("Hall", hall);
-        rooms.put("Dining Room", diningRoom);
-        rooms.put("Arcade", arcade);
-        rooms.put("Observatory", observatory);
-
-        rooms.put("Courtyard", courtyard);
-        rooms.put("Library", library);
-        rooms.put("Garden", garden);
-        rooms.put("Laboratory", laboratory);
-        rooms.put("Kitchen", kitchen);
     }
+
 
     public HashMap<String, HashMap<String, String>> getRooms() {
         return rooms;
