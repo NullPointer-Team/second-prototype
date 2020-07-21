@@ -56,7 +56,24 @@ public class GameMapTest {
         garden = rooms.get("Garden");
         laboratory = rooms.get("Laboratory");
         kitchen = rooms.get("Kitchen");
+
+        foyer = new HashMap<String, String>();
+        foyer.put("challenge", "Post-Modernism");
+        foyer.put("north", "Kitchen");
+        foyer.put("item", "sense of one\'s own mortality");
     }
+
+    @Test
+    public void failToAddNewRoom() {
+        Exception exception = assertThrows(UnsupportedOperationException.class, () -> {
+            rooms.put("foyer", foyer);
+        });
+        allRooms = rooms.keySet();
+        assertEquals(allRooms.size(), 15);
+        assertTrue(exception.toString().equals(UnsupportedOperationException.class.getName()));
+    }
+
+
 
     @Test
     public void testRooms(){
