@@ -1,79 +1,147 @@
 package coregamefiles;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class GameMap {
 
     // MAP
-    public HashMap<String, HashMap<String, String>> rooms = new HashMap<>();
+    private Map<String, HashMap<String, String>> rooms;
 
-    private HashMap<String, String> atrium = new HashMap<String, String>();
-    private HashMap<String, String> breakfastNook = new HashMap<String, String>();
-    private HashMap<String, String> menagerie = new HashMap<String, String>();
-    private HashMap<String, String> conservatory = new HashMap<String, String>();
-    private HashMap<String, String> panicRoom = new HashMap<String, String>();
+    private HashMap<String, String> atrium;
+    private HashMap<String, String> breakfastNook;
+    private HashMap<String, String> menagerie;
+    private HashMap<String, String> conservatory;
+    private HashMap<String, String> panicRoom;
 
-    private HashMap<String, String> fireSwamps = new HashMap<String, String>();
-    private HashMap<String, String> hall = new HashMap<String, String>();
-    private HashMap<String, String> diningRoom = new HashMap<String, String>();
-    private HashMap<String, String> arcade = new HashMap<String, String>();
-    private HashMap<String, String> observatory = new HashMap<String, String>();
+    private HashMap<String, String> fireSwamps;
+    private HashMap<String, String> hall;
+    private HashMap<String, String> diningRoom;
+    private HashMap<String, String> arcade;
+    private HashMap<String, String> observatory;
 
-    private HashMap<String, String> courtyard = new HashMap<String, String>();
-    private HashMap<String, String> library = new HashMap<String, String>();
-    private HashMap<String, String> garden = new HashMap<String, String>();
-    private HashMap<String, String> laboratory = new HashMap<String, String>();
-    private HashMap<String, String> kitchen = new HashMap<String, String>();
+    private HashMap<String, String> courtyard;
+    private HashMap<String, String> library;
+    private HashMap<String, String> garden;
+    private HashMap<String, String> laboratory;
+    private HashMap<String, String> kitchen;
 
 
     //provide info for map
     public GameMap() {
+        HashMap<String, HashMap<String, String>> temporaryMap = new HashMap<>();
+        instantiateIndividualRooms();
+
+        temporaryMap.put("Atrium", atrium);
+        temporaryMap.put("Breakfast Nook", breakfastNook);
+        temporaryMap.put("Menagerie", menagerie);
+        temporaryMap.put("Conservatory", conservatory);
+        temporaryMap.put("Panic Room", panicRoom);
+
+        temporaryMap.put("Fire Swamps", fireSwamps);
+        temporaryMap.put("Hall", hall);
+        temporaryMap.put("Dining Room", diningRoom);
+        temporaryMap.put("Arcade", arcade);
+        temporaryMap.put("Observatory", observatory);
+
+        temporaryMap.put("Courtyard", courtyard);
+        temporaryMap.put("Library", library);
+        temporaryMap.put("Garden", garden);
+        temporaryMap.put("Laboratory", laboratory);
+        temporaryMap.put("Kitchen", kitchen);
+
+        rooms = Collections.unmodifiableMap(temporaryMap);
+    }
+
+
+    private void instantiateIndividualRooms() {
+        atrium = new HashMap<String, String>();
+        breakfastNook = new HashMap<String, String>();
+        menagerie = new HashMap<String, String>();
+        conservatory = new HashMap<String, String>();
+        panicRoom = new HashMap<String, String>();
+
+        fireSwamps = new HashMap<String, String>();
+        hall = new HashMap<String, String>();
+        diningRoom = new HashMap<String, String>();
+        arcade = new HashMap<String, String>();
+        observatory = new HashMap<String, String>();
+
+        courtyard = new HashMap<String, String>();
+        library = new HashMap<String, String>();
+        garden = new HashMap<String, String>();
+        laboratory = new HashMap<String, String>();
+        kitchen = new HashMap<String, String>();
+
+
+
         atrium.put("south", "Fire Swamps");
         atrium.put("east", "Breakfast Nook");
-        atrium.put("item", "Treasure Chest");
+        atrium.put("item", "fighting skills");
+        atrium.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_Timpani_6027_73_1.wav");
 
         breakfastNook.put("east", "Menagerie");
         breakfastNook.put("west", "Atrium");
-        breakfastNook.put("item", "Gold Beetle");
+        breakfastNook.put("challenge", "Gold Beetles");
+        breakfastNook.put("solution", "fighting skills");
+        breakfastNook.put("solved", "false");
 
         menagerie.put("west", "Breakfast Nook");
         menagerie.put("south", "Dining Room");
-        menagerie.put("secret", "Courtyard");
-        menagerie.put("item", "Amulet");
+        menagerie.put("secret", "Observatory");
+        menagerie.put("item", "Rope");
 
         conservatory.put("south", "Arcade");
         conservatory.put("east", "Panic Room");
-        conservatory.put("item", "Quick Sand");
+        conservatory.put("challenge", "Quick Sand");
+        conservatory.put("solution", "Rope");
+        conservatory.put("solved", "false");
 
         panicRoom.put("west", "Conservatory");
         panicRoom.put("south", "Observatory");
-        panicRoom.put("item", "sword");
+        panicRoom.put("item", "key");
+        panicRoom.put("challenge", "ghost");
+        panicRoom.put("solution", "Book of Spells");
+        panicRoom.put("solved", "false");
+        panicRoom.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_HumanBurp_CTE03_05_7.wav");
 
         fireSwamps.put("north", "Atrium");
         fireSwamps.put("east", "Hall");
-        fireSwamps.put("item", "Rodents of Unusual Size (ROUS)");
+        fireSwamps.put("challenge", "Rodents of Unusual Size (ROUS)");
+        fireSwamps.put("solution", "fighting skills");
+        fireSwamps.put("solved", "false");
+        fireSwamps.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ExplosionSharp_6048_97_1.wav");
+
 
         hall.put("east", "Dining Room");
         hall.put("west", "Fire Swamps");
-        hall.put("item", "key");
+        hall.put("item", "Super Soaker");
 
         diningRoom.put("west", "Hall");
         diningRoom.put("east", "Arcade");
         diningRoom.put("north", "Menagerie");
-        diningRoom.put("item", "potion");
+        diningRoom.put("item", "Game Boy");
 
         arcade.put("west", "Dining Room");
         arcade.put("east", "Observatory");
         arcade.put("north", "Conservatory");
         arcade.put("south", "Library");
-        arcade.put("item", "Game Boy");
+        arcade.put("challenge", "fire");
+        arcade.put("solution", "Super Soaker");
+        arcade.put("solved", "false");
 
         observatory.put("north", "Panic Room");
         observatory.put("west", "Arcade");
-        observatory.put("item", "fire");
+        observatory.put("item", "potion");
+        observatory.put("secret", "Menagerie");
 
         courtyard.put("west", "Library");
-        courtyard.put("secret", "Menagerie");
+        courtyard.put("item", "sword");
+        courtyard.put("solution", "key");
+        courtyard.put("challenge", "lock");
+        courtyard.put("solved", "false");
 
         library.put("east", "Courtyard");
         library.put("west", "Garden");
@@ -83,34 +151,22 @@ public class GameMap {
         garden.put("east", "Library");
         garden.put("west", "Laboratory");
         garden.put("item", "True Love");
+        garden.put("url", "https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav");
 
         laboratory.put("east", "Garden");
         laboratory.put("west", "Kitchen");
         laboratory.put("item", "Flux Capacitor");
 
         kitchen.put("east", "Laboratory");
-        kitchen.put("item", "monster");
+        kitchen.put("challenge", "monster");
+        kitchen.put("solution", "sword");
+        kitchen.put("solved", "false");
+        kitchen.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_HumanBurp_CTE03_05_7.wav");
 
-        rooms.put("Atrium", atrium);
-        rooms.put("Breakfast Nook", breakfastNook);
-        rooms.put("Menagerie", menagerie);
-        rooms.put("Conservatory", conservatory);
-        rooms.put("Panic Room", panicRoom);
-
-        rooms.put("Fire Swamps", fireSwamps);
-        rooms.put("Hall", hall);
-        rooms.put("Dining Room", diningRoom);
-        rooms.put("Arcade", arcade);
-        rooms.put("Observatory", observatory);
-
-        rooms.put("Courtyard", courtyard);
-        rooms.put("Library", library);
-        rooms.put("Garden", garden);
-        rooms.put("Laboratory", laboratory);
-        rooms.put("Kitchen", kitchen);
     }
 
-    public HashMap<String, HashMap<String, String>> getRooms() {
+
+    public Map<String, HashMap<String, String>> getRooms() {
         return rooms;
     }
 }
