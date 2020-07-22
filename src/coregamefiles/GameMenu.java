@@ -37,7 +37,7 @@ public class GameMenu {
     //DONE: Implement the GameEngine playGame method here, make it run
     // This method will handle all of the user input logic from game menu choice,
     // and start the game.
-    private void startGameMenu() {
+    private void startGameMenu() throws Exception {
         boolean isValid = false;
         GameEngine gameEngine = new GameEngine();
         Scanner userInput = new Scanner(System.in);

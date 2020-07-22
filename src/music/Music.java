@@ -66,7 +66,7 @@ public class Music {
         SwingUtilities.invokeLater(() -> {
             // Pop up will  display to user what user supposed to do.
 
-            JOptionPane.showMessageDialog(null, "You are in " + room + " Welcome to Adventure!!!!");
+            JOptionPane.showMessageDialog(null, "You are in " + room + " Run or Burn!!!");
         });
 
     }
@@ -101,7 +101,7 @@ public class Music {
         });
 
     }
-    public static void loseMusic(String room) throws Exception {
+    public static void loseMusic() throws Exception {
         //when user/Gamer enter in garden relex music will play
         URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_CartoonHeadShake_4003_18_1.wav");
         Clip clip = AudioSystem.getClip();

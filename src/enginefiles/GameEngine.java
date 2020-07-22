@@ -12,6 +12,7 @@
 package enginefiles;
 
 import coregamefiles.*;
+import music.Music;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,9 +29,9 @@ public class GameEngine {
     private GameMap gameMap = new GameMap();
     private HashMap<String, HashMap<String, String>> rooms;
 
-    public void playGame() {
+    public void playGame() throws Exception {
         GameIntroduction.gameInformation();
-        rooms = gameMap.rooms;
+        rooms = gameMap.getRooms();
         currentRoom = "Atrium";
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
@@ -43,7 +44,7 @@ public class GameEngine {
         }
     }
 
-    private void checkIfGameOver() {
+    private void checkIfGameOver() throws Exception {
         if (currentRoom.equals("Kitchen")) {
             if (inventory.contains("sword")) {
                 WinLoseTextArt.winArt();
@@ -115,6 +116,28 @@ public class GameEngine {
             for (String item: inventory) {
                 System.out.println("      - a " + item);
             }
+        }
+    }
+    public void playMusicIfUrl() throws Exception {
+        if (rooms.get(getCurrentRoom()).containsKey("url")) {
+            Music.monster(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.atriumMusic(rooms.get(getCurrentRoom()).get("url"));
+
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.fireMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.gardenMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.fireSwampMusic(rooms.get(getCurrentRoom()).get("url"));
+
+        }
+        else if(rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.panicMusic(rooms.get(getCurrentRoom()).get("url"));
         }
     }
 

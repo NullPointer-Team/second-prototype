@@ -87,6 +87,7 @@ public class GameMap {
         breakfastNook.put("challenge", "Gold Beetles");
         breakfastNook.put("solution", "fighting skills");
         breakfastNook.put("solved", "false");
+        breakfastNook.put("url","");
 
         menagerie.put("west", "Breakfast Nook");
         menagerie.put("south", "Dining Room");
