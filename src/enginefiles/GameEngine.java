@@ -219,7 +219,7 @@ public class GameEngine {
     public void acquireItem(String commandArgument) {
         if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
             inventory.add(commandArgument);
-            rooms.get(getCurrentRoom()).remove("item");
+            rooms.get(currentRoom).remove("item");
             System.out.println(commandArgument + " acquired!!");
         } else {
             System.out.println("A " + commandArgument + " is not available in this room!");
