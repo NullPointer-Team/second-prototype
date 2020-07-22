@@ -1,8 +1,5 @@
 package enginefiles;
 
-import coregamefiles.GameMenuTextArt;
-import exceptionfiles.InvalidGameMenuSelectionException;
-
 public class PrintMapEngine {
     /************************
      ************************
@@ -10,20 +7,21 @@ public class PrintMapEngine {
      ************************
      ************************/
     //create boolean fields for each room on map
-    private boolean isBreakfastNookVisited = false;
-    private boolean isFireSwampVisited = false;
-    private boolean isHallVisited = false;
-    private boolean isMenagerieVisited = false;
-    private boolean isDiningRoomVisited = false;
-    private boolean isArcadeVisited = false;
-    private boolean isMConservatoryVisited = false;
-    private boolean isPanicRoomVisited = false;
-    private boolean isObservatoryVisited = false;
-    private boolean isLibraryVisited = false;
-    private boolean isCourtyardVisited = false;
-    private boolean isGardenVisited = false;
-    private boolean isLaboratoryVisited = false;
-    private boolean isKitchenVisited = false;
+    private boolean atriumVisited = true;
+    private boolean breakfastNookVisited = false;
+    private boolean fireSwampVisited = false;
+    private boolean hallVisited = false;
+    private boolean menagerieVisited = false;
+    private boolean diningRoomVisited = false;
+    private boolean arcadeVisited = false;
+    private boolean conservatoryVisited = false;
+    private boolean panicRoomVisited = false;
+    private boolean observatoryVisited = false;
+    private boolean libraryVisited = false;
+    private boolean courtyardVisited = false;
+    private boolean gardenVisited = false;
+    private boolean laboratoryVisited = false;
+    private boolean kitchenVisited = false;
 
     /************************
      ************************
@@ -86,7 +84,6 @@ public class PrintMapEngine {
      ************************
      ************************/
     public boolean isAtriumVisited() {
-        boolean atriumVisited = true;
         return atriumVisited;
     }
 
@@ -95,115 +92,115 @@ public class PrintMapEngine {
     }
 
     public boolean isBreakfastNookVisited() {
-        return isBreakfastNookVisited;
+        return breakfastNookVisited;
     }
 
     public void setBreakfastNookVisited(boolean breakfastNookVisited) {
-        isBreakfastNookVisited = breakfastNookVisited;
+        this.breakfastNookVisited = breakfastNookVisited;
     }
 
     public boolean isFireSwampVisited() {
-        return isFireSwampVisited;
+        return fireSwampVisited;
     }
 
     public void setFireSwampVisited(boolean fireSwampVisited) {
-        isFireSwampVisited = fireSwampVisited;
+        this.fireSwampVisited = fireSwampVisited;
     }
 
     public boolean isHallVisited() {
-        return isHallVisited;
+        return hallVisited;
     }
 
     public void setHallVisited(boolean hallVisited) {
-        isHallVisited = hallVisited;
+        this.hallVisited = hallVisited;
     }
 
     public boolean isMenagerieVisited() {
-        return isMenagerieVisited;
+        return menagerieVisited;
     }
 
     public void setMenagerieVisited(boolean menagerieVisited) {
-        isMenagerieVisited = menagerieVisited;
+        this.menagerieVisited = menagerieVisited;
     }
 
     public boolean isDiningRoomVisited() {
-        return isDiningRoomVisited;
+        return diningRoomVisited;
     }
 
     public void setDiningRoomVisited(boolean diningRoomVisited) {
-        isDiningRoomVisited = diningRoomVisited;
+        this.diningRoomVisited = diningRoomVisited;
     }
 
     public boolean isArcadeVisited() {
-        return isArcadeVisited;
+        return arcadeVisited;
     }
 
     public void setArcadeVisited(boolean arcadeVisited) {
-        isArcadeVisited = arcadeVisited;
+        this.arcadeVisited = arcadeVisited;
     }
 
-    public boolean isMConservatoryVisited() {
-        return isMConservatoryVisited;
+    public boolean isConservatoryVisited() {
+        return conservatoryVisited;
     }
 
-    public void setMConservatoryVisited(boolean MConservatoryVisited) {
-        isMConservatoryVisited = MConservatoryVisited;
+    public void setConservatoryVisited(boolean conservatoryVisited) {
+        this.conservatoryVisited = conservatoryVisited;
     }
 
     public boolean isPanicRoomVisited() {
-        return isPanicRoomVisited;
+        return panicRoomVisited;
     }
 
     public void setPanicRoomVisited(boolean panicRoomVisited) {
-        isPanicRoomVisited = panicRoomVisited;
+        this.panicRoomVisited = panicRoomVisited;
     }
 
     public boolean isObservatoryVisited() {
-        return isObservatoryVisited;
+        return observatoryVisited;
     }
 
     public void setObservatoryVisited(boolean observatoryVisited) {
-        isObservatoryVisited = observatoryVisited;
+        this.observatoryVisited = observatoryVisited;
     }
 
     public boolean isLibraryVisited() {
-        return isLibraryVisited;
+        return libraryVisited;
     }
 
     public void setLibraryVisited(boolean libraryVisited) {
-        isLibraryVisited = libraryVisited;
+        this.libraryVisited = libraryVisited;
     }
 
     public boolean isCourtyardVisited() {
-        return isCourtyardVisited;
+        return courtyardVisited;
     }
 
     public void setCourtyardVisited(boolean courtyardVisited) {
-        isCourtyardVisited = courtyardVisited;
+        this.courtyardVisited = courtyardVisited;
     }
 
     public boolean isGardenVisited() {
-        return isGardenVisited;
+        return gardenVisited;
     }
 
     public void setGardenVisited(boolean gardenVisited) {
-        isGardenVisited = gardenVisited;
+        this.gardenVisited = gardenVisited;
     }
 
     public boolean isLaboratoryVisited() {
-        return isLaboratoryVisited;
+        return laboratoryVisited;
     }
 
     public void setLaboratoryVisited(boolean laboratoryVisited) {
-        isLaboratoryVisited = laboratoryVisited;
+        this.laboratoryVisited = laboratoryVisited;
     }
 
     public boolean isKitchenVisited() {
-        return isKitchenVisited;
+        return kitchenVisited;
     }
 
     public void setKitchenVisited(boolean kitchenVisited) {
-        isKitchenVisited = kitchenVisited;
+        this.kitchenVisited = kitchenVisited;
     }
 
 }
