@@ -211,11 +211,10 @@ class GameEngineTest {
         assertTrue(gameEngine.roomHasUnsolvedChallenge());
 
         String correctItemForChallenge = "fighting skills";
-        gameEngine.solveChallengeAttempt(correctItemForChallenge);
+        gameEngine.processChallengeAttempt(correctItemForChallenge);
 
         assertFalse(gameEngine.roomHasUnsolvedChallenge());
         assertEquals(gameEngine.getGuesses(), 3);
-        assertTrue(gameEngine.getPlayerMobile());
         assertEquals(gameEngine.getRooms().get("Fire Swamps").get("solved"), "true");
     }
 
@@ -227,13 +226,12 @@ class GameEngineTest {
         assertTrue(gameEngine.roomHasUnsolvedChallenge());
 
         String wrongItemForChallenge = "sword";
-        gameEngine.solveChallengeAttempt(wrongItemForChallenge);
+        gameEngine.processChallengeAttempt(wrongItemForChallenge);
 
         String expectedOutput = "Using the sword has no effect!\nYou have 2 guesses left. Try again!\n";
         assertEquals(expectedOutput, outContent.toString());
 
         assertEquals(gameEngine.getGuesses(), 2);
-        assertFalse(gameEngine.getPlayerMobile());
         assertTrue(gameEngine.roomHasUnsolvedChallenge());
     }
 

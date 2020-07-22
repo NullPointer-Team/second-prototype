@@ -48,7 +48,6 @@ public class GameEngine {
     public GameEngine() {
         gameOver = false;
         guesses = 3;
-        isPlayerMobile = true;
         gameMap = new GameMap();
         rooms = gameMap.getRooms();
         setCurrentRoom("Atrium");
@@ -69,51 +68,172 @@ public class GameEngine {
 
         while (!gameOver) {
             showStatus();
-            String[] moves = getUserCommand();
-            validateAndExecuteUserCommand(moves);
+            solveChallenge();
+
             checkIfGameOver();
         }
 
         terminateGame();
     }
 
-    //did you done gone and done won? or is you dead, and is you done?
-    public void checkIfGameOver() {
-        if (rooms.get("Kitchen").get("solved").equals("true")) {
-            gameWon = true;
-            gameOver = true;
-        }
 
-        if ((roomHasUnsolvedChallenge() && getInventory().isEmpty()) || (guesses < 1)){
-            gameWon = false;
-            gameOver = true;
-        }
-
+    /************************
+     ************************
+     * SHOW STATUS & HELPER METHODS
+     ************************
+     ************************/
+    //lets you know what's what
+    void showStatus() {
+        System.out.println(" -------------------- ");
+        System.out.println("You are in the "+ getCurrentRoom());
+        listItem();
+        listChallengeIfAny();
+        showInventory();
+        System.out.println("For game rules, type \"rules\"");
+        System.out.println(" -------------------- ");
     }
+
+    //this little guy tells you when there's an item in the room
+    public void listItem() {
+        if (rooms.get(getCurrentRoom()).containsKey("item") && !roomHasUnsolvedChallenge()) {
+            System.out.println("Inside this room you can find a " + getAnsiRed() + getAnsiBold() + getAnsiUnderscore() + rooms.get(getCurrentRoom()).get("item") + getAnsiReset());
+        }
+    }
+
+    public Boolean roomHasUnsolvedChallenge() {
+        return rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false");
+    }
+
+    //this widget tells you if you fight or die!!!
+    public void listChallengeIfAny() {
+        if (roomHasUnsolvedChallenge()) {
+            AlertArt.alert();
+            String challengeInstruction = getInventory().isEmpty()
+                    ? "And you don't have anything in your inventory to fight it with."
+                    : "You must defeat this challenge before you can continue your journey!";
+
+            System.out.println(getAnsiRed() + "Oh no!! The " +
+                    getCurrentRoom() + " has a " +
+                    rooms.get(getCurrentRoom()).get("challenge") + ".\n" +
+                    challengeInstruction + getAnsiReset());
+        }
+    }
+
+    //what's in the box?! What's in the box?!
+    void showInventory() {
+        if (getInventory().isEmpty()) {
+            System.out.println("You have " + getAnsiUnderscore() + getAnsiBold() + "nothing" + getAnsiReset() + " in your inventory");
+        } else {
+            System.out.println("In your inventory, you have:     ");
+            for (String item: inventory) {
+                System.out.println("      - a " + item);
+            }
+        }
+    }
+
+
+    /************************
+     ************************
+     * SOLVE OR EXPLORE METHOD
+     ************************
+     ************************/
+    public void solveChallengeOrExploreRoom() {
+        if (roomHasUnsolvedChallenge()) {
+            solveChallenge();
+        } else {
+            exploreRoom();
+        }
+    }
+
+
+    /************************
+     ************************
+     * SOLVE CHALLENGE & HELPER METHODS
+     ************************
+     ************************/
 
     public void solveChallenge() {
-        if (roomHasUnsolvedChallenge()) {
 
+            while (guesses < 3) {
+                String[] moves = getUserCommand();
+                validateUserChallengeSolution(moves);
+            }
+    }
 
+    public void validateUserChallengeSolution(String[] moves) {
+        String command = moves[0].toLowerCase();
+        String item = moves.length > 1 ? moves[1] : " ";
 
+        switch(command) {
+            case "go":
+                System.out.println("You can't leave the room until you solve the challenge!");
+                break;
+            case "get":
+                System.out.println("You can't acquire new items until you solve the challenge!");
+                break;
+            case "use":
+                processChallengeAttempt(item);
+                break;
+            case "escape":
+                //method that returns them to previoius room?
+                break;
+            case "quit":
+                GameMenu gameMenu = new GameMenu();
+                gameMenu.startGame();
+                break;
+            case "rules":
+                getRules();
+                break;
+            default:
+                System.out.println("I did not understand. Please re-enter your command.");
         }
     }
 
+    //it's time to fight!
+    public void processChallengeAttempt(String item) {
 
-
-
-    // getchyo win or lose art here
-    public void terminateGame() throws Exception {
-        if (gameWon) {
-            WinLoseTextArt.winArt();
-            //if User win winner Music will be played
-            Music.win();
+        String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
+        if (challengeSolution.equals(item.toLowerCase())) {
+            setChallengeToSolved();
         } else {
-            WinLoseTextArt.loseArt();
-            //If user lose, teasing music will be played
-            Music.loseMusic();
+            processFailedChallengeSolution(item);
         }
-        PlayAgainPrompt.playAgain();
+    }
+
+    public void setChallengeToSolved() {
+        greatSuccess();
+        System.out.println("You solved the challenge! Continue on your quest");
+        rooms.get(getCurrentRoom()).replace("solved", "true");
+        isPlayerMobile = true;
+        setGuesses(3);
+    }
+
+    public void processFailedChallengeSolution(String item) {
+        diminishGuessesByOne();
+        System.out.println("Using the " + item + " has no effect!");
+        System.out.println("You have " + getGuesses() + " guesses left. Try again!");
+    }
+
+    /************************
+     ************************
+     * EXPLORE ROOM & HELPER METHODS
+     ************************
+     ************************/
+
+    public void exploreRoom() {
+        String[] moves = getUserCommand();
+        validateAndExecuteUserCommand(moves);
+    }
+
+    //this pardner prompts the player for precepts (lol... it gets commands)
+    public String[] getUserCommand() {
+        String command = "";
+        while (command.equals("")) {
+            System.out.println("What do you want to do?");
+            command = input.nextLine().trim();
+        }
+
+        return command.toLowerCase().split("\\s+", 2);
     }
 
     public void validateAndExecuteUserCommand(String[] moves) {
@@ -140,29 +260,89 @@ public class GameEngine {
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
         }
-
     }
-    //this little guy tells you when there's an item in the room
-    public void listItem() {
-        if (rooms.get(getCurrentRoom()).containsKey("item") && !roomHasUnsolvedChallenge()) {
-            System.out.println("Inside this room you can find a " + getAnsiRed() + getAnsiBold() + getAnsiUnderscore() + rooms.get(getCurrentRoom()).get("item") + getAnsiReset());
+
+    /************************
+     ************************
+     * VALIDATE & EXECUTE USER COMMAND & HELPER METHODS
+     ************************
+     ************************/
+    //this dude lets you move room-to-room
+    public void moveToRoom(String command) {
+        if (rooms.get(getCurrentRoom()).containsKey(command.toLowerCase()) && isPlayerMobile) {
+            setCurrentRoom(rooms.get(currentRoom).get(command));
+        } else if (!isPlayerMobile) {
+            System.out.println("You can't leave the room until you solve the challenge!");
+        } else {
+            System.out.println("You can't go that way!");
         }
     }
 
-    //this widget tells you if you fight or die!!!
-    public void listChallengeIfAny() {
-        if (roomHasUnsolvedChallenge()) {
-            AlertArt.alert();
-            String challengeInstruction = getInventory().isEmpty()
-                    ? "And you don't have anything in your inventory to fight it with."
-                    : "You must defeat this challenge before you can continue your journey!";
-
-            System.out.println(getAnsiRed() + "Oh no!! The " +
-                    getCurrentRoom() + " has a " +
-                    rooms.get(getCurrentRoom()).get("challenge") + ".\n" +
-                    challengeInstruction + getAnsiReset());
+    //get the thing
+    public void acquireItem(String commandArgument) {
+        if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
+            inventory.add(commandArgument);
+            rooms.get(getCurrentRoom()).remove("item");
+            System.out.println(commandArgument + " acquired!!");
+        } else {
+            System.out.println("A " + commandArgument + " is not available in this room!");
         }
     }
+
+    //this here fella uses an item or not
+    public void validateUseItem(String item) {
+        String outputString = isItemInInventory(item) ?
+                "There is nothing to use your " + item + " on. Continue to explore the maze." :
+                "You don\'t have that item in your inventory!";
+
+        System.out.println(outputString);
+    }
+
+    //do you have it in your satchel?
+    public Boolean isItemInInventory(String item) {
+        return inventory.contains(item);
+    }
+
+
+    /************************
+     ************************
+     * CHECK IF GAME IS OVER
+     ************************
+     ************************/
+    //did you done gone and done won? or is you dead, and is you done?
+    public void checkIfGameOver() {
+        if (rooms.get("Kitchen").get("solved").equals("true")) {
+            gameWon = true;
+            gameOver = true;
+        }
+
+        if ((roomHasUnsolvedChallenge() && getInventory().isEmpty()) || (guesses < 1)){
+            gameWon = false;
+            gameOver = true;
+        }
+
+    }
+
+    /************************
+     ************************
+     * TERMINATE GAME
+     ************************
+     ************************/
+
+    // getchyo win or lose art here
+    public void terminateGame() throws Exception {
+        if (gameWon) {
+            WinLoseTextArt.winArt();
+            //if User win winner Music will be played
+            Music.win();
+        } else {
+            WinLoseTextArt.loseArt();
+            //If user lose, teasing music will be played
+            Music.loseMusic();
+        }
+        PlayAgainPrompt.playAgain();
+    }
+
 
 // This url key comes from GamMap
     public void playMusicIfUrl() throws Exception {
@@ -187,102 +367,6 @@ public class GameEngine {
         Music.panicMusic(rooms.get(getCurrentRoom()).get("url"));
     }
 }
-
-
-    //this here fella uses an item or not
-    public void validateUseItem(String item) {
-
-        if (!roomHasUnsolvedChallenge()) {
-            System.out.println("There is nothing to use your " + item + " on. Continue to explore the maze.");
-        } else if (!isItemInInventory(item)) {
-            System.out.println("You don\'t have that item in your inventory!");
-            guesses--;
-        } else {
-            solveChallengeAttempt(item);
-        }
-    }
-
-    //it's time to fight!
-    public void solveChallengeAttempt(String item) {
-
-        String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
-        if (challengeSolution.equals(item.toLowerCase())) {
-            greatSuccess();
-            System.out.println("You solved the challenge! Continue on your quest");
-            rooms.get(getCurrentRoom()).replace("solved", "true");
-            isPlayerMobile = true;
-            guesses = 3;
-        } else {
-            guesses--;
-            System.out.println("Using the " + item + " has no effect!");
-            System.out.println("You have " + guesses + " guesses left. Try again!");
-        }
-    }
-
-    //do you have it in your satchel?
-    public Boolean isItemInInventory(String item) {
-        return inventory.contains(item);
-    }
-
-    //get the thing
-    public void acquireItem(String commandArgument) {
-        if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
-            inventory.add(commandArgument);
-            rooms.get(getCurrentRoom()).remove("item");
-            System.out.println(commandArgument + " acquired!!");
-        } else {
-            System.out.println("A " + commandArgument + " is not available in this room!");
-        }
-    }
-
-    //this dude lets you move room-to-room
-    public void moveToRoom(String command) {
-        if (rooms.get(getCurrentRoom()).containsKey(command.toLowerCase()) && isPlayerMobile) {
-            setCurrentRoom(rooms.get(currentRoom).get(command));
-        } else if (!isPlayerMobile) {
-            System.out.println("You can't leave the room until you solve the challenge!");
-        } else {
-            System.out.println("You can't go that way!");
-        }
-    }
-
-    //this pardner prompts the player for precepts (lol... it gets commands)
-    public String[] getUserCommand() {
-        String command = "";
-        while (command.equals("")) {
-            System.out.println("What do you want to do?");
-            command = input.nextLine().trim();
-        }
-
-        return command.toLowerCase().split("\\s+", 2);
-    }
-
-    //lets you know what's what
-    void showStatus() {
-        System.out.println(" -------------------- ");
-        System.out.println("You are in the "+ getCurrentRoom());
-        listItem();
-        listChallengeIfAny();
-        showInventory();
-        System.out.println("For game rules, type \"rules\"");
-        System.out.println(" -------------------- ");
-    }
-
-    //what's in the box?! What's in the box?!
-    void showInventory() {
-        if (getInventory().isEmpty()) {
-            System.out.println("You have " + getAnsiUnderscore() + getAnsiBold() + "nothing" + getAnsiReset() + " in your inventory");
-        } else {
-            System.out.println("In your inventory, you have:     ");
-            for (String item: inventory) {
-                System.out.println("      - a " + item);
-            }
-        }
-    }
-
-    public Boolean roomHasUnsolvedChallenge() {
-        return rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false");
-    }
 
     /************************
      ************************
@@ -319,6 +403,8 @@ public class GameEngine {
         return guesses;
     }
 
+    public void diminishGuessesByOne() { guesses--; }
+
     public Boolean getGameOver() {
         return gameOver;
     }
@@ -327,16 +413,16 @@ public class GameEngine {
         this.gameOver = gameOver;
     }
 
-    public Boolean getPlayerMobile() {
-        return isPlayerMobile;
-    }
-
     public Map<String, HashMap<String, String>> getRooms() {
         return rooms;
     }
 
     public void greatSuccess() {
         GreatSuccessArt.success();
+    }
+
+    public void setGuesses(Integer guesses) {
+        this.guesses = guesses;
     }
 
 }
