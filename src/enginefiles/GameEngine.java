@@ -67,7 +67,7 @@ public class GameEngine {
 
         while (!gameOver) {
             showStatus();
-            solveChallengeOrExploreRoom();
+            solveChallengeOrExplore();
             checkIfGameOver();
         }
 
@@ -135,7 +135,7 @@ public class GameEngine {
      * SOLVE OR EXPLORE METHOD
      ************************
      ************************/
-    public void solveChallengeOrExploreRoom() {
+    public void solveChallengeOrExplore() {
         if (roomHasUnsolvedChallenge()) {
             solveChallenge();
         } else {
