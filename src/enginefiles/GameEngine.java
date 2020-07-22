@@ -155,30 +155,30 @@ public class GameEngine {
                     challengeInstruction + getAnsiReset());
         }
     }
-// This url key comes from GamMap
+
+    // This url key comes from GamMap
     public void playMusicIfUrl() throws Exception {
-    if (rooms.get(getCurrentRoom()).containsKey("url")) {
-        Music.monster(rooms.get(getCurrentRoom()).get("url"));
-    }
-    else if (rooms.get(getCurrentRoom()).containsKey("url")){
-        Music.atriumMusic(rooms.get(getCurrentRoom()).get("url"));
+        if (rooms.get(getCurrentRoom()).containsKey("url")) {
+            Music.monster(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.atriumMusic(rooms.get(getCurrentRoom()).get("url"));
 
-    }
-    else if (rooms.get(getCurrentRoom()).containsKey("url")){
-        Music.fireMusic(rooms.get(getCurrentRoom()).get("url"));
-    }
-    else if (rooms.get(getCurrentRoom()).containsKey("url")){
-        Music.gardenMusic(rooms.get(getCurrentRoom()).get("url"));
-    }
-    else if (rooms.get(getCurrentRoom()).containsKey("url")){
-        Music.fireSwampMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.fireMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.gardenMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.fireSwampMusic(rooms.get(getCurrentRoom()).get("url"));
 
+        }
+        else if(rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.panicMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
     }
-    else if(rooms.get(getCurrentRoom()).containsKey("url")){
-        Music.panicMusic(rooms.get(getCurrentRoom()).get("url"));
-    }
-}
-
 
     //this here fella uses an item or not
     public void validateUseItem(String item) {
@@ -197,7 +197,6 @@ public class GameEngine {
     public void solveChallengeAttempt(String item) {
 
         String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
-//        while ((!getInventory().isEmpty())) {
         if (challengeSolution.equals(item.toLowerCase())) {
             greatSuccess();
             System.out.println("You solved the challenge! Continue on your quest");
@@ -209,7 +208,6 @@ public class GameEngine {
             System.out.println("Using the " + item + " has no effect!");
             System.out.println("You have " + guesses + " guesses left. Try again!");
         }
-//    }
     }
 
     //do you have it in your satchel?
@@ -221,7 +219,7 @@ public class GameEngine {
     public void acquireItem(String commandArgument) {
         if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
             inventory.add(commandArgument);
-            rooms.get(getCurrentRoom()).remove("item");
+            rooms.get(currentRoom).remove("item");
             System.out.println(commandArgument + " acquired!!");
         } else {
             System.out.println("A " + commandArgument + " is not available in this room!");
@@ -308,26 +306,32 @@ public class GameEngine {
         this.inventory = inventory;
     }
 
+    //getchyo guesses
     public Integer getGuesses() {
         return guesses;
     }
 
+    //getchyo gameOver
     public Boolean getGameOver() {
         return gameOver;
     }
 
+    //setchyo gameOver
     public void setGameOver(Boolean gameOver) {
         this.gameOver = gameOver;
     }
 
+    //getchyo isPlayerMobile
     public Boolean getPlayerMobile() {
         return isPlayerMobile;
     }
 
+    //room getter gets room
     public Map<String, HashMap<String, String>> getRooms() {
         return rooms;
     }
 
+    //great success!
     public void greatSuccess() {
         GreatSuccessArt.success();
     }
