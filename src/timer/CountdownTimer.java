@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class CountdownTimer {
+
     //this seconds for, if character goes to some room where there is fire or sand has to finish task
     int second= 31;
     Timer time= new Timer();

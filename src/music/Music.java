@@ -7,6 +7,9 @@ import javax.sound.sampled.*;
 
 
 public class Music {
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
     // this file for monster voice
     public static void monster(String room) throws Exception {
         //when user/Gamer enter in room where monster is there voice will be played and open up pop up
@@ -108,7 +111,8 @@ public class Music {
 
         AudioInputStream ais = AudioSystem.getAudioInputStream(url);
         clip.open(ais);
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        //added -1 not sure after playing with code if i use -1 some how it plying one time, but it is temp solution
+        clip.loop(Clip.LOOP_CONTINUOUSLY-1);
         SwingUtilities.invokeLater(() -> {
             // Pop up will  display to user what user supposed to do.
 
@@ -116,7 +120,7 @@ public class Music {
 
         });
 //        System.out.println(ANSI_RED + "This text is red!" + ANSI_RESET);
-        System.out.println("========= May I help you to find corner for cry? ================");
+        System.out.println(ANSI_GREEN +"========= May I help you to find corner for cry? ================"+ANSI_RESET);
 
     }
 
@@ -146,7 +150,7 @@ public class Music {
         AudioInputStream ais = AudioSystem.getAudioInputStream(url);
         clip.open(ais);
         clip.loop(Clip.LOOP_CONTINUOUSLY);
-        System.out.println("Winner Winner Taco Dinner!!");
+        System.out.println( ANSI_WHITE_BACKGROUND +"Winner Winner Taco Dinner!!"+ ANSI_RESET);
         SwingUtilities.invokeLater(() -> {
             // Pop up will  display to user what user supposed to do.
 

@@ -284,7 +284,7 @@ public class GameEngine {
     public void acquireItem(String commandArgument) {
         if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
             inventory.add(commandArgument);
-            rooms.get(getCurrentRoom()).remove("item");
+            rooms.get(currentRoom).remove("item");
             System.out.println(commandArgument + " acquired!!");
         } else {
             System.out.println("A " + commandArgument + " is not available in this room!");
@@ -346,7 +346,11 @@ public class GameEngine {
         PlayAgainPrompt.playAgain();
     }
 
-
+    /************************
+     ************************
+     * PLAY MUSIC
+     ************************
+     ************************/
 // This url key comes from GamMap
     public void playMusicIfUrl() throws Exception {
     if (rooms.get(getCurrentRoom()).containsKey("url")) {
@@ -382,7 +386,7 @@ public class GameEngine {
     }
 
     //pretty obvs, this here method gets the current room
-    public String getCurrentRoom(){
+    public String getCurrentRoom() {
         return currentRoom;
     }
 
@@ -401,24 +405,31 @@ public class GameEngine {
         this.inventory = inventory;
     }
 
+    //getchyo guesses
     public Integer getGuesses() {
         return guesses;
     }
 
     public void diminishGuessesByOne() { guesses = guesses - 1; }
 
+
+    //getchyo gameOver
     public Boolean getGameOver() {
         return gameOver;
     }
 
+    //setchyo gameOver
     public void setGameOver(Boolean gameOver) {
         this.gameOver = gameOver;
     }
 
+
+    //room getter gets room
     public Map<String, HashMap<String, String>> getRooms() {
         return rooms;
     }
 
+    //great success!
     public void greatSuccess() {
         GreatSuccessArt.success();
     }
