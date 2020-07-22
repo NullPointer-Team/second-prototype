@@ -42,6 +42,8 @@ public class PlayAgainPrompt {
             }
             catch(InvalidPostGameSelection e) {
                 System.out.println(e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

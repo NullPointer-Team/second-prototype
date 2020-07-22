@@ -64,7 +64,7 @@ public class GameEngine {
      ************************/
     //do you like to play games?
     //the here's the actual playGame method that... plays the game
-    public void playGame() {
+    public void playGame() throws Exception {
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
@@ -95,11 +95,15 @@ public class GameEngine {
 
 
     // getchyo win or lose art here
-    public void terminateGame() {
+    public void terminateGame() throws Exception {
         if (gameWon) {
             WinLoseTextArt.winArt();
+            //if User win winner Music will be played
+            Music.win();
         } else {
             WinLoseTextArt.loseArt();
+            //If user lose, teasing music will be played
+            Music.loseMusic();
         }
         PlayAgainPrompt.playAgain();
     }
