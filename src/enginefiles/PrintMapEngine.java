@@ -1,5 +1,8 @@
 package enginefiles;
 
+import coregamefiles.GameMenuTextArt;
+import exceptionfiles.InvalidGameMenuSelectionException;
+
 public class PrintMapEngine {
     /************************
      ************************
@@ -7,7 +10,6 @@ public class PrintMapEngine {
      ************************
      ************************/
     //create boolean fields for each room on map
-    private boolean atriumVisited = true;
     private boolean isBreakfastNookVisited = false;
     private boolean isFireSwampVisited = false;
     private boolean isHallVisited = false;
@@ -28,15 +30,55 @@ public class PrintMapEngine {
      * Business Methods
      ************************
      ************************/
-    //first, create series of if statements to return ENUMS of diff maps
+    //TODO: first, create series of if statements to return ENUMS of diff maps
 //    if( isAtriumVisited() && isBreakfastNookVisited()) {
 //        return MapCase.MAPONE;
 //    }
-    //TODO: don't forget to create the ENUM class to define these
 
-    //create a switch case that causes print-out of particular maps bases on conditions
+
+    //TODO: don't forget to create the ENUM class to define these cases
+
+    //TODO: create a switch case that causes print-out of particular maps bases on conditions
     //condition cases are the ENUMS from above, so case MAPONE: //dosomething break;
+    /*
+    public void mapEngine() {
+        try {
+            switch (userInput.nextLine().toUpperCase().trim()) {
+                case "MAPONE":
+                    return GraphicMap.map1();
+                    break;
+                case "MAPTWO":
+                    return GraphicMap.map2();
+                    break;
+                case "MAPTHREE":
+                    return GraphicMap.map3();
+                    break;
+                case "MAPFOUR":
+                    return GraphicMap.map4();
+                    break;
+                case "MAPFIVE":
+                    return GraphicMap.map5();
+                    break;
+                case "MAPSIX":
+                    return GraphicMap.map6();
+                    break;
+                case "MAPSEVEN":
+                    return GraphicMap.map7();
+                    break;
+                case "MAPEIGHT":
+                    return GraphicMap.map8();
+                    break;
+                default:
+                    throw new InvalidMapScenarioException();
+            }
+        } catch (InvalidMapScenarioException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    */
+    //TODO: create the above custom exception class in the exception files
 
+    //TODO: create corresponding ANSI maps for each switch case above
 
     /************************
      ************************
@@ -44,6 +86,7 @@ public class PrintMapEngine {
      ************************
      ************************/
     public boolean isAtriumVisited() {
+        boolean atriumVisited = true;
         return atriumVisited;
     }
 
