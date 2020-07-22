@@ -64,7 +64,7 @@ public class GameEngine {
      ************************/
     //do you like to play games?
     //the here's the actual playGame method that... plays the game
-    public void playGame() {
+    public void playGame() throws Exception {
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
@@ -85,19 +85,25 @@ public class GameEngine {
         }
 
         if ((roomHasUnsolvedChallenge() && getInventory().isEmpty()) || (guesses < 1)){
-            listChallenge();
+            listChallengeIfAny();
             gameWon = false;
             gameOver = true;
         }
 
     }
 
+
+
     // getchyo win or lose art here
-    public void terminateGame() {
+    public void terminateGame() throws Exception {
         if (gameWon) {
             WinLoseTextArt.winArt();
+            //if User win winner Music will be played
+            Music.win();
         } else {
             WinLoseTextArt.loseArt();
+            //If user lose, teasing music will be played
+            Music.loseMusic();
         }
         PlayAgainPrompt.playAgain();
     }
@@ -136,21 +142,17 @@ public class GameEngine {
     }
 
     //this widget tells you if you fight or die!!!
-    public void listChallenge() {
+    public void listChallengeIfAny() {
         if (roomHasUnsolvedChallenge()) {
-            if ((!getInventory().isEmpty())) {
-                AlertArt.alert();
-                System.out.println(getAnsiRed() +
-                        "Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") + ".\n" +
-                        "You must defeat this challenge before you can continue your journey!" +
-                        getAnsiReset());
-            } else {
-                AlertArt.alert();
-                System.out.println(getAnsiRed() +
-                        "Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") + ",\n" +
-                        "and you don't have anything in your inventory to fight it with." +
-                        getAnsiReset());
-            }
+            AlertArt.alert();
+            String challengeInstruction = getInventory().isEmpty()
+                    ? "And you don't have anything in your inventory to fight it with."
+                    : "You must defeat this challenge before you can continue your journey!";
+
+            System.out.println(getAnsiRed() + "Oh no!! The " +
+                    getCurrentRoom() + " has a " +
+                    rooms.get(getCurrentRoom()).get("challenge") + ".\n" +
+                    challengeInstruction + getAnsiReset());
         }
     }
 
@@ -251,7 +253,7 @@ public class GameEngine {
         System.out.println(" -------------------- ");
         System.out.println("You are in the "+ getCurrentRoom());
         listItem();
-        listChallenge();
+        listChallengeIfAny();
         showInventory();
         System.out.println("For game rules, type \"rules\"");
         System.out.println(" -------------------- ");

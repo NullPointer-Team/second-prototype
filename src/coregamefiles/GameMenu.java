@@ -54,6 +54,8 @@ public class GameMenu {
                 }
             } catch (InvalidGameMenuSelectionException e) {
                 System.out.println(e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

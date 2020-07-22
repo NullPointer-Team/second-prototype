@@ -1,14 +1,11 @@
 package enginefiles;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import static coregamefiles.GameTextColors.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -139,8 +136,8 @@ class GameEngineTest {
                 "██   ██ ███████ ███████ ██   ██    ██    \n" +
                 "_________________________________________\n" +
                 getAnsiReset() + "\n" + getAnsiRed() +
-                "Oh no!! The Panic Room has a ghost,\n" +
-                "and you don't have anything in your inventory to fight it with." + getAnsiReset() + "\n" +
+                "Oh no!! The Panic Room has a ghost.\n" +
+                "And you don't have anything in your inventory to fight it with." + getAnsiReset() + "\n" +
                 "You have " + getAnsiUnderscore() + getAnsiBold() + "nothing" + getAnsiReset() + " in your inventory\n" +
                 "For game rules, type \"rules\"\n" +
                 " -------------------- \n";
@@ -165,14 +162,14 @@ class GameEngineTest {
 
 
     @Test
-    void testListChallenge_Positive() {
+    void testListChallengeIfAny_Positive() {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Conservatory");
         ArrayList<String> inventory = new ArrayList<String>();
         inventory.add("Gold Beetle");
         gameEngine.setInventory(inventory);
 
-        gameEngine.listChallenge();
+        gameEngine.listChallengeIfAny();
         String expectedOutput = getAnsiRed() +
                 "_________________________________________\n" +
                 "                                         \n" +
@@ -188,11 +185,11 @@ class GameEngineTest {
     }
 
     @Test
-    void testListChallenge_Negative() {
+    void testListChallengeIfAny_Negative() {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Breakfast Nook");
 
-        gameEngine.listChallenge();
+        gameEngine.listChallengeIfAny();
         String expectedOutput = getAnsiRed() +
                 "_________________________________________\n" +
                 "                                         \n" +
@@ -202,8 +199,8 @@ class GameEngineTest {
                 "██   ██ ██      ██      ██   ██    ██    \n" +
                 "██   ██ ███████ ███████ ██   ██    ██    \n" +
                 "_________________________________________\n" +
-                getAnsiReset() + "\n" + getAnsiRed() + "Oh no!! The Breakfast Nook has a Gold Beetles,\n" +
-                "and you don't have anything in your inventory to fight it with." + getAnsiReset() + "\n";
+                getAnsiReset() + "\n" + getAnsiRed() + "Oh no!! The Breakfast Nook has a Gold Beetles.\n" +
+                "And you don't have anything in your inventory to fight it with." + getAnsiReset() + "\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
