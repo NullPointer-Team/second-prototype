@@ -101,7 +101,7 @@ public class Music {
         });
 
     }
-    public static void loseMusic(String room) throws Exception {
+    public static void loseMusic() throws Exception {
         //when user/Gamer enter in garden relex music will play
         URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_CartoonHeadShake_4003_18_1.wav");
         Clip clip = AudioSystem.getClip();
@@ -113,7 +113,10 @@ public class Music {
             // Pop up will  display to user what user supposed to do.
 
             JOptionPane.showMessageDialog(null, "May I help you to find corner for cry?");
+
         });
+//        System.out.println(ANSI_RED + "This text is red!" + ANSI_RESET);
+        System.out.println("========= May I help you to find corner for cry? ================");
 
     }
 
@@ -142,11 +145,13 @@ public class Music {
 
         AudioInputStream ais = AudioSystem.getAudioInputStream(url);
         clip.open(ais);
-        clip.loop(Clip.LOOP_CONTINUOUSLY-3);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        System.out.println("Winner Winner Taco Dinner!!");
         SwingUtilities.invokeLater(() -> {
             // Pop up will  display to user what user supposed to do.
 
             JOptionPane.showMessageDialog(null, "Winner winner Taco Dinner!");
+
         });
 
 
