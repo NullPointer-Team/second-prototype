@@ -30,14 +30,14 @@ class GameRulesTest {
                 "    \"go west\"\n" +
                 "To retrieve items in a room, type 'get' followed by the name of the item, such as:\n" +
                 "    \"get wand\"\n" +
-                "       - or -   \n" +
+                "      - or -    \n" +
                 "    \"get coin\"\n" +
-                "       - or -   \n" +
+                "      - or -    \n" +
                 "    \"get 'insert name of some item in the room'\"\n" +
                 "To use an item in your inventory, type 'use' followed by the name of the item, such as:\n" +
                 "    \"use potion\"\n" +
-                "       - or -   \n" +
-                "    \"use sword\"\n" +
+                "      - or -      \n" +
+                "    \"use sword\" \n" +
                 "To quit the game, type \"quit\"\n" +
                 getAnsiYellow() +
                 "__________________________________________________________________________________\n\n" +
