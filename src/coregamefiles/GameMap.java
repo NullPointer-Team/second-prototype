@@ -85,6 +85,8 @@ public class GameMap {
         breakfastNook.put("challenge", "Gold Beetles");
         breakfastNook.put("solution", "fighting skills");
         breakfastNook.put("hint", "HINT: It would help if you knew how to fight...");
+        breakfastNook.put("praise", "You really stuck it to that beetle! So glad it didn't burrow into your brain!\n" +
+                "Congrats on not dying!");
         breakfastNook.put("solved", "false");
         breakfastNook.put("url", "https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav");
 
@@ -105,6 +107,7 @@ public class GameMap {
         panicRoom.put("item", "key");
         panicRoom.put("challenge", "ghost");
         panicRoom.put("hint", "HINT: Who you gonna call? You can't fight the metaphysical with physical objects, can you?");
+        panicRoom.put("praise", "Nice Work! Who needs the Ghostbusters when wise wizards like you roam these halls?");
         panicRoom.put("solution", "Book of Spells");
         panicRoom.put("solved", "false");
 
@@ -113,6 +116,7 @@ public class GameMap {
         fireSwamps.put("challenge", "Rodents of Unusual Size (ROUS)");
         fireSwamps.put("solution", "fighting skills");
         fireSwamps.put("hint", "HINT: Care for a bout of fisticuffs?");
+        fireSwamps.put("praise", "Excellent fighting! You were a regular Dread Pirate Roberts with that rat!");
         fireSwamps.put("solved", "false");
 
         hall.put("east", "Dining Room");
@@ -130,6 +134,8 @@ public class GameMap {
         arcade.put("south", "Library");
         arcade.put("challenge", "fire");
         arcade.put("hint", "HINT: Are you gonna fight fire with weapons? What puts out fire?");
+        arcade.put("praise", "My hero! You put out the fire. Somebody call 9-1-1, cuz you looked HOT shooting that 80's" +
+                "\nplastic water gun at that fire... lol.\nCongrats, you get to live for now.");
         arcade.put("solution", "Super Soaker");
         arcade.put("solved", "false");
 
@@ -143,6 +149,7 @@ public class GameMap {
         courtyard.put("solution", "key");
         courtyard.put("challenge", "lock");
         courtyard.put("hint", "HINT: Do I have to say this? What opens locks?");
+        courtyard.put("praise", "Do you even deserve praise for knowing how to use a key? Nice work, dingus.");
         courtyard.put("solved", "false");
 
         library.put("east", "Courtyard");
@@ -160,7 +167,10 @@ public class GameMap {
 
         kitchen.put("east", "Laboratory");
         kitchen.put("challenge", "monster");
-        kitchen.put("hint", "HINT: Would a knight fight a dragon with a super soaker?");
+        kitchen.put("hint", "HINT: Would a knight fight a dragon with a super soaker? Or would he use a...");
+        kitchen.put("praise", "Where did you even learn to wield a sword like that? Excellent work!!!\n" +
+                "You live to see another day, and what is more, you are free to return to reality.\n" +
+                "But will you even want to? They don't let you sleigh monsters with swords in reality.");
         kitchen.put("solution", "sword");
         kitchen.put("solved", "false");
 

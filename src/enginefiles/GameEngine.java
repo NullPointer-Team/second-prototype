@@ -180,7 +180,8 @@ public class GameEngine {
 
         if (challengeSolution.equals(item.toLowerCase())) {
             greatSuccess();
-            System.out.println("You solved the challenge! Continue on your quest");
+            challengeCongrats();
+//            System.out.println("You solved the challenge! Continue on your quest");
             rooms.get(getCurrentRoom()).replace("solved", "true");
             isPlayerMobile = true;
             guesses = 3;
@@ -200,7 +201,7 @@ public class GameEngine {
     public void acquireItem(String commandArgument) {
         if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
             inventory.add(commandArgument);
-            rooms.get(getCurrentRoom()).remove("item");
+            rooms.get(currentRoom).remove("item");
             System.out.println(commandArgument + " acquired!!");
         } else {
             System.out.println("A " + commandArgument + " is not available in this room!");
@@ -254,6 +255,11 @@ public class GameEngine {
 
     public Boolean roomHasUnsolvedChallenge() {
         return rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false");
+    }
+
+    //print challenge congratulations
+    public void challengeCongrats() {
+        System.out.println(getAnsiYellow() + getAnsiBold() + rooms.get(getCurrentRoom()).get("praise") + getAnsiReset());
     }
 
     /************************
