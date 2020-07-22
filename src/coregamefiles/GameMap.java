@@ -80,13 +80,13 @@ public class GameMap {
         atrium.put("south", "Fire Swamps");
         atrium.put("east", "Breakfast Nook");
         atrium.put("item", "fighting skills");
+        atrium.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_Timpani_6027_73_1.wav");
 
         breakfastNook.put("east", "Menagerie");
         breakfastNook.put("west", "Atrium");
         breakfastNook.put("challenge", "Gold Beetles");
         breakfastNook.put("solution", "fighting skills");
         breakfastNook.put("solved", "false");
-        breakfastNook.put("url", "https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav");
 
         menagerie.put("west", "Breakfast Nook");
         menagerie.put("south", "Dining Room");
@@ -105,12 +105,15 @@ public class GameMap {
         panicRoom.put("challenge", "ghost");
         panicRoom.put("solution", "Book of Spells");
         panicRoom.put("solved", "false");
+        panicRoom.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_HumanBurp_CTE03_05_7.wav");
 
         fireSwamps.put("north", "Atrium");
         fireSwamps.put("east", "Hall");
         fireSwamps.put("challenge", "Rodents of Unusual Size (ROUS)");
         fireSwamps.put("solution", "fighting skills");
         fireSwamps.put("solved", "false");
+        fireSwamps.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ExplosionSharp_6048_97_1.wav");
+
 
         hall.put("east", "Dining Room");
         hall.put("west", "Fire Swamps");
@@ -148,6 +151,7 @@ public class GameMap {
         garden.put("east", "Library");
         garden.put("west", "Laboratory");
         garden.put("item", "True Love");
+        garden.put("url", "https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav");
 
         laboratory.put("east", "Garden");
         laboratory.put("west", "Kitchen");
@@ -157,6 +161,7 @@ public class GameMap {
         kitchen.put("challenge", "monster");
         kitchen.put("solution", "sword");
         kitchen.put("solved", "false");
+        kitchen.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_HumanBurp_CTE03_05_7.wav");
 
     }
 

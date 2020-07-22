@@ -168,6 +168,9 @@ public class GameEngine {
         if (rooms.get(currentRoom).containsKey("url")) {
             Music.playMusic(rooms.get(currentRoom).get("url"));
         }
+        else if(rooms.get(currentRoom).containsKey("url")){
+            Music.atriumMusic(rooms.get(currentRoom).get("url"));
+        }
     }
 
     //this here fella uses an item or not
