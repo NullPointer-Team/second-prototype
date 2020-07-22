@@ -85,12 +85,20 @@ public class GameEngine {
         }
 
         if ((roomHasUnsolvedChallenge() && getInventory().isEmpty()) || (guesses < 1)){
-            listChallengeIfAny();
             gameWon = false;
             gameOver = true;
         }
 
     }
+
+    public void solveChallenge() {
+        if (roomHasUnsolvedChallenge()) {
+
+
+
+        }
+    }
+
 
 
 
@@ -155,6 +163,7 @@ public class GameEngine {
                     challengeInstruction + getAnsiReset());
         }
     }
+
 // This url key comes from GamMap
     public void playMusicIfUrl() throws Exception {
     if (rooms.get(getCurrentRoom()).containsKey("url")) {
@@ -185,7 +194,7 @@ public class GameEngine {
 
         if (!roomHasUnsolvedChallenge()) {
             System.out.println("There is nothing to use your " + item + " on. Continue to explore the maze.");
-        } else if (!itemInInventory(item)) {
+        } else if (!isItemInInventory(item)) {
             System.out.println("You don\'t have that item in your inventory!");
             guesses--;
         } else {
@@ -211,7 +220,7 @@ public class GameEngine {
     }
 
     //do you have it in your satchel?
-    public Boolean itemInInventory(String item) {
+    public Boolean isItemInInventory(String item) {
         return inventory.contains(item);
     }
 
