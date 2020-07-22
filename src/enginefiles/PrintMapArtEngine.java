@@ -1,6 +1,6 @@
 package enginefiles;
 
-public class PrintMapEngine {
+public class PrintMapArtEngine {
     /************************
      ************************
      *THESE ARE OUR FIELDS
