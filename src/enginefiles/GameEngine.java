@@ -123,6 +123,9 @@ public class GameEngine {
             case "rules":
                 getRules();
                 break;
+            case "hint":
+                printHint();
+                break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
         }
@@ -144,6 +147,7 @@ public class GameEngine {
                         "Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") + ".\n" +
                         "You must defeat this challenge before you can continue your journey!" +
                         getAnsiReset());
+                hintPrompt();
             } else {
                 AlertArt.alert();
                 System.out.println(getAnsiRed() +
@@ -260,6 +264,18 @@ public class GameEngine {
     //print challenge congratulations
     public void challengeCongrats() {
         System.out.println(getAnsiYellow() + getAnsiBold() + rooms.get(getCurrentRoom()).get("praise") + getAnsiReset());
+    }
+
+    public void printHint() {
+        if (guesses < 3 && roomHasUnsolvedChallenge()) {
+            System.out.println(getAnsiBlue() + rooms.get(getCurrentRoom()).get("hint") + getAnsiReset());
+        }
+    }
+
+    public void hintPrompt() {
+        if (guesses < 3 && roomHasUnsolvedChallenge()) {
+            System.out.println(getAnsiBlue() + "Need a hint? try typing: \"hint\"" + getAnsiReset());
+        }
     }
 
     /************************
