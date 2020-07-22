@@ -33,7 +33,7 @@ public class GameRules {
                 getAnsiYellow() +
                 "__________________________________________________________________________________\n\n" +
                 //getAnsiReset() +
-                "Grab all the resources you can. You will need them on your journey as challenges come your way.\n" +
+                "HINT: Grab all the resources you can. You will need them on your journey as challenges come your way.\n" +
                 "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!\n" +
                 //getAnsiYellow() +
                 "__________________________________________________________________________________\n\n" +
