@@ -193,22 +193,21 @@ public class GameEngine {
         String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
 
         if (challengeSolution.equals(item.toLowerCase())) {
-            setChallengeToSolved();
+            processSolvedChallenged();
         } else {
-            processFailedChallengeSolution(item);
+            processFailedChallengeAttempt(item);
         }
     }
 
-    public void setChallengeToSolved() {
+    public void processSolvedChallenged() {
         greatSuccess();
         System.out.println("You solved the challenge! Continue on your quest");
-        rooms.get(getCurrentRoom()).replace("solved", "true");
         rooms.get(getCurrentRoom()).replace("solved", "true");
         setGuesses(3);
         showStatus();
     }
 
-    public void processFailedChallengeSolution(String item) {
+    public void processFailedChallengeAttempt(String item) {
         diminishGuessesByOne();
         String itemFailedStatement = isItemInInventory(item) ?
                 "Using the " + item + " has no effect!" :
