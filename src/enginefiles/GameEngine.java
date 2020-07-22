@@ -14,33 +14,23 @@ package enginefiles;
 import coregamefiles.*;
 import music.Music;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import static coregamefiles.GameTextColors.*;
 
 
 public class GameEngine {
 
     /************************
      ************************
-     * these are our fields.
-     * we're like farmers, but not
-     * **********************
+     *THESE ARE OUR FIELDS
+     ************************
      ************************/
     private String currentRoom;
     private ArrayList<String> inventory;
-
-    public Boolean getGameOver() {
-        return gameOver;
-    }
-
-    public void setGameOver(Boolean gameOver) {
-        this.gameOver = gameOver;
-    }
-
     private Boolean gameOver;
     private Boolean gameWon;
     private Integer guesses;
@@ -52,9 +42,8 @@ public class GameEngine {
 
     /************************
      ************************
-     * i think this is a CTOR,
-     * maybe
-     * **********************
+     * CONSTRUCTOR
+     ************************
      ************************/
     public GameEngine() {
         gameOver = false;
@@ -62,7 +51,7 @@ public class GameEngine {
         isPlayerMobile = true;
         gameMap = new GameMap();
         rooms = gameMap.getRooms();
-        currentRoom = "Atrium";
+        setCurrentRoom("Atrium");
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
     }
@@ -70,8 +59,7 @@ public class GameEngine {
 
     /************************
      ************************
-     * Bread & Butter...
-     * Business methods below
+     * BUSINESS METHODS
      * **********************
      ************************/
     //do you like to play games?
@@ -96,16 +84,12 @@ public class GameEngine {
             gameOver = true;
         }
 
-        if (roomHasUnsolvedChallenge() && getInventory().isEmpty()) {
+        if ((roomHasUnsolvedChallenge() && getInventory().isEmpty()) || (guesses < 1)){
             listChallenge();
             gameWon = false;
             gameOver = true;
         }
 
-        if (guesses < 1) {
-            gameWon = false;
-            gameOver = true;
-        }
     }
 
     // getchyo win or lose art here
@@ -146,32 +130,53 @@ public class GameEngine {
     }
     //this little guy tells you when there's an item in the room
     public void listItem() {
-        if (rooms.get(currentRoom).containsKey("item") && !roomHasUnsolvedChallenge()) {
-            System.out.println("Inside this room you can find a " + rooms.get(currentRoom).get("item"));
+        if (rooms.get(getCurrentRoom()).containsKey("item") && !roomHasUnsolvedChallenge()) {
+            System.out.println("Inside this room you can find a " + getAnsiRed() + getAnsiBold() + getAnsiUnderscore() + rooms.get(getCurrentRoom()).get("item") + getAnsiReset());
         }
     }
 
     //this widget tells you if you fight or die!!!
     public void listChallenge() {
-        if (rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
+        if (roomHasUnsolvedChallenge()) {
             if ((!getInventory().isEmpty())) {
-                System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge"));
-                System.out.println("You must defeat this challenge before you can continue your journey!");
+                AlertArt.alert();
+                System.out.println(getAnsiRed() +
+                        "Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") + ".\n" +
+                        "You must defeat this challenge before you can continue your journey!" +
+                        getAnsiReset());
             } else {
-                System.out.println("Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") +
-                        ",\nand you don't have anything in your inventory to fight it with.");
+                AlertArt.alert();
+                System.out.println(getAnsiRed() +
+                        "Oh no!! The " + getCurrentRoom() + " has a " + rooms.get(getCurrentRoom()).get("challenge") + ",\n" +
+                        "and you don't have anything in your inventory to fight it with." +
+                        getAnsiReset());
             }
         }
     }
-
+// This url key comes from GamMap
     public void playMusicIfUrl() throws Exception {
-        if (rooms.get(currentRoom).containsKey("url")) {
-            Music.playMusic(rooms.get(currentRoom).get("url"));
-        }
-        else if(rooms.get(currentRoom).containsKey("url")){
-            Music.atriumMusic(rooms.get(currentRoom).get("url"));
-        }
+    if (rooms.get(getCurrentRoom()).containsKey("url")) {
+        Music.monster(rooms.get(getCurrentRoom()).get("url"));
     }
+    else if (rooms.get(getCurrentRoom()).containsKey("url")){
+        Music.atriumMusic(rooms.get(getCurrentRoom()).get("url"));
+
+    }
+    else if (rooms.get(getCurrentRoom()).containsKey("url")){
+        Music.fireMusic(rooms.get(getCurrentRoom()).get("url"));
+    }
+    else if (rooms.get(getCurrentRoom()).containsKey("url")){
+        Music.gardenMusic(rooms.get(getCurrentRoom()).get("url"));
+    }
+    else if (rooms.get(getCurrentRoom()).containsKey("url")){
+        Music.fireSwampMusic(rooms.get(getCurrentRoom()).get("url"));
+
+    }
+    else if(rooms.get(getCurrentRoom()).containsKey("url")){
+        Music.panicMusic(rooms.get(getCurrentRoom()).get("url"));
+    }
+}
+
 
     //this here fella uses an item or not
     public void validateUseItem(String item) {
@@ -192,6 +197,7 @@ public class GameEngine {
         String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
 //        while ((!getInventory().isEmpty())) {
         if (challengeSolution.equals(item.toLowerCase())) {
+            greatSuccess();
             System.out.println("You solved the challenge! Continue on your quest");
             rooms.get(getCurrentRoom()).replace("solved", "true");
             isPlayerMobile = true;
@@ -211,9 +217,9 @@ public class GameEngine {
 
     //get the thing
     public void acquireItem(String commandArgument) {
-        if (rooms.get(currentRoom).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
+        if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
             inventory.add(commandArgument);
-            rooms.get(currentRoom).remove("item");
+            rooms.get(getCurrentRoom()).remove("item");
             System.out.println(commandArgument + " acquired!!");
         } else {
             System.out.println("A " + commandArgument + " is not available in this room!");
@@ -245,7 +251,7 @@ public class GameEngine {
     //lets you know what's what
     void showStatus() {
         System.out.println(" -------------------- ");
-        System.out.println("You are in the "+ currentRoom);
+        System.out.println("You are in the "+ getCurrentRoom());
         listItem();
         listChallenge();
         showInventory();
@@ -256,7 +262,7 @@ public class GameEngine {
     //what's in the box?! What's in the box?!
     void showInventory() {
         if (getInventory().isEmpty()) {
-            System.out.println("You have nothing in your inventory");
+            System.out.println("You have " + getAnsiUnderscore() + getAnsiBold() + "nothing" + getAnsiReset() + " in your inventory");
         } else {
             System.out.println("In your inventory, you have:     ");
             for (String item: inventory) {
@@ -269,12 +275,10 @@ public class GameEngine {
         return rooms.get(getCurrentRoom()).containsKey("challenge") && rooms.get(getCurrentRoom()).get("solved").equals("false");
     }
 
-
     /************************
      ************************
-     * Getters and Setters
-     * go below here, pardner
-     * **********************
+     * GETTERS & SETTERS
+     ************************
      ************************/
     //retrieve rules from GameRules for above case: "rules"
     public void getRules() {
@@ -300,6 +304,30 @@ public class GameEngine {
     //setchyo inventory
     public void setInventory(ArrayList<String> inventory) {
         this.inventory = inventory;
+    }
+
+    public Integer getGuesses() {
+        return guesses;
+    }
+
+    public Boolean getGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(Boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public Boolean getPlayerMobile() {
+        return isPlayerMobile;
+    }
+
+    public Map<String, HashMap<String, String>> getRooms() {
+        return rooms;
+    }
+
+    public void greatSuccess() {
+        GreatSuccessArt.success();
     }
 
 }

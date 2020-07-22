@@ -64,16 +64,16 @@ public class GameMapTest {
     }
 
     @Test
-    public void failToAddNewRoom() {
-        Exception exception = assertThrows(UnsupportedOperationException.class, () -> {
+    public void failToAddRoom_NumberOfRoomsUnchanged() {
+        try {
             rooms.put("foyer", foyer);
-        });
-        allRooms = rooms.keySet();
-        assertEquals(allRooms.size(), 15);
-        assertTrue(exception.toString().equals(UnsupportedOperationException.class.getName()));
+            fail("Should have thrown Unsupported Operation Exception");
+        } catch (UnsupportedOperationException exception) {
+            allRooms = rooms.keySet();
+            assertEquals(allRooms.size(), 15);
+            assertTrue(exception.toString().equals(UnsupportedOperationException.class.getName()));
+        }
     }
-
-
 
     @Test
     public void testRooms(){

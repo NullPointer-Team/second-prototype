@@ -1,16 +1,19 @@
 package coregamefiles;
 
+import static coregamefiles.GameTextColors.*;
+
 public class GameRules {
 
     // This method will prompt the user if they want to hear the rules for the game or not.
     public static void printRules() {
-        System.out.println(
+        System.out.println( getAnsiYellow() +
                 "__________________________________________________________________________________\n" +
                 "         _         \n" +
                 " ___ _ _| |___ ___ \n" +
                 "|  _| | | | -_|_ -|\n" +
                 "|_| |___|_|___|___|\n" +
                 "__________________________________________________________________________________\n" +
+                getAnsiReset() +
                 "To navigate from room to room, type these commands:\n" +
                 "    \"go north\"\n" +
                 "    \"go south\"\n" +
@@ -27,8 +30,13 @@ public class GameRules {
                 "       - or -   \n" +
                 "    \"use sword\"\n" +
                 "To quit the game, type \"quit\"\n" +
+                getAnsiYellow() +
                 "__________________________________________________________________________________\n\n" +
+                //getAnsiReset() +
                 "Grab all the resources you can. You will need them on your journey as challenges come your way.\n" +
-                "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!\n");
+                "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!\n" +
+                //getAnsiYellow() +
+                "__________________________________________________________________________________\n\n" +
+                getAnsiReset() );
     }
 }

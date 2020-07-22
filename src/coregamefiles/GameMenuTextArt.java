@@ -11,13 +11,15 @@
 
 package coregamefiles;
 
+import static coregamefiles.GameTextColors.*;
+
 public class GameMenuTextArt extends GameMenu {
     /**
      * Game intro text Art
      * displays in main game menu
      */
     static void welcome() {
-        System.out.println("\n" +
+        System.out.println(getAnsiRed() + "\n" +
                 "███████╗████████╗██████╗  █████╗ ███╗   ██╗ ██████╗ ███████╗██████╗ \n" +
                 "██╔════╝╚══██╔══╝██╔══██╗██╔══██╗████╗  ██║██╔════╝ ██╔════╝██╔══██╗\n" +
                 "███████╗   ██║   ██████╔╝███████║██╔██╗ ██║██║  ███╗█████╗  ██████╔╝\n" +
@@ -29,7 +31,8 @@ public class GameMenuTextArt extends GameMenu {
                 "                ██║  ███╗███████║██╔████╔██║█████╗                  \n" +
                 "                ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝                  \n" +
                 "                ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗                \n" +
-                "                 ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝                \n");
+                "                 ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝                \n" +
+                getAnsiReset());
 
         System.out.println("\n" +
                 "           Built by Team NullPointer (Team 5)\n" +
@@ -58,7 +61,7 @@ public class GameMenuTextArt extends GameMenu {
                 "       |  Please select an option from the choices below:    |\n" +
                 "       |                                                     |\n" +
                 "       |  Play the Game            [Command: Play]           |\n" +
-                "       |  Exit this Program        [Command: Exit]           |\n" +
+                "       |  Exit this Program        [Command: Quit]           |\n" +
                 "       |_____________________________________________________|\n");
     }
 
@@ -70,9 +73,16 @@ public class GameMenuTextArt extends GameMenu {
      * Goodbye Message
      * displays when you exit game via main menu
      */
+    static void goodbye() {
+        printGoodbyeMessage();
+        System.exit(0);
+    }
+
+    //the actual goodbye art that prints right above here in goodbye()
     static void printGoodbyeMessage() {
         System.out.println("Goodbye!  Thanks for playing.");
-        System.out.println("\n" +
+        System.out.println(getAnsiRed() + "\n" +
+                "___________________________________________________________\n" +
                 "                                                           \n" +
                 " ██████   ██████   ██████  ██████  ██████ ██    ██ ███████ \n" +
                 "██       ██    ██ ██    ██ ██   ██ ██   ██ ██  ██  ██      \n" +
@@ -80,12 +90,10 @@ public class GameMenuTextArt extends GameMenu {
                 "██    ██ ██    ██ ██    ██ ██   ██ ██   ██   ██    ██      \n" +
                 " ██████   ██████   ██████  ██████  ██████    ██    ███████ \n" +
                 "                                                           \n" +
-                "                                                           \n");
+                "___________________________________________________________\n" +
+                getAnsiReset());
     }
 
 
-    static void goodbye() {
-        printGoodbyeMessage();
-        System.exit(0);
-    }
+
 }
