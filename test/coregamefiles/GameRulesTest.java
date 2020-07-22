@@ -41,7 +41,7 @@ class GameRulesTest {
                 "To quit the game, type \"quit\"\n" +
                 getAnsiYellow() +
                 "__________________________________________________________________________________\n\n" +
-                "Grab all the resources you can. You will need them on your journey as challenges come your way.\n" +
+                "HINT: Grab all the resources you can. You will need them on your journey as challenges come your way.\n" +
                 "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!\n" +
                 "__________________________________________________________________________________\n\n"
                 + getAnsiReset() + "\n";
