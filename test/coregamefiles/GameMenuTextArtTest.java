@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+
+import static coregamefiles.GameTextColors.getAnsiRed;
+import static coregamefiles.GameTextColors.getAnsiReset;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameMenuTextArtTest {
@@ -16,7 +19,7 @@ class GameMenuTextArtTest {
         System.setOut(new PrintStream(outContent));
         gameMenuTextArt.welcome();
 
-        String expectedOutput = "\n" +
+        String expectedOutput = getAnsiRed() + "\n" +
                 "███████╗████████╗██████╗  █████╗ ███╗   ██╗ ██████╗ ███████╗██████╗ \n" +
                 "██╔════╝╚══██╔══╝██╔══██╗██╔══██╗████╗  ██║██╔════╝ ██╔════╝██╔══██╗\n" +
                 "███████╗   ██║   ██████╔╝███████║██╔██╗ ██║██║  ███╗█████╗  ██████╔╝\n" +
@@ -28,7 +31,7 @@ class GameMenuTextArtTest {
                 "                ██║  ███╗███████║██╔████╔██║█████╗                  \n" +
                 "                ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝                  \n" +
                 "                ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗                \n" +
-                "                 ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝                \n\n\n" +
+                "                 ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝                \n" + getAnsiReset() + "\n\n" +
                 "           Built by Team NullPointer (Team 5)\n" +
                 "           Neill Perry (https://github.com/neillperry)\n" +
                 "           Bruce West (https://github.com/BruceBAWest)\n" +
@@ -56,7 +59,7 @@ class GameMenuTextArtTest {
                 "       |  Please select an option from the choices below:    |\n" +
                 "       |                                                     |\n" +
                 "       |  Play the Game            [Command: Play]           |\n" +
-                "       |  Exit this Program        [Command: Exit]           |\n" +
+                "       |  Exit this Program        [Command: Quit]           |\n" +
                 "       |_____________________________________________________|\n\n";
 
         assertEquals(expectedOutput, outContent.toString());
@@ -77,7 +80,8 @@ class GameMenuTextArtTest {
         System.setOut(new PrintStream(outContent));
         gameMenuTextArt.printGoodbyeMessage();
 
-        String expectedOutput = "Goodbye!  Thanks for playing.\n\n" +
+        String expectedOutput = "Goodbye!  Thanks for playing.\n" + getAnsiRed() + "\n" +
+                "___________________________________________________________\n" +
                 "                                                           \n" +
                 " ██████   ██████   ██████  ██████  ██████ ██    ██ ███████ \n" +
                 "██       ██    ██ ██    ██ ██   ██ ██   ██ ██  ██  ██      \n" +
@@ -85,7 +89,7 @@ class GameMenuTextArtTest {
                 "██    ██ ██    ██ ██    ██ ██   ██ ██   ██   ██    ██      \n" +
                 " ██████   ██████   ██████  ██████  ██████    ██    ███████ \n" +
                 "                                                           \n" +
-                "                                                           \n\n";
+                "___________________________________________________________\n" + getAnsiReset() + "\n";
 
         assertEquals(expectedOutput, outContent.toString());
     }

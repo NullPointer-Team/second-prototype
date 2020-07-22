@@ -3,6 +3,8 @@ package enginefiles;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
+
+import static coregamefiles.GameTextColors.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
@@ -127,9 +129,19 @@ class GameEngineTest {
         gameEngine.showStatus();
         String expectedOutput = " -------------------- \n" +
                 "You are in the Panic Room\n" +
+                getAnsiRed() +
+                "_________________________________________\n" +
+                "                                         \n" +
+                " █████  ██      ███████ ██████  ████████ \n" +
+                "██   ██ ██      ██      ██   ██    ██    \n" +
+                "███████ ██      █████   ██████     ██    \n" +
+                "██   ██ ██      ██      ██   ██    ██    \n" +
+                "██   ██ ███████ ███████ ██   ██    ██    \n" +
+                "_________________________________________\n" +
+                getAnsiReset() + "\n" + getAnsiRed() +
                 "Oh no!! The Panic Room has a ghost,\n" +
-                "and you don't have anything in your inventory to fight it with.\n" +
-                "You have nothing in your inventory\n" +
+                "and you don't have anything in your inventory to fight it with." + getAnsiReset() + "\n" +
+                "You have " + getAnsiUnderscore() + getAnsiBold() + "nothing" + getAnsiReset() + " in your inventory\n" +
                 "For game rules, type \"rules\"\n" +
                 " -------------------- \n";
         assertEquals(expectedOutput, outContent.toString());
@@ -161,8 +173,17 @@ class GameEngineTest {
         gameEngine.setInventory(inventory);
 
         gameEngine.listChallenge();
-        String expectedOutput = "Oh no!! The Conservatory has a Quick Sand\n" +
-              "You must defeat this challenge before you can continue your journey!\n";
+        String expectedOutput = getAnsiRed() +
+                "_________________________________________\n" +
+                "                                         \n" +
+                " █████  ██      ███████ ██████  ████████ \n" +
+                "██   ██ ██      ██      ██   ██    ██    \n" +
+                "███████ ██      █████   ██████     ██    \n" +
+                "██   ██ ██      ██      ██   ██    ██    \n" +
+                "██   ██ ███████ ███████ ██   ██    ██    \n" +
+                "_________________________________________\n" +
+                getAnsiReset() + "\n" + getAnsiRed() + "Oh no!! The Conservatory has a Quick Sand.\n" +
+              "You must defeat this challenge before you can continue your journey!" + getAnsiReset() + "\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
@@ -172,8 +193,17 @@ class GameEngineTest {
         gameEngine.setCurrentRoom("Breakfast Nook");
 
         gameEngine.listChallenge();
-        String expectedOutput = "Oh no!! The Breakfast Nook has a Gold Beetles,\n" +
-                "and you don't have anything in your inventory to fight it with.\n";
+        String expectedOutput = getAnsiRed() +
+                "_________________________________________\n" +
+                "                                         \n" +
+                " █████  ██      ███████ ██████  ████████ \n" +
+                "██   ██ ██      ██      ██   ██    ██    \n" +
+                "███████ ██      █████   ██████     ██    \n" +
+                "██   ██ ██      ██      ██   ██    ██    \n" +
+                "██   ██ ███████ ███████ ██   ██    ██    \n" +
+                "_________________________________________\n" +
+                getAnsiReset() + "\n" + getAnsiRed() + "Oh no!! The Breakfast Nook has a Gold Beetles,\n" +
+                "and you don't have anything in your inventory to fight it with." + getAnsiReset() + "\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
@@ -185,9 +215,6 @@ class GameEngineTest {
 
         String correctItemForChallenge = "fighting skills";
         gameEngine.solveChallengeAttempt(correctItemForChallenge);
-
-        String expectedOutput = "You solved the challenge! Continue on your quest\n";
-        assertEquals(expectedOutput, outContent.toString());
 
         assertFalse(gameEngine.roomHasUnsolvedChallenge());
         assertEquals(gameEngine.getGuesses(), 3);
