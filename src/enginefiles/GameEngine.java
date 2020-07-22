@@ -34,7 +34,6 @@ public class GameEngine {
     private Boolean gameOver;
     private Boolean gameWon;
     private Integer guesses;
-    private Boolean isPlayerMobile;
     private Scanner input;
     private GameMap gameMap;
     private Map<String, HashMap<String, String>> rooms;
@@ -68,8 +67,7 @@ public class GameEngine {
 
         while (!gameOver) {
             showStatus();
-            solveChallenge();
-
+            solveChallengeOrExploreRoom();
             checkIfGameOver();
         }
 
@@ -154,7 +152,7 @@ public class GameEngine {
 
     public void solveChallenge() {
 
-            while (guesses < 3) {
+            while (getGuesses() > 0 && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
                 String[] moves = getUserCommand();
                 validateUserChallengeSolution(moves);
             }
@@ -193,6 +191,7 @@ public class GameEngine {
     public void processChallengeAttempt(String item) {
 
         String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
+
         if (challengeSolution.equals(item.toLowerCase())) {
             setChallengeToSolved();
         } else {
@@ -204,13 +203,18 @@ public class GameEngine {
         greatSuccess();
         System.out.println("You solved the challenge! Continue on your quest");
         rooms.get(getCurrentRoom()).replace("solved", "true");
-        isPlayerMobile = true;
+        rooms.get(getCurrentRoom()).replace("solved", "true");
         setGuesses(3);
+        showStatus();
     }
 
     public void processFailedChallengeSolution(String item) {
         diminishGuessesByOne();
-        System.out.println("Using the " + item + " has no effect!");
+        String itemFailedStatement = isItemInInventory(item) ?
+                "Using the " + item + " has no effect!" :
+                "You don\'t even have " + item + " in your inventory to use!";
+
+        System.out.println(itemFailedStatement);
         System.out.println("You have " + getGuesses() + " guesses left. Try again!");
     }
 
@@ -269,10 +273,8 @@ public class GameEngine {
      ************************/
     //this dude lets you move room-to-room
     public void moveToRoom(String command) {
-        if (rooms.get(getCurrentRoom()).containsKey(command.toLowerCase()) && isPlayerMobile) {
+        if (rooms.get(getCurrentRoom()).containsKey(command.toLowerCase())) {
             setCurrentRoom(rooms.get(currentRoom).get(command));
-        } else if (!isPlayerMobile) {
-            System.out.println("You can't leave the room until you solve the challenge!");
         } else {
             System.out.println("You can't go that way!");
         }
@@ -311,6 +313,7 @@ public class GameEngine {
      ************************/
     //did you done gone and done won? or is you dead, and is you done?
     public void checkIfGameOver() {
+
         if (rooms.get("Kitchen").get("solved").equals("true")) {
             gameWon = true;
             gameOver = true;
@@ -386,7 +389,6 @@ public class GameEngine {
     //gotta set the new room somehow
     public void setCurrentRoom(String currentRoom)  {
         this.currentRoom = currentRoom;
-        isPlayerMobile = !roomHasUnsolvedChallenge();
     }
 
     //getchyo inventory
@@ -403,7 +405,7 @@ public class GameEngine {
         return guesses;
     }
 
-    public void diminishGuessesByOne() { guesses--; }
+    public void diminishGuessesByOne() { guesses = guesses - 1; }
 
     public Boolean getGameOver() {
         return gameOver;

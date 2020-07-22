@@ -225,6 +225,10 @@ class GameEngineTest {
         gameEngine.setCurrentRoom("Courtyard");
         assertTrue(gameEngine.roomHasUnsolvedChallenge());
 
+        ArrayList<String> inventory = new ArrayList<String>();
+        inventory.add("sword");
+        gameEngine.setInventory(inventory);
+
         String wrongItemForChallenge = "sword";
         gameEngine.processChallengeAttempt(wrongItemForChallenge);
 
