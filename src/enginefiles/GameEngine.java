@@ -93,17 +93,6 @@ public class GameEngine {
     }
 
 
-    public void confrontChallenge() {
-        Boolean challengeSolved = false;
-
-        while (!challengeSolved) {
-
-        }
-
-    }
-
-
-
 
     // getchyo win or lose art here
     public void terminateGame() {
@@ -162,12 +151,30 @@ public class GameEngine {
                     challengeInstruction + getAnsiReset());
         }
     }
-
+// This url key comes from GamMap
     public void playMusicIfUrl() throws Exception {
-        if (rooms.get(getCurrentRoom()).containsKey("url")) {
-            Music.playMusic(rooms.get(getCurrentRoom()).get("url"));
-        }
+    if (rooms.get(getCurrentRoom()).containsKey("url")) {
+        Music.monster(rooms.get(getCurrentRoom()).get("url"));
     }
+    else if (rooms.get(getCurrentRoom()).containsKey("url")){
+        Music.atriumMusic(rooms.get(getCurrentRoom()).get("url"));
+
+    }
+    else if (rooms.get(getCurrentRoom()).containsKey("url")){
+        Music.fireMusic(rooms.get(getCurrentRoom()).get("url"));
+    }
+    else if (rooms.get(getCurrentRoom()).containsKey("url")){
+        Music.gardenMusic(rooms.get(getCurrentRoom()).get("url"));
+    }
+    else if (rooms.get(getCurrentRoom()).containsKey("url")){
+        Music.fireSwampMusic(rooms.get(getCurrentRoom()).get("url"));
+
+    }
+    else if(rooms.get(getCurrentRoom()).containsKey("url")){
+        Music.panicMusic(rooms.get(getCurrentRoom()).get("url"));
+    }
+}
+
 
     //this here fella uses an item or not
     public void validateUseItem(String item) {

@@ -8,9 +8,10 @@ import javax.sound.sampled.*;
 
 public class Music {
     // this file for monster voice
-    public static void monster() throws Exception {
+    public static void monster(String room) throws Exception {
         //when user/Gamer enter in room where monster is there voice will be played and open up pop up
-        URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Horror-Rhythm-Pattern_DRAME01036.wav");
+        URL url = new URL(room);
+
         Clip clip = AudioSystem.getClip();
 
         AudioInputStream ais = AudioSystem.getAudioInputStream(url);
@@ -24,9 +25,54 @@ public class Music {
 
 
     }
-    public static void garden() throws Exception {
+    public static void atriumMusic(String room) throws Exception {
         //when user/Gamer enter in garden relex music will play
-        URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav");
+        URL url = new URL(room);
+        Clip clip = AudioSystem.getClip();
+
+        AudioInputStream ais = AudioSystem.getAudioInputStream(url);
+        clip.open(ais);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        SwingUtilities.invokeLater(() -> {
+            // Pop up will  display to user what user supposed to do.
+
+            JOptionPane.showMessageDialog(null, "You are in " + room + " Welcome to Adventure!!!!");
+        });
+
+    }
+    public static void panicMusic(String room) throws Exception {
+        //when user/Gamer enter in garden relex music will play
+        URL url = new URL(room);
+        Clip clip = AudioSystem.getClip();
+
+        AudioInputStream ais = AudioSystem.getAudioInputStream(url);
+        clip.open(ais);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        SwingUtilities.invokeLater(() -> {
+            // Pop up will  display to user what user supposed to do.
+
+            JOptionPane.showMessageDialog(null, "You are in " + room + " Panic? find your way!!!!");
+        });
+
+    }
+    public static void fireSwampMusic(String room) throws Exception {
+        //when user/Gamer enter in garden relex music will play
+        URL url = new URL(room);
+        Clip clip = AudioSystem.getClip();
+
+        AudioInputStream ais = AudioSystem.getAudioInputStream(url);
+        clip.open(ais);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        SwingUtilities.invokeLater(() -> {
+            // Pop up will  display to user what user supposed to do.
+
+            JOptionPane.showMessageDialog(null, "You are in " + room + " Welcome to Adventure!!!!");
+        });
+
+    }
+    public static void gardenMusic(String room) throws Exception {
+        //when user/Gamer enter in garden relex music will play
+        URL url = new URL(room);
         Clip clip = AudioSystem.getClip();
 
         AudioInputStream ais = AudioSystem.getAudioInputStream(url);
@@ -55,12 +101,27 @@ public class Music {
         });
 
     }
+    public static void loseMusic(String room) throws Exception {
+        //when user/Gamer enter in garden relex music will play
+        URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_CartoonHeadShake_4003_18_1.wav");
+        Clip clip = AudioSystem.getClip();
+
+        AudioInputStream ais = AudioSystem.getAudioInputStream(url);
+        clip.open(ais);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        SwingUtilities.invokeLater(() -> {
+            // Pop up will  display to user what user supposed to do.
+
+            JOptionPane.showMessageDialog(null, "May I help you to find corner for cry?");
+        });
+
+    }
 
 
 
-    public static void fire() throws Exception {
+    public static void fireMusic(String room) throws Exception {
         //when user/Gamer enter in room where Fire is there this sound will be play
-        URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Horror-Rhythm-Pattern_DRAME01036.wav");
+        URL url = new URL(room);
         Clip clip = AudioSystem.getClip();
 
         AudioInputStream ais = AudioSystem.getAudioInputStream(url);
@@ -81,7 +142,7 @@ public class Music {
 
         AudioInputStream ais = AudioSystem.getAudioInputStream(url);
         clip.open(ais);
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        clip.loop(Clip.LOOP_CONTINUOUSLY-3);
         SwingUtilities.invokeLater(() -> {
             // Pop up will  display to user what user supposed to do.
 
