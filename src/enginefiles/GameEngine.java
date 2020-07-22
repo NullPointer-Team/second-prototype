@@ -177,7 +177,7 @@ public class GameEngine {
     public void solveChallengeAttempt(String item) {
 
         String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
-//        while ((!getInventory().isEmpty())) {
+
         if (challengeSolution.equals(item.toLowerCase())) {
             greatSuccess();
             System.out.println("You solved the challenge! Continue on your quest");
@@ -189,7 +189,6 @@ public class GameEngine {
             System.out.println("Using the " + item + " has no effect!");
             System.out.println("You have " + guesses + " guesses left. Try again!");
         }
-//    }
     }
 
     //do you have it in your satchel?

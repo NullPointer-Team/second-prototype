@@ -84,6 +84,7 @@ public class GameMap {
         breakfastNook.put("west", "Atrium");
         breakfastNook.put("challenge", "Gold Beetles");
         breakfastNook.put("solution", "fighting skills");
+        breakfastNook.put("hint", "HINT: It would help if you knew how to fight...");
         breakfastNook.put("solved", "false");
         breakfastNook.put("url", "https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav");
 
@@ -95,6 +96,7 @@ public class GameMap {
         conservatory.put("south", "Arcade");
         conservatory.put("east", "Panic Room");
         conservatory.put("challenge", "Quick Sand");
+        conservatory.put("hint", "HINT: How would Indiana Jones get out this one? Maybe you don't have a whip, but...");
         conservatory.put("solution", "Rope");
         conservatory.put("solved", "false");
 
@@ -102,6 +104,7 @@ public class GameMap {
         panicRoom.put("south", "Observatory");
         panicRoom.put("item", "key");
         panicRoom.put("challenge", "ghost");
+        panicRoom.put("hint", "HINT: Who you gonna call? You can't fight the metaphysical with physical objects, can you?");
         panicRoom.put("solution", "Book of Spells");
         panicRoom.put("solved", "false");
 
@@ -109,6 +112,7 @@ public class GameMap {
         fireSwamps.put("east", "Hall");
         fireSwamps.put("challenge", "Rodents of Unusual Size (ROUS)");
         fireSwamps.put("solution", "fighting skills");
+        fireSwamps.put("hint", "HINT: Care for a bout of fisticuffs?");
         fireSwamps.put("solved", "false");
 
         hall.put("east", "Dining Room");
@@ -125,6 +129,7 @@ public class GameMap {
         arcade.put("north", "Conservatory");
         arcade.put("south", "Library");
         arcade.put("challenge", "fire");
+        arcade.put("hint", "HINT: Are you gonna fight fire with weapons? What puts out fire?");
         arcade.put("solution", "Super Soaker");
         arcade.put("solved", "false");
 
@@ -137,6 +142,7 @@ public class GameMap {
         courtyard.put("item", "sword");
         courtyard.put("solution", "key");
         courtyard.put("challenge", "lock");
+        courtyard.put("hint", "HINT: Do I have to say this? What opens locks?");
         courtyard.put("solved", "false");
 
         library.put("east", "Courtyard");
@@ -154,6 +160,7 @@ public class GameMap {
 
         kitchen.put("east", "Laboratory");
         kitchen.put("challenge", "monster");
+        kitchen.put("hint", "HINT: Would a knight fight a dragon with a super soaker?");
         kitchen.put("solution", "sword");
         kitchen.put("solved", "false");
 
