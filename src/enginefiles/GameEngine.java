@@ -52,6 +52,7 @@ public class GameEngine {
         setCurrentRoom("Atrium");
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
+
     }
 
 
