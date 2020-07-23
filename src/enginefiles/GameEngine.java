@@ -263,7 +263,7 @@ public class GameEngine {
                 acquireItem(commandArgument);
                 break;
             case "use":
-                validateUseItem(commandArgument);
+                printCantUseItem(commandArgument);
                 break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
@@ -303,7 +303,7 @@ public class GameEngine {
     }
 
     //this here fella uses an item or not
-    public void validateUseItem(String item) {
+    public void printCantUseItem(String item) {
         String outputString = isItemInInventory(item) ?
                 "There is nothing to use your " + item + " on. Continue to explore the maze." :
                 "You don\'t have that item in your inventory!";

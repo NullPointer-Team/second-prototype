@@ -319,7 +319,7 @@ class GameEngineTest {
         gameEngine.setInventory(inventory);
 
         String itemNotInventory = "bazooka";
-        gameEngine.validateUseItem(itemNotInventory);
+        gameEngine.printCantUseItem(itemNotInventory);
         String expectedOutput = "You don\'t have that item in your inventory!\n";
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -333,7 +333,7 @@ class GameEngineTest {
         gameEngine.setInventory(inventory);
 
         String itemInInventory = "Winning Personality";
-        gameEngine.validateUseItem(itemInInventory);
+        gameEngine.printCantUseItem(itemInInventory);
         String expectedOutput = "There is nothing to use your Winning Personality on. Continue to explore the maze.\n";
         assertEquals(expectedOutput, outContent.toString());
     }
