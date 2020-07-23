@@ -370,7 +370,10 @@ class GameEngineTest {
                 "███████  ██████   ██████  ██████ ███████ ███████ ███████     \n" +
                 "                                                             \n" +
                 "_____________________________________________________________\n" +
-                getAnsiReset() + "\nYou solved the challenge! Continue on your quest\n";
+                getAnsiReset() + "\n" +
+                getAnsiYellow() + getAnsiBold() +
+                "You really stuck it to that beetle! So glad it didn't burrow into your brain!\n" +
+                "Congrats on not dying!" + getAnsiReset() + "\nYou solved the challenge! Continue on your quest\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
