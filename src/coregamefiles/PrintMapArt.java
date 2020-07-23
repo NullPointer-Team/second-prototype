@@ -221,7 +221,7 @@ public class PrintMapArt {
                 getAnsiReset());
     }
 
-    public static void map61441() {
+    public static void map8() {
         System.out.println(getAnsiYellow() +
                 "____________________ ___________________                                                            \n" +
                 "                    |                   ████████████████████████████████████████████████████████████\n" +

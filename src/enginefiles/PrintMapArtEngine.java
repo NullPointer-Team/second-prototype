@@ -1,5 +1,8 @@
 package enginefiles;
 
+import coregamefiles.PrintMapArt;
+import exceptionfiles.InvalidMapScenarioException;
+
 public class PrintMapArtEngine {
     /************************
      ************************
@@ -34,37 +37,37 @@ public class PrintMapArtEngine {
 //    }
 
 
-    //TODO: don't forget to create the ENUM class to define these cases
+    //DONE: don't forget to create the ENUM class to define these cases
+    // WILL NEED TO ADD MORE ENUMS FOR THIS, I ONLY HAVE 10 RIGHT NOW
 
     //TODO: create a switch case that causes print-out of particular maps bases on conditions
     //condition cases are the ENUMS from above, so case MAPONE: //dosomething break;
-    /*
     public void mapEngine() {
         try {
             switch (userInput.nextLine().toUpperCase().trim()) {
-                case "MAPONE":
-                    return GraphicMap.map1();
+                case "MAP_ONE":
+                    PrintMapArt.map1();
                     break;
-                case "MAPTWO":
-                    return GraphicMap.map2();
+                case "MAP_TWO":
+                    PrintMapArt.map2();
                     break;
-                case "MAPTHREE":
-                    return GraphicMap.map3();
+                case "MAP_THREE":
+                    PrintMapArt.map3();
                     break;
-                case "MAPFOUR":
-                    return GraphicMap.map4();
+                case "MAP_FOUR":
+                    PrintMapArt.map4();
                     break;
-                case "MAPFIVE":
-                    return GraphicMap.map5();
+                case "MAP_FIVE":
+                    PrintMapArt.map5();
                     break;
-                case "MAPSIX":
-                    return GraphicMap.map6();
+                case "MAP_SIX":
+                    PrintMapArt.map6();
                     break;
-                case "MAPSEVEN":
-                    return GraphicMap.map7();
+                case "MAP_SEVEN":
+                    PrintMapArt.map7();
                     break;
-                case "MAPEIGHT":
-                    return GraphicMap.map8();
+                case "MAP_EIGHT":
+                    PrintMapArt.map8();
                     break;
                 default:
                     throw new InvalidMapScenarioException();
@@ -73,7 +76,7 @@ public class PrintMapArtEngine {
             System.out.println(e.getMessage());
         }
     }
-    */
+
     //TODO: create the above custom exception class in the exception files
 
     //TODO: create corresponding ANSI maps for each switch case above
