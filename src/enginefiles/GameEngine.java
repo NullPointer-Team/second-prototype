@@ -226,6 +226,7 @@ public class GameEngine {
 
         System.out.println(itemFailedStatement);
         System.out.println("You have " + getGuesses() + " guesses left. Try again!");
+        hintPrompt();
     }
 
     /************************

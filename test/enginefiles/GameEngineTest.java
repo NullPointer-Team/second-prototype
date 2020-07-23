@@ -274,7 +274,10 @@ class GameEngineTest {
         String wrongItemForChallenge = "sword";
         gameEngine.processChallengeAttempt(wrongItemForChallenge);
 
-        String expectedOutput = "Using the sword has no effect!\nYou have 2 guesses left. Try again!\n";
+        String expectedOutput = "Using the sword has no effect!\nYou have 2 guesses left. Try again!\n" +
+                getAnsiBlue() +
+                "Need a hint? try typing: \"hint\"" +
+                getAnsiReset() + "\n";
         assertEquals(expectedOutput, outContent.toString());
 
         assertEquals(gameEngine.getGuesses(), 2);
@@ -385,7 +388,10 @@ class GameEngineTest {
 
         gameEngine.validateUserChallengeSolution(useWrongItem);
         String expectedOutput = "You don\'t even have PowerPoint Skills in your inventory to use!\n" +
-                "You have 2 guesses left. Try again!\n";
+                "You have 2 guesses left. Try again!\n" +
+                getAnsiBlue() +
+                "Need a hint? try typing: \"hint\"" +
+                getAnsiReset() + "\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
@@ -400,7 +406,10 @@ class GameEngineTest {
 
         gameEngine.validateUserChallengeSolution(useWrongItem);
         String expectedOutput = "Using the Perfect Attendance Record has no effect!\n" +
-                "You have 2 guesses left. Try again!\n";
+                "You have 2 guesses left. Try again!\n" +
+                getAnsiBlue() +
+                "Need a hint? try typing: \"hint\"" +
+                getAnsiReset() + "\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
