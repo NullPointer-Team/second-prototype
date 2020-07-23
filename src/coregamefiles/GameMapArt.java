@@ -2,7 +2,7 @@ package coregamefiles;
 
 import static coregamefiles.GameTextColors.*;
 
-public class PrintMapArt {
+public class GameMapArt {
 
     public static void map1() {
         //starting map. haven't gone anywhere yet

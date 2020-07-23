@@ -1,16 +1,14 @@
 package coregamefiles;
 
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.swing.text.IconView;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GameMapTest {
-    private GameMap gameMap;
+public class GameMapHashMapTest {
+    private GameMapHashMap gameMapHashMap;
     private Map<String, HashMap<String, String>> rooms;
     private Set<String> allRooms;
 
@@ -36,8 +34,8 @@ public class GameMapTest {
 
     @Before
     public void setUp() {
-        gameMap = new GameMap();
-        rooms = gameMap.getRooms();
+        gameMapHashMap = new GameMapHashMap();
+        rooms = gameMapHashMap.getRooms();
 
         atrium = rooms.get("Atrium");
         nook = rooms.get("Breakfast Nook");

@@ -1,21 +1,25 @@
 package enginefiles;
 
-import coregamefiles.PrintMapArt;
-import coregamefiles.PrintMapArtConditionEnum;
-import exceptionfiles.InvalidMapScenarioException;
+import coregamefiles.GameMapArt;
+import coregamefiles.GameMapArtConditionEnum;
+import coregamefiles.GameMapHashMap;
+import exceptionfiles.InvalidGameMapScenarioException;
 
-import static coregamefiles.PrintMapArtConditionEnum.MAP_TWO;
+import java.util.HashMap;
+import java.util.Map;
 
-public class PrintMapArtEngine {
+import static coregamefiles.GameMapArtConditionEnum.*;
+
+public class GameMapArtEngine {
     /************************
      ************************
      *THESE ARE OUR FIELDS
      ************************
      ************************/
     //map enum selection instantiation
-    private PrintMapArtConditionEnum mapArtConditionEnum;
+    private GameMapArtConditionEnum mapArtConditionEnum;
 
-    //create boolean fields for each room on map
+    // boolean fields for each room on map
     private boolean atriumVisited = true;
     private boolean breakfastNookVisited = false;
     private boolean fireSwampVisited = false;
@@ -34,43 +38,109 @@ public class PrintMapArtEngine {
 
     /************************
      ************************
+     * Constructor
+     ************************
+     ************************/
+    GameMapArtEngine() {
+        GameMapHashMap gameMapHashMap = new GameMapHashMap();
+        Map<String, HashMap<String, String>> rooms = gameMapHashMap.getRooms();
+    }
+
+    /************************
+     ************************
      * Business Methods
      ************************
      ***********************
      * @return*/
-
-//    if( isAtriumVisited() && isBreakfastNookVisited()) {
-//        return MapCase.MAPONE;
-//    }
     //get the current room from game engine
     private String getTheRoom() {
-        //return GameEngine.getCurrentRoom();
-        return "String";
+        return GameEngine.getCurrentRoom();
     }
 
-    private void roomHasBeenVisited() {
+    void roomHasBeenVisited() {
         String setVisit = getTheRoom();
         try {
-            switch (setVisit.toUpperCase()) {
-                case "Fire Swamp":
-                    setFireSwampVisited(true);
+            switch (setVisit.toLowerCase()) {
+                case "atrium":
+                    setAtriumVisited(true);
                     break;
-                case "Breakfast Nook":
+                case "breakfast nook":
                     setBreakfastNookVisited(true);
                     break;
-                //KEEP ADDING CASES
+                case "menagerie":
+                    setMenagerieVisited(true);
+                    break;
+                case "conservator":
+                    setConservatoryVisited(true);
+                    break;
+                case "panic room":
+                    setPanicRoomVisited(true);
+                    break;
+                case "fire swamps":
+                    setFireSwampVisited(true);
+                    break;
+                case "hall":
+                    setHallVisited(true);
+                    break;
+                case "dining room":
+                    setDiningRoomVisited(true);
+                    break;
+                case "arcade":
+                    setArcadeVisited(true);
+                    break;
+                case "observatory":
+                    setObservatoryVisited(true);
+                    break;
+                case "courtyard":
+                    setCourtyardVisited(true);
+                    break;
+                case "library":
+                    setLibraryVisited(true);
+                    break;
+                case "garden":
+                    setGardenVisited(true);
+                    break;
+                case "laboratory":
+                    setLaboratoryVisited(true);
+                    break;
+                case "kitchen":
+                    setKitchenVisited(true);
+                    break;
                 default:
-                    throw new InvalidMapScenarioException();
+                    throw new InvalidGameMapScenarioException();
             }
-        } catch (InvalidMapScenarioException e) {
+        } catch (InvalidGameMapScenarioException e) {
             System.out.println(e.getMessage());
         }
     }
 
     //TODO: first, create series of if statements to return ENUMS of diff maps
     private String whichRoom() {
+        if (atriumVisited) {
+            mapArtConditionEnum = MAP_ONE;
+        }
         if (breakfastNookVisited) {
             mapArtConditionEnum = MAP_TWO;
+        }
+        if (fireSwampVisited) {
+            mapArtConditionEnum = MAP_THREE;
+        }
+        if ((breakfastNookVisited) &&
+                (menagerieVisited)) {
+            mapArtConditionEnum = MAP_FOUR;
+        }
+        if ((fireSwampVisited) &&
+                (hallVisited)) {
+            mapArtConditionEnum = MAP_FIVE;
+        }
+        if ((breakfastNookVisited) &&
+                (fireSwampVisited)) {
+            mapArtConditionEnum = MAP_SIX;
+        }
+        if ((breakfastNookVisited) &&
+                (menagerieVisited) &&
+                (diningRoomVisited)) {
+            mapArtConditionEnum = MAP_SEVEN;
         }
         return String.valueOf(mapArtConditionEnum);
     }
@@ -84,40 +154,41 @@ public class PrintMapArtEngine {
         try {
             switch ( whichRoom() ) {
                 case "MAP_ONE":
-                    PrintMapArt.map1();
+                    GameMapArt.map1();
                     break;
                 case "MAP_TWO":
-                    PrintMapArt.map2();
+                    GameMapArt.map2();
                     break;
                 case "MAP_THREE":
-                    PrintMapArt.map3();
+                    GameMapArt.map3();
                     break;
                 case "MAP_FOUR":
-                    PrintMapArt.map4();
+                    GameMapArt.map4();
                     break;
                 case "MAP_FIVE":
-                    PrintMapArt.map5();
+                    GameMapArt.map5();
                     break;
                 case "MAP_SIX":
-                    PrintMapArt.map6();
+                    GameMapArt.map6();
                     break;
                 case "MAP_SEVEN":
-                    PrintMapArt.map7();
+                    GameMapArt.map7();
                     break;
                 case "MAP_EIGHT":
-                    PrintMapArt.map8();
+                    GameMapArt.map8();
                     break;
                 default:
-                    throw new InvalidMapScenarioException();
+                    throw new InvalidGameMapScenarioException();
             }
-        } catch (InvalidMapScenarioException e) {
+        } catch (InvalidGameMapScenarioException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    //TODO: create the above custom exception class in the exception files
+    //DONE: create the above custom exception class in the exception files
 
     //TODO: create corresponding ANSI maps for each switch case above
+    //^in progress
 
     /************************
      ************************

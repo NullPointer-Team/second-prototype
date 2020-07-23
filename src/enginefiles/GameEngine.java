@@ -29,13 +29,13 @@ public class GameEngine {
      *THESE ARE OUR FIELDS
      ************************
      ************************/
-    private String currentRoom;
+    private static String currentRoom;
     private ArrayList<String> inventory;
     private Boolean gameOver;
     private Boolean gameWon;
     private Integer guesses;
     private Scanner input;
-    private GameMap gameMap;
+    private GameMapHashMap gameMapHashMap;
     private Map<String, HashMap<String, String>> rooms;
 
 
@@ -47,8 +47,8 @@ public class GameEngine {
     public GameEngine() {
         gameOver = false;
         guesses = 3;
-        gameMap = new GameMap();
-        rooms = gameMap.getRooms();
+        gameMapHashMap = new GameMapHashMap();
+        rooms = gameMapHashMap.getRooms();
         setCurrentRoom("Atrium");
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
@@ -395,13 +395,13 @@ public class GameEngine {
     }
 
     //pretty obvs, this here method gets the current room
-    public String getCurrentRoom() {
+    public static String getCurrentRoom() {
         return currentRoom;
     }
 
     //gotta set the new room somehow
     public void setCurrentRoom(String currentRoom)  {
-        this.currentRoom = currentRoom;
+        GameEngine.currentRoom = currentRoom;
     }
 
     //getchyo inventory
