@@ -126,13 +126,16 @@ class GameEngineTest {
 
     @Test
     void testValidateAndExecuteUserCommand_SecretSuccess() {
+        System.setOut(new PrintStream(outContent));
         String observatory = "Observatory";
         String menagerie = "Menagerie";
         gameEngine.setCurrentRoom("Menagerie");
         String[] valid_secret = {"secret"};
+        String expectedOutput = "Good job!! You successfully used the Secret Passage. Don\'t tell anyone else about it.\n";
 
         gameEngine.validateAndExecuteUserCommand(valid_secret);
         assertEquals(gameEngine.getCurrentRoom(), observatory);
+        assertEquals(expectedOutput, outContent.toString());
 
         gameEngine.validateAndExecuteUserCommand(valid_secret);
         assertEquals(gameEngine.getCurrentRoom(), menagerie);
