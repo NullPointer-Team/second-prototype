@@ -84,7 +84,7 @@ public class GameEngine {
     void showStatus() {
         System.out.println(" -------------------- ");
         System.out.println("You are in the "+ getCurrentRoom());
-        listItem();
+        listItemIfAvailable();
         listChallengeIfAny();
         showInventory();
         System.out.println("For game rules, type \"rules\"");
@@ -92,7 +92,7 @@ public class GameEngine {
     }
 
     //this little guy tells you when there's an item in the room
-    public void listItem() {
+    public void listItemIfAvailable() {
         if (rooms.get(getCurrentRoom()).containsKey("item") && !roomHasUnsolvedChallenge()) {
             System.out.println("Inside this room you can find a " + getAnsiRed() + getAnsiBold() + getAnsiUnderscore() + rooms.get(getCurrentRoom()).get("item") + getAnsiReset());
         }
@@ -280,13 +280,13 @@ public class GameEngine {
     }
 
     //get the thing
-    public void acquireItem(String commandArgument) {
-        if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
-            inventory.add(commandArgument);
+    public void acquireItem(String item) {
+        if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(item.toLowerCase())) {
+            inventory.add(item);
             rooms.get(currentRoom).remove("item");
-            System.out.println(commandArgument + " acquired!!");
+            System.out.println(item + " acquired!!");
         } else {
-            System.out.println("A " + commandArgument + " is not available in this room!");
+            System.out.println("A " + item + " is not available in this room!");
         }
     }
 
@@ -314,13 +314,13 @@ public class GameEngine {
     public void checkIfGameOver() {
 
         if (rooms.get("Kitchen").get("solved").equals("true")) {
-            gameWon = true;
-            gameOver = true;
+            setGameWon();
+            setGameOver();
         }
 
         if ((roomHasUnsolvedChallenge() && getInventory().isEmpty()) || (guesses < 1)){
-            gameWon = false;
-            gameOver = true;
+            setGameLost();
+            setGameOver();
         }
 
     }
@@ -418,10 +418,18 @@ public class GameEngine {
     }
 
     //setchyo gameOver
-    public void setGameOver(Boolean gameOver) {
-        this.gameOver = gameOver;
+    public void setGameOver() {
+        this.gameOver = true;
     }
 
+
+    public void setGameWon() {
+        this.gameWon = true;
+    }
+
+    public void setGameLost() {
+        this.gameWon = false;
+    }
 
     //room getter gets room
     public Map<String, HashMap<String, String>> getRooms() {
