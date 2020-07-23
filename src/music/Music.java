@@ -32,7 +32,7 @@ public class Music {
 
     }
     public static void atriumMusic(String room) throws Exception {
-        //when user/Gamer enter in garden relex music will play
+        //when user/Gamer enter in atrium music will play
         URL url = new URL(room);
         Clip clip = AudioSystem.getClip();
 

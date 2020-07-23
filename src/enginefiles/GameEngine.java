@@ -1,13 +1,4 @@
-/*
- *      Stranger Game
- *      Team NullPointer (Team 5)
- *      https://github.com/NullPointer-Team
- *      Neill Perry (https://github.com/neillperry)
- *      Bruce West (https://github.com/BruceBAWest)
- *      Tapan Trivedi (https://github.com/tapantriv)
- *      TLG Learning: Capstone Project
- *      https://github.com/NullPointer-Team/prototype
- */
+
 
 package enginefiles;
 
@@ -23,7 +14,9 @@ import static coregamefiles.GameTextColors.*;
 
 
 public class GameEngine {
-
+    //instantiate gameMapArtEngine
+    GameMapArtEngine gameMapArtEngine = new GameMapArtEngine();
+    TrackingEngine track = new TrackingEngine();
     /************************
      ************************
      *THESE ARE OUR FIELDS
@@ -31,19 +24,16 @@ public class GameEngine {
      ************************/
     private static String currentRoom;
     private ArrayList<String> inventory;
+    // Below three fields are for tracking User visitedRoom, which skill they obtained and what they used
     private ArrayList<String> userLocationTrack;
-    private ArrayList<String> userGetObject;
-    private ArrayList<String> userUsedObject;
+    private ArrayList<String> userObtainSkill;
+    private ArrayList<String> userUsedSkill;
     private Boolean gameOver;
     private Boolean gameWon;
     private Integer guesses;
     private Scanner input;
     private GameMapHashMap gameMapHashMap;
     private Map<String, HashMap<String, String>> rooms;
-//    private String userLocationTrack[]  = {};
-
-//    private String userGetObject[]  = {};
-//    private String userUsedObject[]  = {};
 
 
     /************************
@@ -58,9 +48,9 @@ public class GameEngine {
         rooms = gameMapHashMap.getRooms();
         setCurrentRoom("Atrium");
         inventory = new ArrayList<String>();
-        userLocationTrack = new ArrayList<String>();
-        userGetObject = new ArrayList<String>();
-        userUsedObject= new ArrayList<String>();
+        userLocationTrack=new ArrayList<String>();
+        userObtainSkill = new ArrayList<String>();
+        userUsedSkill = new ArrayList<String>();
         input = new Scanner(System.in);
 
     }
@@ -77,8 +67,9 @@ public class GameEngine {
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
+            gameMapArtEngine.roomHasBeenVisited();
             showStatus();
-            //playMusicIfAvailable();
+            playMusicIfAvailable();
             solveChallengeOrExplore();
             checkIfGameOver();
         }
@@ -161,15 +152,16 @@ public class GameEngine {
      * SOLVE CHALLENGE & HELPER METHODS
      ************************
      ************************/
-
+    //this begins while loop to run the challenge
     public void solveChallenge() {
 
-            while (getGuesses() > 0 && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
-                String[] moves = getUserCommand();
-                validateUserChallengeSolution(moves);
-            }
+        while (getGuesses() > 0 && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
+            String[] moves = getUserCommand();
+            validateUserChallengeSolution(moves);
+        }
     }
 
+    //this take and validates and processes user input to play the challenge
     public void validateUserChallengeSolution(String[] moves) {
         String command = moves[0].toLowerCase();
         String item = moves.length > 1 ? moves[1] : " ";
@@ -185,7 +177,7 @@ public class GameEngine {
                 processChallengeAttempt(item);
                 break;
             case "escape":
-                //method that returns them to previoius room?
+                //method that returns them to previous room?
                 break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
@@ -193,6 +185,12 @@ public class GameEngine {
                 break;
             case "rules":
                 getRules();
+                break;
+            case "hint":
+                printHint();
+                break;
+            case "map":
+                gameMapArtEngine.mapEngine();
                 break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
@@ -213,10 +211,10 @@ public class GameEngine {
 
     public void processSolvedChallenged() {
         greatSuccess();
+        challengeCongrats();
         System.out.println("You solved the challenge! Continue on your quest");
         rooms.get(getCurrentRoom()).replace("solved", "true");
         setGuesses(3);
-        showStatus();
     }
 
     public void processFailedChallengeAttempt(String item) {
@@ -272,6 +270,9 @@ public class GameEngine {
             case "rules":
                 getRules();
                 break;
+            case "map":
+                gameMapArtEngine.mapEngine();
+                break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
         }
@@ -295,6 +296,7 @@ public class GameEngine {
     public void acquireItem(String item) {
         if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(item.toLowerCase())) {
             inventory.add(item);
+//            userLocationTrack.add(inventory);
             rooms.get(currentRoom).remove("item");
             System.out.println(item + " acquired!!");
         } else {
@@ -316,17 +318,6 @@ public class GameEngine {
         return inventory.contains(item);
     }
 
-<<<<<<< HEAD
-    //get the thing
-    public void acquireItem(String commandArgument) {
-        if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
-            inventory.add(commandArgument);
-            inventory.add(userGetObject);
-            rooms.get(currentRoom).remove("item");
-            System.out.println(commandArgument + " acquired!!");
-        } else {
-            System.out.println("A " + commandArgument + " is not available in this room!");
-=======
 
     /************************
      ************************
@@ -335,7 +326,6 @@ public class GameEngine {
      ************************/
     //did you done gone and done won? or is you dead, and is you done?
     public void checkIfGameOver() {
-
         if (rooms.get("Kitchen").get("solved").equals("true")) {
             setGameWon();
             setGameOver();
@@ -344,7 +334,6 @@ public class GameEngine {
         if ((roomHasUnsolvedChallenge() && getInventory().isEmpty()) || (guesses < 1)){
             setGameLost();
             setGameOver();
->>>>>>> d07c3157e4c475b89713dfd1b83e4c0841a6f037
         }
 
     }
@@ -363,40 +352,44 @@ public class GameEngine {
             Music.win();
         } else {
             WinLoseTextArt.loseArt();
+            //Method will display how many room is visited currently not working
+            track.userVisited();
             //If user lose, teasing music will be played
+
             Music.loseMusic();
+
         }
         PlayAgainPrompt.playAgain();
     }
 
     /************************
      ************************
-     * PLAY MUSIC
+     * PLAY MUSIC IF AVAILABLE
      ************************
      ************************/
 // This url key comes from GamMap
     public void playMusicIfUrl() throws Exception {
-    if (rooms.get(getCurrentRoom()).containsKey("url")) {
-        Music.monster(rooms.get(getCurrentRoom()).get("url"));
-    }
-    else if (rooms.get(getCurrentRoom()).containsKey("url")){
-        Music.atriumMusic(rooms.get(getCurrentRoom()).get("url"));
+        if (rooms.get(getCurrentRoom()).containsKey("url")) {
+            Music.monster(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.atriumMusic(rooms.get(getCurrentRoom()).get("url"));
 
-    }
-    else if (rooms.get(getCurrentRoom()).containsKey("url")){
-        Music.fireMusic(rooms.get(getCurrentRoom()).get("url"));
-    }
-    else if (rooms.get(getCurrentRoom()).containsKey("url")){
-        Music.gardenMusic(rooms.get(getCurrentRoom()).get("url"));
-    }
-    else if (rooms.get(getCurrentRoom()).containsKey("url")){
-        Music.fireSwampMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.fireMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.gardenMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if (rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.fireSwampMusic(rooms.get(getCurrentRoom()).get("url"));
 
+        }
+        else if(rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.panicMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
     }
-    else if(rooms.get(getCurrentRoom()).containsKey("url")){
-        Music.panicMusic(rooms.get(getCurrentRoom()).get("url"));
-    }
-}
 
     public void playMusicIfAvailable() throws Exception {
 
@@ -405,6 +398,23 @@ public class GameEngine {
             Music.playMusicIfAvailable(urlToMusicFile);
         }
 
+    }
+
+    //print challenge congratulations
+    public void challengeCongrats() {
+        System.out.println(getAnsiYellow() + getAnsiBold() + rooms.get(getCurrentRoom()).get("praise") + getAnsiReset());
+    }
+
+    public void printHint() {
+        if (guesses < 3 && roomHasUnsolvedChallenge()) {
+            System.out.println(getAnsiBlue() + rooms.get(getCurrentRoom()).get("hint") + getAnsiReset());
+        }
+    }
+
+    public void hintPrompt() {
+        if (guesses < 3 && roomHasUnsolvedChallenge()) {
+            System.out.println(getAnsiBlue() + "Need a hint? try typing: \"hint\"" + getAnsiReset());
+        }
     }
 
     /************************
