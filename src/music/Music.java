@@ -1,7 +1,10 @@
 package music;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.*;
 import javax.sound.sampled.*;
+import javax.swing.Timer;
 // This file for music  for every objects
 
 
@@ -36,6 +39,7 @@ public class Music {
         AudioInputStream ais = AudioSystem.getAudioInputStream(url);
         clip.open(ais);
         clip.loop(Clip.LOOP_CONTINUOUSLY);
+
         SwingUtilities.invokeLater(() -> {
             // Pop up will  display to user what user supposed to do.
 
@@ -142,6 +146,28 @@ public class Music {
 
 
     }
+
+    public static void playMusicIfAvailable(String urlForRoom) throws Exception {
+        //when user/Gamer win there this sound will be play
+        URL url = new URL(urlForRoom);
+        Clip clip = AudioSystem.getClip();
+
+        AudioInputStream ais = AudioSystem.getAudioInputStream(url);
+        clip.open(ais);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+        Timer timer = new Timer(8000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clip.close();
+            }
+        });
+
+        timer.setRepeats(false);
+        timer.start();
+
+    }
+
     public static void win() throws Exception {
         //when user/Gamer win there this sound will be play
         URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_CrowdBooing_6013_82_2.wav");
@@ -172,4 +198,5 @@ public class Music {
 //        music.fire();
         music.win();
     }
+
 }

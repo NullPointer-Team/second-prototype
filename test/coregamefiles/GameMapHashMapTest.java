@@ -1,16 +1,14 @@
 package coregamefiles;
 
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.swing.text.IconView;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GameMapTest {
-    private GameMap gameMap;
+public class GameMapHashMapTest {
+    private GameMapHashMap gameMapHashMap;
     private Map<String, HashMap<String, String>> rooms;
     private Set<String> allRooms;
 
@@ -36,8 +34,8 @@ public class GameMapTest {
 
     @Before
     public void setUp() {
-        gameMap = new GameMap();
-        rooms = gameMap.getRooms();
+        gameMapHashMap = new GameMapHashMap();
+        rooms = gameMapHashMap.getRooms();
 
         atrium = rooms.get("Atrium");
         nook = rooms.get("Breakfast Nook");
@@ -145,6 +143,7 @@ public class GameMapTest {
         assertTrue(panicRoom.get("challenge").equals("ghost"));
         assertTrue(panicRoom.get("item").equals("key"));
         assertTrue(panicRoom.get("solved").equals("false"));
+        assertTrue(panicRoom.get("url").equals("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_HumanBurp_CTE03_05_7.wav"));
     }
 
     @Test
@@ -155,6 +154,7 @@ public class GameMapTest {
         assertTrue(fireSwamps.get("solution").equals("fighting skills"));
         assertTrue(fireSwamps.get("challenge").equals("Rodents of Unusual Size (ROUS)"));
         assertTrue(fireSwamps.get("solved").equals("false"));
+        assertTrue(fireSwamps.get("url").equals("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ExplosionSharp_6048_97_1.wav"));
     }
 
     @Test
@@ -219,6 +219,7 @@ public class GameMapTest {
         assertTrue(garden.get("east").equals("Library"));
         assertTrue(garden.get("west").equals("Laboratory"));
         assertTrue(garden.get("item").equals("True Love"));
+        assertTrue(garden.get("url").equals("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav"));
     }
 
     @Test
@@ -236,5 +237,6 @@ public class GameMapTest {
         assertTrue(kitchen.get("solution").equals("sword"));
         assertTrue(kitchen.get("challenge").equals("monster"));
         assertTrue(kitchen.get("solved").equals("false"));
+        assertTrue(kitchen.get("url").equals("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_HumanBurp_CTE03_05_7.wav"));
     }
 }
