@@ -68,6 +68,7 @@ public class GameEngine {
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
+            gameMapArtEngine.roomHasBeenVisited();
             showStatus();
             //playMusicIfAvailable();
             solveChallengeOrExplore();
