@@ -272,6 +272,12 @@ public class GameEngine {
             case "rules":
                 getRules();
                 break;
+            case "secret":
+                validateSecretCommand();
+                break;
+            case "status":
+                showStatus();
+                break;
             case "map":
                 gameMapArtEngine.mapEngine();
                 break;
@@ -312,6 +318,19 @@ public class GameEngine {
                 "You don\'t have that item in your inventory!";
 
         System.out.println(outputString);
+    }
+
+
+    public void validateSecretCommand() {
+        if (getCurrentRoom().equals("Menagerie") || getCurrentRoom().equals("Observatory")) {
+            executeSecretCommand();
+        } else {
+            System.out.println("There is no Secret Passageway in this Room. Keep Exploring!!");
+        }
+    }
+
+    public void executeSecretCommand() {
+        setCurrentRoom(rooms.get(currentRoom).get("secret"));
     }
 
     //do you have it in your satchel?

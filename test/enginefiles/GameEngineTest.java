@@ -125,6 +125,33 @@ class GameEngineTest {
     }
 
     @Test
+    void testValidateAndExecuteUserCommand_SecretSuccess() {
+        String observatory = "Observatory";
+        String menagerie = "Menagerie";
+        gameEngine.setCurrentRoom("Menagerie");
+        String[] valid_secret = {"secret"};
+
+        gameEngine.validateAndExecuteUserCommand(valid_secret);
+        assertEquals(gameEngine.getCurrentRoom(), observatory);
+
+        gameEngine.validateAndExecuteUserCommand(valid_secret);
+        assertEquals(gameEngine.getCurrentRoom(), menagerie);
+    }
+
+    @Test
+    void testValidateAndExecuteUserCommand_SecretUnavailable() {
+        System.setOut(new PrintStream(outContent));
+        String library = "Library";
+        String[] invalidSecretCommand = {"secret"};
+        gameEngine.setCurrentRoom(library);
+
+        gameEngine.validateAndExecuteUserCommand(invalidSecretCommand);
+        String expectedOutput = "There is no Secret Passageway in this Room. Keep Exploring!!\n";
+        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(gameEngine.getCurrentRoom(), library);
+    }
+
+    @Test
     void testValidateAndExecuteUserCommand_Rules() {
         System.setOut(new PrintStream(outContent));
         String[] rules = {"rules"};
