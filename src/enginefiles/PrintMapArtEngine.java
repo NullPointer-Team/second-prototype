@@ -36,18 +36,19 @@ public class PrintMapArtEngine {
      ************************
      * Business Methods
      ************************
-     ************************/
+     ***********************
+     * @return*/
 
 //    if( isAtriumVisited() && isBreakfastNookVisited()) {
 //        return MapCase.MAPONE;
 //    }
     //get the current room from game engine
-    private void getTheRoom() {
-        GameEngine.getCurrentRoom();
+    private String getTheRoom() {
+        return GameEngine.getCurrentRoom();
     }
 
     private void roomHasBeenVisited() {
-        String setVisit = GameEngine.getCurrentRoom();
+        String setVisit = getTheRoom();
         try {
             switch (setVisit.toUpperCase()) {
                 case "Fire Swamp":
