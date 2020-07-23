@@ -8,8 +8,7 @@ import exceptionfiles.InvalidGameMapScenarioException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static coregamefiles.GameMapArtConditionEnum.MAP_ONE;
-import static coregamefiles.GameMapArtConditionEnum.MAP_TWO;
+import static coregamefiles.GameMapArtConditionEnum.*;
 
 public class GameMapArtEngine {
     /************************
@@ -123,6 +122,26 @@ public class GameMapArtEngine {
         if (breakfastNookVisited) {
             mapArtConditionEnum = MAP_TWO;
         }
+        if (fireSwampVisited) {
+            mapArtConditionEnum = MAP_THREE;
+        }
+        if ((breakfastNookVisited) &&
+                (menagerieVisited)) {
+            mapArtConditionEnum = MAP_FOUR;
+        }
+        if ((fireSwampVisited) &&
+                (hallVisited)) {
+            mapArtConditionEnum = MAP_FIVE;
+        }
+        if ((breakfastNookVisited) &&
+                (fireSwampVisited)) {
+            mapArtConditionEnum = MAP_SIX;
+        }
+        if ((breakfastNookVisited) &&
+                (menagerieVisited) &&
+                (diningRoomVisited)) {
+            mapArtConditionEnum = MAP_SEVEN;
+        }
         return String.valueOf(mapArtConditionEnum);
     }
 
@@ -166,9 +185,10 @@ public class GameMapArtEngine {
         }
     }
 
-    //TODO: create the above custom exception class in the exception files
+    //DONE: create the above custom exception class in the exception files
 
     //TODO: create corresponding ANSI maps for each switch case above
+    //^in progress
 
     /************************
      ************************
