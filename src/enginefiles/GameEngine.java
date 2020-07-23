@@ -154,7 +154,7 @@ public class GameEngine {
      * SOLVE CHALLENGE & HELPER METHODS
      ************************
      ************************/
-
+    //this begins while loop to run the challenge
     public void solveChallenge() {
 
             while (getGuesses() > 0 && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
@@ -163,6 +163,7 @@ public class GameEngine {
             }
     }
 
+    //this take and validates and processes user input to play the challenge
     public void validateUserChallengeSolution(String[] moves) {
         String command = moves[0].toLowerCase();
         String item = moves.length > 1 ? moves[1] : " ";
@@ -178,7 +179,7 @@ public class GameEngine {
                 processChallengeAttempt(item);
                 break;
             case "escape":
-                //method that returns them to previoius room?
+                //method that returns them to previous room?
                 break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
@@ -186,6 +187,9 @@ public class GameEngine {
                 break;
             case "rules":
                 getRules();
+                break;
+            case "hint":
+                printHint();
                 break;
             case "map":
                 gameMapArtEngine.mapEngine();
@@ -209,6 +213,7 @@ public class GameEngine {
 
     public void processSolvedChallenged() {
         greatSuccess();
+        challengeCongrats();
         System.out.println("You solved the challenge! Continue on your quest");
         rooms.get(getCurrentRoom()).replace("solved", "true");
         setGuesses(3);
