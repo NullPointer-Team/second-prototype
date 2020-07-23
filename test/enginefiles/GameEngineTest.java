@@ -178,6 +178,7 @@ class GameEngineTest {
                 "    \"use potion\"\n" +
                 "       - or -   \n" +
                 "    \"use sword\"\n" +
+                "To see the Maze Map, type \"map\"\n" +
                 "To quit the game, type \"quit\"\n" +
                 getAnsiYellow() +
                 "__________________________________________________________________________________\n\n" +
@@ -485,6 +486,7 @@ class GameEngineTest {
                 "    \"use potion\"\n" +
                 "       - or -   \n" +
                 "    \"use sword\"\n" +
+                "To see the Maze Map, type \"map\"\n" +
                 "To quit the game, type \"quit\"\n" +
                 getAnsiYellow() +
                 "__________________________________________________________________________________\n\n" +
