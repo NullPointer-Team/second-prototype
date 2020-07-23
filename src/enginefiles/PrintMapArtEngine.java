@@ -1,7 +1,10 @@
 package enginefiles;
 
 import coregamefiles.PrintMapArt;
+import coregamefiles.PrintMapArtConditionEnum;
 import exceptionfiles.InvalidMapScenarioException;
+
+import static coregamefiles.PrintMapArtConditionEnum.MAP_TWO;
 
 public class PrintMapArtEngine {
     /************************
@@ -9,6 +12,9 @@ public class PrintMapArtEngine {
      *THESE ARE OUR FIELDS
      ************************
      ************************/
+    //map enum selection instantiation
+    private PrintMapArtConditionEnum mapArtConditionEnum;
+
     //create boolean fields for each room on map
     private boolean atriumVisited = true;
     private boolean breakfastNookVisited = false;
@@ -31,11 +37,41 @@ public class PrintMapArtEngine {
      * Business Methods
      ************************
      ************************/
-    //TODO: first, create series of if statements to return ENUMS of diff maps
+
 //    if( isAtriumVisited() && isBreakfastNookVisited()) {
 //        return MapCase.MAPONE;
 //    }
+    //get the current room from game engine
+    private void getTheRoom() {
+        GameEngine.getCurrentRoom();
+    }
 
+    private void roomHasBeenVisited() {
+        String setVisit = GameEngine.getCurrentRoom();
+        try {
+            switch (setVisit.toUpperCase()) {
+                case "Fire Swamp":
+                    setFireSwampVisited(true);
+                    break;
+                case "Breakfast Nook":
+                    setBreakfastNookVisited(true);
+                    break;
+                //KEEP ADDING CASES
+                default:
+                    throw new InvalidMapScenarioException();
+            }
+        } catch (InvalidMapScenarioException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //TODO: first, create series of if statements to return ENUMS of diff maps
+    private String whichRoom() {
+        if (breakfastNookVisited) {
+            mapArtConditionEnum = MAP_TWO;
+        }
+        return String.valueOf(mapArtConditionEnum);
+    }
 
     //DONE: don't forget to create the ENUM class to define these cases
     // WILL NEED TO ADD MORE ENUMS FOR THIS, I ONLY HAVE 10 RIGHT NOW
@@ -44,7 +80,7 @@ public class PrintMapArtEngine {
     //condition cases are the ENUMS from above, so case MAPONE: //dosomething break;
     public void mapEngine() {
         try {
-            switch (userInput.nextLine().toUpperCase().trim()) {
+            switch ( whichRoom() ) {
                 case "MAP_ONE":
                     PrintMapArt.map1();
                     break;

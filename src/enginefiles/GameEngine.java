@@ -29,7 +29,7 @@ public class GameEngine {
      *THESE ARE OUR FIELDS
      ************************
      ************************/
-    private String currentRoom;
+    private static String currentRoom;
     private ArrayList<String> inventory;
     private Boolean gameOver;
     private Boolean gameWon;
@@ -289,13 +289,13 @@ public class GameEngine {
     }
 
     //pretty obvs, this here method gets the current room
-    public String getCurrentRoom(){
+    public static String getCurrentRoom(){
         return currentRoom;
     }
 
     //gotta set the new room somehow
     public void setCurrentRoom(String currentRoom)  {
-        this.currentRoom = currentRoom;
+        GameEngine.currentRoom = currentRoom;
         isPlayerMobile = !roomHasUnsolvedChallenge();
     }
 
