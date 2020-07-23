@@ -370,7 +370,9 @@ class GameEngineTest {
                 "███████  ██████   ██████  ██████ ███████ ███████ ███████     \n" +
                 "                                                             \n" +
                 "_____________________________________________________________\n" +
-                getAnsiReset() + "\nYou solved the challenge! Continue on your quest\n" +
+                getAnsiReset() + "\n\u001B[33m\u001B[1mYou really stuck it to that beetle! So glad it didn't burrow into your brain!\n" +
+                "Congrats on not dying!\u001B[0m\n" +
+                "You solved the challenge! Continue on your quest\n" +
                 " -------------------- \n" +
                 "You are in the Breakfast Nook\n" +
                 "You have " + getAnsiUnderscore() + getAnsiBold() + "nothing" + getAnsiReset() + " in your inventory\n" +
