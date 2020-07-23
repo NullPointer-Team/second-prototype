@@ -175,7 +175,7 @@ public class GameEngine {
                 processChallengeAttempt(item);
                 break;
             case "escape":
-                //method that returns them to previoius room?
+                //method that returns them to previous room?
                 break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
@@ -349,7 +349,7 @@ public class GameEngine {
 
     /************************
      ************************
-     * PLAY MUSIC
+     * PLAY MUSIC IF AVAILABLE
      ************************
      ************************/
 // This url key comes from GamMap
