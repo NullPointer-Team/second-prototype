@@ -2,9 +2,24 @@ package coregamefiles;
 
 import static coregamefiles.GameTextColors.*;
 
-public class PrintMapArt {
+public class GameMapArt {
+
+    public static void mapTitle() {
+        System.out.println(getAnsiYellow() +"\n" +
+                "███    ███  █████  ███████ ███████     ███    ███  █████  ██████  \n" +
+                "████  ████ ██   ██    ███  ██          ████  ████ ██   ██ ██   ██ \n" +
+                "██ ████ ██ ███████   ███   █████       ██ ████ ██ ███████ ██████  \n" +
+                "██  ██  ██ ██   ██  ███    ██          ██  ██  ██ ██   ██ ██      \n" +
+                "██      ██ ██   ██ ███████ ███████     ██      ██ ██   ██ ██      \n" +
+                getAnsiReset());
+    }
+
+    public static void mapDisclaimer() {
+        System.out.println(getAnsiGreen() + "It's a haunted maze... you can only see where you've explored, duh!" + getAnsiReset());
+    }
 
     public static void map1() {
+        mapTitle();
         //starting map. haven't gone anywhere yet
         System.out.println(getAnsiYellow() +
                 "____________________                                                                                \n" +
@@ -33,9 +48,11 @@ public class PrintMapArt {
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 getAnsiReset());
+        mapDisclaimer();
     }
 
     public static void map2() {
+        mapTitle();
         //first move option one, went east
         System.out.println(getAnsiYellow() +
                 "____________________ ___________________                                                            \n" +
@@ -64,8 +81,10 @@ public class PrintMapArt {
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 getAnsiReset());
+        mapDisclaimer();
     }
     public static void map3() {
+        mapTitle();
         //first move option 2, went south
         System.out.println(getAnsiYellow() +
                 "____________________                                                                                \n" +
@@ -94,9 +113,11 @@ public class PrintMapArt {
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 getAnsiReset());
+        mapDisclaimer();
     }
 
     public static void map4() {
+        mapTitle();
         //if first move east, second move east
         System.out.println(getAnsiYellow() +
                 "____________________ ___________________ ___________________                                        \n" +
@@ -125,9 +146,11 @@ public class PrintMapArt {
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 getAnsiReset());
+        mapDisclaimer();
     }
 
     public static void map5() {
+        mapTitle();
         //if first move south, second move east
         System.out.println(getAnsiYellow() +
                 "____________________                                                                                \n" +
@@ -158,9 +181,11 @@ public class PrintMapArt {
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 getAnsiReset());
+        mapDisclaimer();
     }
 
     public static void map6() {
+        mapTitle();
         //after first move south or east, went back to atrium and then went other way... jerks
         System.out.println(getAnsiYellow() +
                 "____________________ ___________________                                                            \n" +
@@ -189,9 +214,11 @@ public class PrintMapArt {
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 getAnsiReset());
+        mapDisclaimer();
     }
 
     public static void map7() {
+        mapTitle();
         System.out.println(getAnsiYellow() +
                 "____________________ ___________________ ___________________                                        \n" +
                 "                    |                   |                   ████████████████████████████████████████\n" +
@@ -219,9 +246,11 @@ public class PrintMapArt {
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 getAnsiReset());
+        mapDisclaimer();
     }
 
     public static void map8() {
+        mapTitle();
         System.out.println(getAnsiYellow() +
                 "____________________ ___________________                                                            \n" +
                 "                    |                   ████████████████████████████████████████████████████████████\n" +
@@ -249,6 +278,7 @@ public class PrintMapArt {
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 "████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
                 getAnsiReset());
+        mapDisclaimer();
     }
 
 }

@@ -1,6 +1,6 @@
 //package enginefiles;
 //
-//import coregamefiles.GameMap;
+//import coregamefiles.GameMapHashMap;
 //import music.Music;
 //
 //import java.util.ArrayList;
@@ -12,7 +12,7 @@
 //public class PlayMusic {
 ////    private String currentRoom;
 //
-////    private GameMap gameMap = new GameMap();
+////    private GameMapHashMap gameMap = new GameMapHashMap();
 //////    private HashMap<String, HashMap<String, String>> rooms;
 ////    public HashMap<String, HashMap<String, String>> rooms = new HashMap<>();
 ////

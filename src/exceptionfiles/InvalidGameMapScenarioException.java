@@ -11,14 +11,14 @@
 
 package exceptionfiles;
 
-public class InvalidMapScenarioException extends Exception {
+public class InvalidGameMapScenarioException extends Exception {
 
-    public InvalidMapScenarioException() {
+    public InvalidGameMapScenarioException() {
         super("There seems to be a problem with your map.\n" +
                 "Being that this is a haunted maze, looks like you'll have to find your own way!");
     }
 
-    public InvalidMapScenarioException(String message) {
+    public InvalidGameMapScenarioException(String message) {
         super(message);
     }
 }

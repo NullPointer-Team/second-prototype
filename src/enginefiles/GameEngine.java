@@ -23,6 +23,7 @@ import static coregamefiles.GameTextColors.*;
 
 
 public class GameEngine {
+    GameMapArtEngine gameEngine = new GameMapArtEngine();
 
     /************************
      ************************
@@ -36,7 +37,7 @@ public class GameEngine {
     private Integer guesses;
     private Boolean isPlayerMobile;
     private Scanner input;
-    private GameMap gameMap;
+    private GameMapHashMap gameMapHashMap;
     private Map<String, HashMap<String, String>> rooms;
 
 
@@ -49,8 +50,8 @@ public class GameEngine {
         gameOver = false;
         guesses = 3;
         isPlayerMobile = true;
-        gameMap = new GameMap();
-        rooms = gameMap.getRooms();
+        gameMapHashMap = new GameMapHashMap();
+        rooms = gameMapHashMap.getRooms();
         setCurrentRoom("Atrium");
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
@@ -68,6 +69,7 @@ public class GameEngine {
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
+            gameEngine.roomHasBeenVisited();
             showStatus();
             String[] moves = getUserCommand();
             validateAndExecuteUserCommand(moves);
@@ -76,6 +78,7 @@ public class GameEngine {
 
         terminateGame();
     }
+
 
     //did you done gone and done won? or is you dead, and is you done?
     public void checkIfGameOver() {
@@ -125,6 +128,9 @@ public class GameEngine {
                 break;
             case "hint":
                 printHint();
+                break;
+            case "map":
+                gameEngine.mapEngine();
                 break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");

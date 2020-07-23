@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GameMap {
+public class GameMapHashMap {
 
     // MAP
     private Map<String, HashMap<String, String>> rooms;
@@ -30,7 +30,7 @@ public class GameMap {
 
 
     //provide info for map
-    public GameMap() {
+    public GameMapHashMap() {
         HashMap<String, HashMap<String, String>> temporaryMap = new HashMap<>();
         instantiateIndividualRooms();
 
