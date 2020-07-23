@@ -155,12 +155,14 @@ public class Music {
         AudioInputStream ais = AudioSystem.getAudioInputStream(url);
         clip.open(ais);
         clip.loop(Clip.LOOP_CONTINUOUSLY);
+
         Timer timer = new Timer(8000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clip.close();
             }
         });
+
         timer.setRepeats(false);
         timer.start();
 

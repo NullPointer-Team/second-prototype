@@ -68,6 +68,7 @@ public class GameEngine {
 
         while (!gameOver) {
             showStatus();
+            //playMusicIfAvailable();
             solveChallengeOrExplore();
             checkIfGameOver();
         }
