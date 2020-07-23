@@ -127,7 +127,7 @@ public class PrintMapArtEngine {
     }
 
     public void setAtriumVisited(boolean atriumVisited) {
-        atriumVisited = atriumVisited;
+        this.atriumVisited = atriumVisited;
     }
 
     public boolean isBreakfastNookVisited() {
