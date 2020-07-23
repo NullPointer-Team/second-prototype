@@ -23,7 +23,8 @@ import static coregamefiles.GameTextColors.*;
 
 
 public class GameEngine {
-
+    //instantiate gameMapArtEngine
+    GameMapArtEngine gameMapArtEngine = new GameMapArtEngine();
     /************************
      ************************
      *THESE ARE OUR FIELDS
@@ -184,6 +185,9 @@ public class GameEngine {
             case "rules":
                 getRules();
                 break;
+            case "map":
+                gameMapArtEngine.mapEngine();
+                break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
         }
@@ -261,6 +265,9 @@ public class GameEngine {
                 break;
             case "rules":
                 getRules();
+                break;
+            case "map":
+                gameMapArtEngine.mapEngine();
                 break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
