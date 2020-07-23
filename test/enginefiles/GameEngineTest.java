@@ -120,7 +120,7 @@ class GameEngineTest {
 
 
     @Test
-    void testShowStatus() {
+    void testShowStatus_ChallengeInRoom() {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Panic Room");
         gameEngine.showStatus();
@@ -266,4 +266,157 @@ class GameEngineTest {
         gameEngine.setCurrentRoom("Laboratory");
         assertFalse(gameEngine.roomHasUnsolvedChallenge());
     }
+
+
+    @Test
+    void testValidateUseItem_NotInventory() {
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Menagerie");
+        ArrayList<String> inventory = new ArrayList<String>();
+        inventory.add("Sparkling Personality");
+        gameEngine.setInventory(inventory);
+
+        String itemNotInventory = "bazooka";
+        gameEngine.validateUseItem(itemNotInventory);
+        String expectedOutput = "You don\'t have that item in your inventory!\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testValidateUseItem_WrongRoom() {
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Laboratory");
+        ArrayList<String> inventory = new ArrayList<String>();
+        inventory.add("Winning Personality");
+        gameEngine.setInventory(inventory);
+
+        String itemInInventory = "Winning Personality";
+        gameEngine.validateUseItem(itemInInventory);
+        String expectedOutput = "There is nothing to use your Winning Personality on. Continue to explore the maze.\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testValidateUserChallengeSolution_Go() {
+        System.setOut(new PrintStream(outContent));
+        String[] go = {"go"};
+        gameEngine.validateUserChallengeSolution(go);
+        String expectedOutput = "You can't leave the room until you solve the challenge!\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testValidateUserChallengeSolution_UseCorrectItem() {
+        System.setOut(new PrintStream(outContent));
+        String[] useCorrectItem = {"use", "fighting skills"};
+        gameEngine.setCurrentRoom("Breakfast Nook");
+
+        gameEngine.validateUserChallengeSolution(useCorrectItem);
+        String expectedOutput = getAnsiGreen() +
+                "_____________________________________________________________\n" +
+                "                                                             \n" +
+                " ██████  ██████  ███████  █████  ████████                    \n" +
+                "██       ██   ██ ██      ██   ██    ██                       \n" +
+                "██   ███ ██████  █████   ███████    ██                       \n" +
+                "██    ██ ██   ██ ██      ██   ██    ██                       \n" +
+                " ██████  ██   ██ ███████ ██   ██    ██                       \n" +
+                "                                                             \n" +
+                "███████ ██    ██  ██████  ██████ ███████ ███████ ███████     \n" +
+                "██      ██    ██ ██      ██      ██      ██      ██          \n" +
+                "███████ ██    ██ ██      ██      █████   ███████ ███████     \n" +
+                "     ██ ██    ██ ██      ██      ██           ██      ██     \n" +
+                "███████  ██████   ██████  ██████ ███████ ███████ ███████     \n" +
+                "                                                             \n" +
+                "_____________________________________________________________\n" +
+                getAnsiReset() + "\nYou solved the challenge! Continue on your quest\n" +
+                " -------------------- \n" +
+                "You are in the Breakfast Nook\n" +
+                "You have " + getAnsiUnderscore() + getAnsiBold() + "nothing" + getAnsiReset() + " in your inventory\n" +
+                "For game rules, type \"rules\"\n" +
+                " -------------------- \n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testValidateUserChallengeSolution_UseInCorrectItemNotInInventory() {
+        System.setOut(new PrintStream(outContent));
+        String[] useWrongItem = {"use", "PowerPoint Skills"};
+        gameEngine.setCurrentRoom("Breakfast Nook");
+
+        gameEngine.validateUserChallengeSolution(useWrongItem);
+        String expectedOutput = "You don\'t even have PowerPoint Skills in your inventory to use!\n" +
+                "You have 2 guesses left. Try again!\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testValidateUserChallengeSolution_UseInCorrectItemNoEffect() {
+        System.setOut(new PrintStream(outContent));
+        String[] useWrongItem = {"use", "Perfect Attendance Record"};
+        gameEngine.setCurrentRoom("Breakfast Nook");
+        ArrayList<String> inventory = new ArrayList<String>();
+        inventory.add("Perfect Attendance Record");
+        gameEngine.setInventory(inventory);
+
+        gameEngine.validateUserChallengeSolution(useWrongItem);
+        String expectedOutput = "Using the Perfect Attendance Record has no effect!\n" +
+                "You have 2 guesses left. Try again!\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testValidateUserChallengeSolution_Get() {
+        System.setOut(new PrintStream(outContent));
+        String[] get = {"get"};
+        gameEngine.validateUserChallengeSolution(get);
+        String expectedOutput = "You can't acquire new items until you solve the challenge!\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testValidateUserChallengeSolution_DoNotUnderstand() {
+        System.setOut(new PrintStream(outContent));
+        String[] get = {"Snickers"};
+        gameEngine.validateUserChallengeSolution(get);
+        String expectedOutput = "I did not understand. Please re-enter your command.\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testValidateUserChallengeSolution_Rules() {
+        System.setOut(new PrintStream(outContent));
+        String[] get = {"rules"};
+        gameEngine.validateUserChallengeSolution(get);
+        String expectedOutput = getAnsiYellow() + "__________________________________________________________________________________\n" +
+                "         _         \n" +
+                " ___ _ _| |___ ___ \n" +
+                "|  _| | | | -_|_ -|\n" +
+                "|_| |___|_|___|___|\n" +
+                "__________________________________________________________________________________\n" +
+                getAnsiReset() +
+                "To navigate from room to room, type these commands:\n" +
+                "    \"go north\"\n" +
+                "    \"go south\"\n" +
+                "    \"go east\"\n" +
+                "    \"go west\"\n" +
+                "To retrieve items in a room, type 'get' followed by the name of the item, such as:\n" +
+                "    \"get wand\"\n" +
+                "       - or -   \n" +
+                "    \"get coin\"\n" +
+                "       - or -   \n" +
+                "    \"get 'insert name of some item in the room'\"\n" +
+                "To use an item in your inventory, type 'use' followed by the name of the item, such as:\n" +
+                "    \"use potion\"\n" +
+                "       - or -   \n" +
+                "    \"use sword\"\n" +
+                "To quit the game, type \"quit\"\n" +
+                getAnsiYellow() +
+                "__________________________________________________________________________________\n\n" +
+                "HINT: Grab all the resources you can. You will need them on your journey as challenges come your way.\n" +
+                "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!\n" +
+                "__________________________________________________________________________________\n\n"
+                + getAnsiReset() + "\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
 }
