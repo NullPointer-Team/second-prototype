@@ -65,9 +65,6 @@ public class GameMapArtEngine {
                 case "atrium":
                     setAtriumVisited(true);
                     break;
-                case "fire swamp":
-                    setFireSwampVisited(true);
-                    break;
                 case "breakfast nook":
                     setBreakfastNookVisited(true);
                     break;
