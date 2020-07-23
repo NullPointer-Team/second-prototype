@@ -71,7 +71,45 @@ public class GameMapArtEngine {
                 case "breakfast nook":
                     setBreakfastNookVisited(true);
                     break;
-                //KEEP ADDING CASES
+                case "menagerie":
+                    setMenagerieVisited(true);
+                    break;
+                case "conservator":
+                    setConservatoryVisited(true);
+                    break;
+                case "panic room":
+                    setPanicRoomVisited(true);
+                    break;
+                case "fire swamps":
+                    setFireSwampVisited(true);
+                    break;
+                case "hall":
+                    setHallVisited(true);
+                    break;
+                case "dining room":
+                    setDiningRoomVisited(true);
+                    break;
+                case "arcade":
+                    setArcadeVisited(true);
+                    break;
+                case "observatory":
+                    setObservatoryVisited(true);
+                    break;
+                case "courtyard":
+                    setCourtyardVisited(true);
+                    break;
+                case "library":
+                    setLibraryVisited(true);
+                    break;
+                case "garden":
+                    setGardenVisited(true);
+                    break;
+                case "laboratory":
+                    setLaboratoryVisited(true);
+                    break;
+                case "kitchen":
+                    setKitchenVisited(true);
+                    break;
                 default:
                     throw new InvalidGameMapScenarioException();
             }
