@@ -319,7 +319,7 @@ class GameEngineTest {
         gameEngine.setInventory(inventory);
 
         String itemNotInventory = "bazooka";
-        gameEngine.validateUseItem(itemNotInventory);
+        gameEngine.printCantUseItem(itemNotInventory);
         String expectedOutput = "You don\'t have that item in your inventory!\n";
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -333,7 +333,7 @@ class GameEngineTest {
         gameEngine.setInventory(inventory);
 
         String itemInInventory = "Winning Personality";
-        gameEngine.validateUseItem(itemInInventory);
+        gameEngine.printCantUseItem(itemInInventory);
         String expectedOutput = "There is nothing to use your Winning Personality on. Continue to explore the maze.\n";
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -370,14 +370,10 @@ class GameEngineTest {
                 "███████  ██████   ██████  ██████ ███████ ███████ ███████     \n" +
                 "                                                             \n" +
                 "_____________________________________________________________\n" +
-                getAnsiReset() + "\n\u001B[33m\u001B[1mYou really stuck it to that beetle! So glad it didn't burrow into your brain!\n" +
-                "Congrats on not dying!\u001B[0m\n" +
-                "You solved the challenge! Continue on your quest\n" +
-                " -------------------- \n" +
-                "You are in the Breakfast Nook\n" +
-                "You have " + getAnsiUnderscore() + getAnsiBold() + "nothing" + getAnsiReset() + " in your inventory\n" +
-                "For game rules, type \"rules\"\n" +
-                " -------------------- \n";
+                getAnsiReset() + "\n" +
+                getAnsiYellow() + getAnsiBold() +
+                "You really stuck it to that beetle! So glad it didn't burrow into your brain!\n" +
+                "Congrats on not dying!" + getAnsiReset() + "\nYou solved the challenge! Continue on your quest\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 

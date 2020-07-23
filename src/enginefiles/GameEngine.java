@@ -144,7 +144,6 @@ public class GameEngine {
             solveChallenge();
         } else {
             exploreRoom();
-            exploreRoom();
         }
     }
 
@@ -217,7 +216,6 @@ public class GameEngine {
         System.out.println("You solved the challenge! Continue on your quest");
         rooms.get(getCurrentRoom()).replace("solved", "true");
         setGuesses(3);
-        showStatus();
     }
 
     public void processFailedChallengeAttempt(String item) {
@@ -264,7 +262,7 @@ public class GameEngine {
                 acquireItem(commandArgument);
                 break;
             case "use":
-                validateUseItem(commandArgument);
+                printCantUseItem(commandArgument);
                 break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
@@ -307,7 +305,7 @@ public class GameEngine {
     }
 
     //this here fella uses an item or not
-    public void validateUseItem(String item) {
+    public void printCantUseItem(String item) {
         String outputString = isItemInInventory(item) ?
                 "There is nothing to use your " + item + " on. Continue to explore the maze." :
                 "You don\'t have that item in your inventory!";
@@ -328,7 +326,6 @@ public class GameEngine {
      ************************/
     //did you done gone and done won? or is you dead, and is you done?
     public void checkIfGameOver() {
-
         if (rooms.get("Kitchen").get("solved").equals("true")) {
             setGameWon();
             setGameOver();
@@ -363,7 +360,7 @@ public class GameEngine {
 
     /************************
      ************************
-     * PLAY MUSIC
+     * PLAY MUSIC IF AVAILABLE
      ************************
      ************************/
 // This url key comes from GamMap
