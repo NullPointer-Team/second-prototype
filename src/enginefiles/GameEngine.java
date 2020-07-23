@@ -23,7 +23,8 @@ import static coregamefiles.GameTextColors.*;
 
 
 public class GameEngine {
-
+    //instantiate gameMapArtEngine
+    GameMapArtEngine gameMapArtEngine = new GameMapArtEngine();
     /************************
      ************************
      *THESE ARE OUR FIELDS
@@ -67,6 +68,7 @@ public class GameEngine {
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
+            gameMapArtEngine.roomHasBeenVisited();
             showStatus();
             //playMusicIfAvailable();
             solveChallengeOrExplore();
@@ -142,6 +144,7 @@ public class GameEngine {
             solveChallenge();
         } else {
             exploreRoom();
+            exploreRoom();
         }
     }
 
@@ -183,6 +186,9 @@ public class GameEngine {
                 break;
             case "rules":
                 getRules();
+                break;
+            case "map":
+                gameMapArtEngine.mapEngine();
                 break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
@@ -261,6 +267,9 @@ public class GameEngine {
                 break;
             case "rules":
                 getRules();
+                break;
+            case "map":
+                gameMapArtEngine.mapEngine();
                 break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
@@ -383,6 +392,23 @@ public class GameEngine {
             Music.playMusicIfAvailable(urlToMusicFile);
         }
 
+    }
+
+    //print challenge congratulations
+    public void challengeCongrats() {
+        System.out.println(getAnsiYellow() + getAnsiBold() + rooms.get(getCurrentRoom()).get("praise") + getAnsiReset());
+    }
+
+    public void printHint() {
+        if (guesses < 3 && roomHasUnsolvedChallenge()) {
+            System.out.println(getAnsiBlue() + rooms.get(getCurrentRoom()).get("hint") + getAnsiReset());
+        }
+    }
+
+    public void hintPrompt() {
+        if (guesses < 3 && roomHasUnsolvedChallenge()) {
+            System.out.println(getAnsiBlue() + "Need a hint? try typing: \"hint\"" + getAnsiReset());
+        }
     }
 
     /************************
