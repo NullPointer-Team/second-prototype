@@ -18,6 +18,7 @@ public class PlayerSetup {
     private int lifeCount = 10;
     private static String name;
 
+
     /**
      * player setup business methods
      */
@@ -31,6 +32,7 @@ public class PlayerSetup {
         System.out.println("\nPlease enter your name: ");
         name = userInput.nextLine();
         System.out.println("Username has been set to: " + getName());
+
     }
 
     /**

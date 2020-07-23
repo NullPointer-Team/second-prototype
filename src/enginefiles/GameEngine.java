@@ -31,6 +31,9 @@ public class GameEngine {
      ************************/
     private String currentRoom;
     private ArrayList<String> inventory;
+    private ArrayList<String> userLocationTrack;
+    private ArrayList<String> userGetObject;
+    private ArrayList<String> userUsedObject;
     private Boolean gameOver;
     private Boolean gameWon;
     private Integer guesses;
@@ -38,6 +41,10 @@ public class GameEngine {
     private Scanner input;
     private GameMap gameMap;
     private Map<String, HashMap<String, String>> rooms;
+//    private String userLocationTrack[]  = {};
+
+//    private String userGetObject[]  = {};
+//    private String userUsedObject[]  = {};
 
 
     /************************
@@ -53,6 +60,9 @@ public class GameEngine {
         rooms = gameMap.getRooms();
         setCurrentRoom("Atrium");
         inventory = new ArrayList<String>();
+        userLocationTrack = new ArrayList<String>();
+        userGetObject = new ArrayList<String>();
+        userUsedObject= new ArrayList<String>();
         input = new Scanner(System.in);
     }
 
@@ -219,6 +229,7 @@ public class GameEngine {
     public void acquireItem(String commandArgument) {
         if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(commandArgument.toLowerCase())) {
             inventory.add(commandArgument);
+            inventory.add(userGetObject);
             rooms.get(currentRoom).remove("item");
             System.out.println(commandArgument + " acquired!!");
         } else {
