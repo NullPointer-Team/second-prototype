@@ -144,7 +144,6 @@ public class GameEngine {
             solveChallenge();
         } else {
             exploreRoom();
-            exploreRoom();
         }
     }
 
@@ -212,7 +211,6 @@ public class GameEngine {
         System.out.println("You solved the challenge! Continue on your quest");
         rooms.get(getCurrentRoom()).replace("solved", "true");
         setGuesses(3);
-        showStatus();
     }
 
     public void processFailedChallengeAttempt(String item) {
@@ -323,7 +321,6 @@ public class GameEngine {
      ************************/
     //did you done gone and done won? or is you dead, and is you done?
     public void checkIfGameOver() {
-
         if (rooms.get("Kitchen").get("solved").equals("true")) {
             setGameWon();
             setGameOver();

@@ -370,12 +370,7 @@ class GameEngineTest {
                 "███████  ██████   ██████  ██████ ███████ ███████ ███████     \n" +
                 "                                                             \n" +
                 "_____________________________________________________________\n" +
-                getAnsiReset() + "\nYou solved the challenge! Continue on your quest\n" +
-                " -------------------- \n" +
-                "You are in the Breakfast Nook\n" +
-                "You have " + getAnsiUnderscore() + getAnsiBold() + "nothing" + getAnsiReset() + " in your inventory\n" +
-                "For game rules, type \"rules\"\n" +
-                " -------------------- \n";
+                getAnsiReset() + "\nYou solved the challenge! Continue on your quest\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
