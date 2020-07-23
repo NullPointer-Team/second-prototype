@@ -102,22 +102,64 @@ class GameEngineTest {
     }
 
     @Test
-    void testValidateAndExecuteUserCommand_ValidInput() {
+    void testValidateAndExecuteUserCommand_Go() {
         System.setOut(new PrintStream(outContent));
         gameEngine.setCurrentRoom("Library");
         String[] valid_moveToNewRoom = {"go", "west"};
-        String[] valid_getNewItem = {"get", "Book of Spells"};
-        gameEngine.validateAndExecuteUserCommand(valid_getNewItem);
         gameEngine.validateAndExecuteUserCommand(valid_moveToNewRoom);
         String expectedRoom = "Garden";
+        assertEquals(gameEngine.getCurrentRoom(), expectedRoom);
+    }
+
+    @Test
+    void testValidateAndExecuteUserCommand_Get() {
+        System.setOut(new PrintStream(outContent));
+        gameEngine.setCurrentRoom("Library");
+        String[] valid_getNewItem = {"get", "Book of Spells"};
+        gameEngine.validateAndExecuteUserCommand(valid_getNewItem);
         String expectedOutput = "Book of Spells acquired!!\n";
         ArrayList<String> updatedInventory = gameEngine.getInventory();
-        assertEquals(gameEngine.getCurrentRoom(), expectedRoom);
         assertTrue(updatedInventory.contains("Book of Spells"));
         assertEquals(expectedOutput, outContent.toString());
         assertFalse(gameEngine.getCurrentRoom().contains("Book of Spells"));
     }
 
+    @Test
+    void testValidateAndExecuteUserCommand_Rules() {
+        System.setOut(new PrintStream(outContent));
+        String[] rules = {"rules"};
+        gameEngine.validateAndExecuteUserCommand(rules);
+        String expectedOutput = getAnsiYellow() + "__________________________________________________________________________________\n" +
+                "         _         \n" +
+                " ___ _ _| |___ ___ \n" +
+                "|  _| | | | -_|_ -|\n" +
+                "|_| |___|_|___|___|\n" +
+                "__________________________________________________________________________________\n" +
+                getAnsiReset() +
+                "To navigate from room to room, type these commands:\n" +
+                "    \"go north\"\n" +
+                "    \"go south\"\n" +
+                "    \"go east\"\n" +
+                "    \"go west\"\n" +
+                "To retrieve items in a room, type 'get' followed by the name of the item, such as:\n" +
+                "    \"get wand\"\n" +
+                "       - or -   \n" +
+                "    \"get coin\"\n" +
+                "       - or -   \n" +
+                "    \"get 'insert name of some item in the room'\"\n" +
+                "To use an item in your inventory, type 'use' followed by the name of the item, such as:\n" +
+                "    \"use potion\"\n" +
+                "       - or -   \n" +
+                "    \"use sword\"\n" +
+                "To quit the game, type \"quit\"\n" +
+                getAnsiYellow() +
+                "__________________________________________________________________________________\n\n" +
+                "HINT: Grab all the resources you can. You will need them on your journey as challenges come your way.\n" +
+                "Happy exploring, Strange Adventurer. Good luck in your quest to return to reality!\n" +
+                "__________________________________________________________________________________\n\n"
+                + getAnsiReset() + "\n";
+        assertEquals(expectedOutput, outContent.toString());
+    }
 
     @Test
     void testShowStatus_ChallengeInRoom() {
@@ -385,8 +427,8 @@ class GameEngineTest {
     @Test
     void testValidateUserChallengeSolution_Rules() {
         System.setOut(new PrintStream(outContent));
-        String[] get = {"rules"};
-        gameEngine.validateUserChallengeSolution(get);
+        String[] rules = {"rules"};
+        gameEngine.validateUserChallengeSolution(rules);
         String expectedOutput = getAnsiYellow() + "__________________________________________________________________________________\n" +
                 "         _         \n" +
                 " ___ _ _| |___ ___ \n" +
