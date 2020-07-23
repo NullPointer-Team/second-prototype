@@ -375,6 +375,15 @@ public class GameEngine {
     }
 }
 
+    public void playMusicIfAvailable() throws Exception {
+
+        if (rooms.get(getCurrentRoom()).containsKey("url")) {
+            String urlToMusicFile = rooms.get(getCurrentRoom()).get("url");
+            Music.playMusicIfAvailable(urlToMusicFile);
+        }
+
+    }
+
     /************************
      ************************
      * GETTERS & SETTERS
