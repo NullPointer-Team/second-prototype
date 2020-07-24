@@ -14,10 +14,7 @@ package enginefiles;
 import coregamefiles.*;
 import music.Music;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 import static coregamefiles.GameTextColors.*;
 
@@ -38,6 +35,8 @@ public class GameEngine {
     private Scanner input;
     private GameMapHashMap gameMapHashMap;
     private Map<String, HashMap<String, String>> rooms;
+    private DisplayMap displayMap;
+    private Set<String> roomsVisited;
 
 
     /************************
@@ -50,10 +49,11 @@ public class GameEngine {
         guesses = 3;
         gameMapHashMap = new GameMapHashMap();
         rooms = gameMapHashMap.getRooms();
-        setCurrentRoom("Atrium");
         inventory = new ArrayList<String>();
         input = new Scanner(System.in);
-
+        displayMap = new DisplayMap();
+        roomsVisited = new HashSet<String>();
+        setCurrentRoom("Atrium");
     }
 
 
@@ -279,7 +279,7 @@ public class GameEngine {
                 showStatus();
                 break;
             case "map":
-                gameMapArtEngine.mapEngine();
+                printMap();
                 break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
@@ -332,6 +332,12 @@ public class GameEngine {
     public void executeSecretCommand() {
         setCurrentRoom(rooms.get(currentRoom).get("secret"));
         System.out.println("Good job!! You successfully used the Secret Passage. Don\'t tell anyone else about it.");
+    }
+
+    public void printMap() {
+        String[] blankArray = new String[roomsVisited.size()];
+        String[] roomsVisitedArray = roomsVisited.toArray(blankArray);
+        displayMap.printMap(Arrays.asList(roomsVisitedArray));
     }
 
     //do you have it in your satchel?
@@ -452,6 +458,7 @@ public class GameEngine {
     //gotta set the new room somehow
     public void setCurrentRoom(String currentRoom)  {
         GameEngine.currentRoom = currentRoom;
+        roomsVisited.add(currentRoom);
     }
 
     //getchyo inventory
