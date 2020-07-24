@@ -98,8 +98,8 @@ public class GameMapHashMap {
         conservatory.put("south", "Arcade");
         conservatory.put("east", "Panic Room");
         conservatory.put("challenge", "Quick Sand");
-        conservatory.put("solution", "Rope");
         conservatory.put("hint", "HINT: How would Indiana Jones get out this one? Maybe you don't have a whip, but...");
+        conservatory.put("praise", "Way to go! You looked like George of the Jungle swinging around on that rope.");
         conservatory.put("solution", "Rope");
         conservatory.put("solved", "false");
 
