@@ -9,7 +9,7 @@ The project was conducted utilizing agile methodoly and SCRUM, with direct feedb
 ## Screenshots
 
 <b>Menu Logo</b>
-![Image of Menu Logo](https://github.com/NullPointer-Team/second-prototype/blob/master/src/images/menu_logo.png)
+![Image of Menu Logo](https://github.com/NullPointer-Team/second-prototype/blob/bruce-dev/src/images/menu_logo.png)
 
 <b>Game Play</b>
 ![Image of Menu Logo](https://github.com/NullPointer-Team/second-prototype/blob/master/src/images/game_play.png)
