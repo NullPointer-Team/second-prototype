@@ -7,19 +7,19 @@ This project was created by a team of three newbie software development engineer
 The project was conducted utilizing agile methodoly and SCRUM, with direct feedback from the "product owner," aka: the instructor. As of writing this README, this work was completed by a team of three developers over two 3-day sprints. It's not pretty, and it's not practical, but it works.
 
 ## Screenshots
-######Menu Logo
+**Menu Logo
 ![Image of Menu Logo]
 (https://github.com/NullPointer-Team/second-prototype/blob/master/src/images/menu_logo.png)
 
-######Game Play
+**Game Play
 ![Image of Menu Logo]
 (https://github.com/NullPointer-Team/second-prototype/blob/master/src/images/game_play.png)
 
-######Project Structure
+**Project Structure
 ![Image of Project Files/Directories]
 (https://github.com/NullPointer-Team/second-prototype/blob/master/src/images/project_structure.png)
 
-######Unit Testing
+**Unit Testing
 ![Image of Passing Unit Testing]
 (https://github.com/NullPointer-Team/second-prototype/blob/master/src/images/passing_tests.png)
 
