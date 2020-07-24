@@ -93,9 +93,9 @@ public class GameMapArtEngine  {
                 case "MAP_SEVENTEEN":
                     GameMapArt.map17();
                     break;
-//                case "MAP_EIGHTEEN":
-//                    GameMapArt.map18();
-//                    break;
+                case "MAP_EIGHTEEN":
+                    GameMapArt.map18();
+                    break;
 //                case "MAP_NINETEEN":
 //                    GameMapArt.map19();
 //                    break;
