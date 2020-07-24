@@ -43,6 +43,6 @@ Let people know how they can contribute into your project. A [contributing guide
 Credit to TLG Learning for pushing us through this. Props to Rennie Araucto for your guidance. And much appreciation to AWS for keeping the lights on during the pandemic. 
 
 ## License
-MIT licensing
+[MIT licensing](https://github.com/NullPointer-Team/second-prototype/blob/master/MIT.txt)
 
 MIT © [NullPointer-Team](https://github.com/NullPointer-Team)
