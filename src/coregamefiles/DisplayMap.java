@@ -10,9 +10,6 @@ import static coregamefiles.GameTextColors.*;
 
 public class DisplayMap {
 
-    private List<String> map;
-    private List<List<String>> twoDimensionalMap;
-    private List<String> rowOne;
     private final List<String> standardRoomList = new ArrayList<String>(Arrays.asList(
             "Panic Room",
             "Atrium",
@@ -30,7 +27,7 @@ public class DisplayMap {
             "Garden",
             "Library"));
 
-    public static List<String> formattedRoomList = new ArrayList<String>(Arrays.asList(
+    private final List<String> formattedRoomList = new ArrayList<String>(Arrays.asList(
                     "   Panic Room   ",
                     "     Atrium     ",
                     " Breakfast Nook ",
@@ -58,8 +55,8 @@ public class DisplayMap {
 
 
     public void printMap(List<String> visitedRooms) {
-        List<String> filteredArray = new ArrayList<String>();
 
+        List<String> filteredArray = new ArrayList<String>();
 
          for (int i = 0; i < 15; i++) {
             String formattedVisitedRoom = visitedRooms.contains(standardRoomList.get(i)) ? formattedRoomList.get(i) : "hidden";
@@ -69,8 +66,6 @@ public class DisplayMap {
         String[] modifiedArray = filteredArray.toArray(new String[0]);
         printFilteredRoomArray(modifiedArray);
     }
-
-
 
 
     public void printFilteredRoomArray(String[] filteredRoomList) {
@@ -141,9 +136,6 @@ public class DisplayMap {
             i++;
         }
     }
-
-
-
 
     public void printLastRow(List<String> lastRow) {
         int i=1;
