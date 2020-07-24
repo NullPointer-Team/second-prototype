@@ -236,54 +236,156 @@ public class GameMapArtEngine  {
         }
         if ((isBreakfastNookVisited()) &&
                 (isFireSwampVisited()) &&
-                (isHallVisited())) {
+                (isMenagerieVisited())) {
             mapArtConditionEnum = MAP_NINE;
+        }
+        if ((isBreakfastNookVisited()) &&
+                (isFireSwampVisited()) &&
+                (isHallVisited())) {
+            mapArtConditionEnum = MAP_TEN;
         }
         if ((isBreakfastNookVisited()) &&
                 (isFireSwampVisited()) &&
                 (isHallVisited()) &&
                 (isDiningRoomVisited())) {
-            mapArtConditionEnum = MAP_TEN;
+            mapArtConditionEnum = MAP_ELEVEN;
         }
         if ((isBreakfastNookVisited()) &&
                 (isMenagerieVisited()) &&
                 (isDiningRoomVisited()) &&
                 (isHallVisited())) {
-            mapArtConditionEnum = MAP_ELEVEN;
+            mapArtConditionEnum = MAP_TWELVE;
         }
         if ((isBreakfastNookVisited()) &&
                 (isFireSwampVisited()) &&
                 (isHallVisited()) &&
                 (isMenagerieVisited()) &&
                 (isDiningRoomVisited())) {
-            mapArtConditionEnum = MAP_TWELVE;
+            mapArtConditionEnum = MAP_THIRTEEN;
         }
         if ((isBreakfastNookVisited()) &&
                 (isMenagerieVisited()) &&
                 (isDiningRoomVisited()) &&
                 (isArcadeVisited())) {
-            mapArtConditionEnum = MAP_THIRTEEN;
+            mapArtConditionEnum = MAP_FOURTEEN;
         }
         if ((isFireSwampVisited()) &&
                 (isHallVisited()) &&
                 (isDiningRoomVisited()) &&
                 (isArcadeVisited())) {
-            mapArtConditionEnum = MAP_FOURTEEN;
+            mapArtConditionEnum = MAP_FIFTEEN;
         }
         if ((isBreakfastNookVisited()) &&
                 (isMenagerieVisited()) &&
                 (isDiningRoomVisited()) &&
                 (isHallVisited()) &&
                 (isArcadeVisited())) {
-            mapArtConditionEnum = MAP_FIFTEEN;
+            mapArtConditionEnum = MAP_SIXTEEN;
         }
         if ((isBreakfastNookVisited()) &&
                 (isFireSwampVisited()) &&
                 (isHallVisited()) &&
                 (isDiningRoomVisited()) &&
                 (isArcadeVisited())) {
-            mapArtConditionEnum = MAP_SIXTEEN;
+            mapArtConditionEnum = MAP_SEVENTEEN;
         }
+        if ((isBreakfastNookVisited()) &&
+                (isFireSwampVisited()) &&
+                (isMenagerieVisited()) &&
+                (isHallVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isArcadeVisited())) {
+            mapArtConditionEnum = MAP_EIGHTEEN;
+        }
+        if ((isBreakfastNookVisited()) &&
+                (isMenagerieVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isHallVisited()) &&
+                (isArcadeVisited()) &&
+                (isObservatoryVisited())) {
+            mapArtConditionEnum = MAP_NINETEEN;
+        }
+        if ((isBreakfastNookVisited()) &&
+                (isMenagerieVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isHallVisited()) &&
+                (isArcadeVisited()) &&
+                (isConservatoryVisited())) {
+            mapArtConditionEnum = MAP_TWENTY;
+        }
+        if ((isFireSwampVisited()) &&
+                (isHallVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isArcadeVisited()) &&
+                (isObservatoryVisited())) {
+            mapArtConditionEnum = MAP_TWENTY_ONE;
+        }
+        if ((isFireSwampVisited()) &&
+                (isHallVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isArcadeVisited()) &&
+                (isConservatoryVisited())) {
+            mapArtConditionEnum = MAP_TWENTY_TWO;
+        }
+        if ((isBreakfastNookVisited()) &&
+                (isFireSwampVisited()) &&
+                (isMenagerieVisited()) &&
+                (isHallVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isArcadeVisited())) {
+            mapArtConditionEnum = MAP_TWENTY_THREE;
+        }
+        if ((isBreakfastNookVisited()) &&
+                (isMenagerieVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isHallVisited()) &&
+                (isArcadeVisited()) &&
+                (isObservatoryVisited()) &&
+                (isConservatoryVisited())) {
+            mapArtConditionEnum = MAP_TWENTY_FOUR;
+        }
+        if ((isFireSwampVisited()) &&
+                (isHallVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isMenagerieVisited())) {
+            mapArtConditionEnum = MAP_TWENTY_FIVE;
+        }
+        if ((isFireSwampVisited()) &&
+                (isHallVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isMenagerieVisited())) {
+            mapArtConditionEnum = MAP_TWENTY_FIVE;
+        }
+        if ((isFireSwampVisited()) &&
+                (isBreakfastNookVisited()) &&
+                (isMenagerieVisited()) &&
+                (isDiningRoomVisited())) {
+            mapArtConditionEnum = MAP_TWENTY_SIX;
+        }
+        if ((isFireSwampVisited()) &&
+                (isBreakfastNookVisited()) &&
+                (isMenagerieVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isArcadeVisited())) {
+            mapArtConditionEnum = MAP_TWENTY_SEVEN;
+        }
+        if ((isFireSwampVisited()) &&
+                (isHallVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isMenagerieVisited()) &&
+                (isArcadeVisited())) {
+            mapArtConditionEnum = MAP_TWENTY_EIGHT;
+        }
+        if ((isBreakfastNookVisited()) &&
+                (isMenagerieVisited()) &&
+                (isDiningRoomVisited()) &&
+                (isHallVisited()) &&
+                (isArcadeVisited()) &&
+                (isObservatoryVisited()) &&
+                (isConservatoryVisited())) {
+            mapArtConditionEnum = MAP_TWENTY_NINE;
+        }
+
         return String.valueOf(mapArtConditionEnum);
     }
 
