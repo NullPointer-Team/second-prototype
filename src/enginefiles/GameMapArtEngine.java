@@ -96,12 +96,39 @@ public class GameMapArtEngine  {
                 case "MAP_EIGHTEEN":
                     GameMapArt.map18();
                     break;
-//                case "MAP_NINETEEN":
-//                    GameMapArt.map19();
-//                    break;
-//                case "MAP_TWENTY":
-//                    GameMapArt.map20();
-//                    break;
+                case "MAP_NINETEEN":
+                    GameMapArt.map19();
+                    break;
+                case "MAP_TWENTY":
+                    GameMapArt.map20();
+                    break;
+                case "MAP_TWENTY_ONE":
+                    GameMapArt.map21();
+                    break;
+                case "MAP_TWENTY_TWO":
+                    GameMapArt.map22();
+                    break;
+                case "MAP_TWENTY_THREE":
+                    GameMapArt.map23();
+                    break;
+                case "MAP_TWENTY_FOUR":
+                    GameMapArt.map24();
+                    break;
+                case "MAP_TWENTY_FIVE":
+                    GameMapArt.map25();
+                    break;
+                case "MAP_TWENTY_SIX":
+                    GameMapArt.map26();
+                    break;
+                case "MAP_TWENTY_SEVEN":
+                    GameMapArt.map27();
+                    break;
+                case "MAP_TWENTY_EIGHT":
+                    GameMapArt.map28();
+                    break;
+                case "MAP_TWENTY_NINE":
+                    GameMapArt.map29();
+                    break;
                 default:
                     throw new InvalidGameMapScenarioException();
             }
@@ -385,7 +412,6 @@ public class GameMapArtEngine  {
                 (isConservatoryVisited())) {
             mapArtConditionEnum = MAP_TWENTY_NINE;
         }
-
         return String.valueOf(mapArtConditionEnum);
     }
 
