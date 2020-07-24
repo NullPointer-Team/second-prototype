@@ -28,23 +28,23 @@ public class DisplayMap {
             "Library"));
 
     private final List<String> formattedRoomList = new ArrayList<String>(Arrays.asList(
-                    "   Panic Room   ",
-                    "     Atrium     ",
-                    " Breakfast Nook ",
-                    "    Menagerie   ",
-                    "  Conservatory  ",
+                    "       Panic Room       ",
+                    "         Atrium         ",
+                    "     Breakfast Nook     ",
+                    "        Menagerie       ",
+                    "      Conservatory      ",
 
-                    "   Observatory  ",
-                    "   Fire Swamps  ",
-                    "      Hall      ",
-                    "   Dining Room  ",
-                    "     Arcade     ",
+                    "       Observatory      ",
+                    "       Fire Swamps      ",
+                    "          Hall          ",
+                    "       Dining Room      ",
+                    "         Arcade         ",
 
-                    "    Courtyard   ",
-                    "     Kitchen    ",
-                    "   Laboratory   ",
-                    "     Garden     ",
-                    "     Library    "));
+                    "        Courtyard       ",
+                    "         Kitchen        ",
+                    "       Laboratory       ",
+                    "         Garden         ",
+                    "         Library        "));
 
     private final String newLine = "\n";
     private final String sideBar = "|";
@@ -93,7 +93,7 @@ public class DisplayMap {
             if (i < 6) { buildNormalString = buildNormalString + twentyDashes; }
 
             // create middle Name Plate
-            else if ((i > 15) && (i < 21)) { buildNormalString =  printDiscoveredRow_Name(roomName); }
+            else if ((i > 15) && (i < 21)) { buildNormalString =  roomName; }
 
             // create empty space
             else { buildNormalString = buildNormalString + twentySpaces; }
@@ -161,11 +161,6 @@ public class DisplayMap {
             if (i % 5 == 0 ) System.out.printf(newLine);
             i++;
         }
-    }
-
-
-    private String printDiscoveredRow_Name(String roomName) {
-        return "    " + roomName + "    ";
     }
 
             /*
