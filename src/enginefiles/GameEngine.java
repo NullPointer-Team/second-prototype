@@ -20,13 +20,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 import static coregamefiles.GameTextColors.*;
-import coregamefiles.RoomVisitTrackingEngine;
 
 
 public class GameEngine {
     //instantiate gameMapArtEngine
     GameMapArtEngine gameMapArtEngine = new GameMapArtEngine();
-    RoomVisitTrackingEngine gameMapWhichRoomIsVisited = new RoomVisitTrackingEngine();
 
     /************************
      ************************
@@ -71,7 +69,7 @@ public class GameEngine {
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
-            gameMapWhichRoomIsVisited.roomHasBeenVisited();
+            gameMapArtEngine.roomHasBeenVisited();
             showStatus();
             //playMusicIfAvailable();
             solveChallengeOrExplore();
