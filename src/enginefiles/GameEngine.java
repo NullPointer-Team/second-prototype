@@ -332,6 +332,7 @@ public class GameEngine {
 
     public void executeSecretCommand() {
         setCurrentRoom(rooms.get(currentRoom).get("secret"));
+        System.out.println("Good job!! You successfully used the Secret Passage. Don\'t tell anyone else about it.");
     }
 
     //do you have it in your satchel?
