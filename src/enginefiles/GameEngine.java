@@ -25,6 +25,7 @@ import static coregamefiles.GameTextColors.*;
 public class GameEngine {
     //instantiate gameMapArtEngine
     GameMapArtEngine gameMapArtEngine = new GameMapArtEngine();
+
     /************************
      ************************
      *THESE ARE OUR FIELDS
