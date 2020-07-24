@@ -3,6 +3,7 @@ package coregamefiles;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static coregamefiles.GameTextColors.*;
 
@@ -12,6 +13,7 @@ public class DisplayMap {
     private List<String> map;
     private List<List<String>> twoDimensionalMap;
     private List<String> rowOne;
+    private String[] sortedRooms;
 
 
     private String atrium;
@@ -32,10 +34,12 @@ public class DisplayMap {
     private String library;
     private String courtyard;
 
+    private String hidden;
+
     private final String newLine = "\n";
     private final String sideBar = "|";
     private final String twentySpaces = "                        ";
-    private final String twentyGreen = "████████████████████";
+    private final String twentyGreen = "█████████████████████████";
     private final String twentyDashes = "----------------------- ";
     private final String singleSpace = " ";
 
@@ -58,7 +62,10 @@ public class DisplayMap {
         library = "     Library    ";
         courtyard = "    Courtyard   ";
 
-        map = Arrays.asList(new String[]{atrium, nook, menagerie, conservatory, panicRoom, fireSwamps, hall, diningRoom, arcade, observatory, kitchen, laboratory, garden, library, courtyard});
+
+        sortedRooms = new String[]{"   Panic Room   ", "     Atrium     ", " Breakfast Nook ", "    Menagerie   ", "  Conservatory  ",
+                "   Observatory  ", "   Fire Swamps  ", "      Hall      ", "   Dining Room  ", "     Arcade     ",
+                "    Courtyard   ", "     Kitchen    ", "   Laboratory   ", "     Garden     ", "     Library    "};
 
         rowOne = Arrays.asList(panicRoom, atrium, nook, menagerie, conservatory);
         List<String> rowTwo = Arrays.asList(observatory, fireSwamps, hall, diningRoom, arcade);
@@ -72,28 +79,46 @@ public class DisplayMap {
     }
 
 
-    public void printEntireMap() {
+
+
+
+    public void testprintEntireMap() {
         int i = 0;
-        while (i < 3) {
-            printRow(twoDimensionalMap.get(i));
-            i++;
+        String[] subarray;
+        System.out.println(getAnsiGreen());
+        while (i < 11) {
+            subarray = Arrays.asList(sortedRooms).subList(i, i+5).toArray(new String[0]);
+            testprintRow(subarray);
+            i+=5;
         }
+        testPrintBottomBorder(Arrays.asList(sortedRooms).subList(10, 15).toArray(new String[0]));
+
+        System.out.println(getAnsiReset());
     }
 
-    public void printRow(List<String> rowOfRooms) {
+    public void testprintRow(String[] rowOfRooms) {
         int i = 1;
         while (i < 31) {
-            String returnValue = "";
+            String buildNormalString = "";
             int remainder = i % 5;
-            if (i < 6) { returnValue = returnValue + twentyDashes; }
+            String roomName = rowOfRooms[remainder];
 
-            else if ((i > 15) && (i < 21)) { returnValue =  printDiscoveredRow_Name(rowOfRooms.get(remainder)); }
+            //create Top Border
+            if (i < 6) { buildNormalString = buildNormalString + twentyDashes; }
 
-            else { returnValue = returnValue + twentySpaces; }
+            // create middle Name Plate
+            else if ((i > 15) && (i < 21)) { buildNormalString =  printDiscoveredRow_Name(roomName); }
 
-            if (remainder == 0) { returnValue = returnValue + sideBar + newLine; }
+            // create empty space
+            else { buildNormalString = buildNormalString + twentySpaces; }
 
-            if (remainder < 5 ) { returnValue = sideBar + returnValue; }
+            // add side bar and start new line when reach the end
+            if (remainder == 0) { buildNormalString = buildNormalString + sideBar + newLine; }
+
+            // add a Left Side Bar to everything
+            buildNormalString = sideBar + buildNormalString;
+
+            String returnValue = roomName.trim().equals("hidden") ? twentyGreen: buildNormalString;
 
             System.out.printf(returnValue);
 
@@ -101,6 +126,43 @@ public class DisplayMap {
         }
     }
 
+
+    public void testPrintBottomBorder(String[] lastRow) {
+        int i=1;
+        while (i < 6) {
+            int remainder = i % 5;
+            String roomName = lastRow[remainder];
+            String buildNormalString = "";
+            //int remainder = i % 5;
+            buildNormalString = buildNormalString + sideBar + twentyDashes;
+
+            if (i==5) buildNormalString = buildNormalString + sideBar;
+
+            String returnValue = roomName.trim().equals("hidden") ? twentyGreen: buildNormalString;
+
+            System.out.printf(returnValue);
+
+            i++;
+        }
+    }
+
+
+
+
+    public void printLastRow(List<String> lastRow) {
+        int i=1;
+        while (i < 6) {
+            String returnValue = "";
+            //int remainder = i % 5;
+            returnValue = returnValue + sideBar + twentyDashes;
+
+            if (i==5) returnValue = returnValue + sideBar;
+
+            System.out.printf(returnValue);
+
+            i++;
+        }
+    }
 
 
     public void testMath() {
@@ -133,7 +195,35 @@ public class DisplayMap {
         }
     }
 
+    public void printEntireMap() {
+        int i = 0;
+        while (i < 3) {
+            printRow(twoDimensionalMap.get(i));
+            i++;
+        }
+        printLastRow(twoDimensionalMap.get(2));
+    }
 
+    public void printRow(List<String> rowOfRooms) {
+        int i = 1;
+        while (i < 31) {
+            String returnValue = "";
+            int remainder = i % 5;
+            if (i < 6) { returnValue = returnValue + twentyDashes; }
+
+            else if ((i > 15) && (i < 21)) { returnValue =  printDiscoveredRow_Name(rowOfRooms.get(remainder)); }
+
+            else { returnValue = returnValue + twentySpaces; }
+
+            if (remainder == 0) { returnValue = returnValue + sideBar + newLine; }
+
+            if (remainder < 5 ) { returnValue = sideBar + returnValue; }
+
+            System.out.printf(returnValue);
+
+            i++;
+        }
+    }
 
     private String printDiscoveredRow_Name(String roomName) {
         return "    " + roomName + "    ";

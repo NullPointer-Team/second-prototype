@@ -9,9 +9,7 @@ public class Main {
         //GameMenu gameMenu = new GameMenu();
         //gameMenu.startGame();
         DisplayMap displayMap = new DisplayMap();
-        //displayMap.displayMapNames();
-        displayMap.testMath();
-        displayMap.printEntireMap();
+        displayMap.testprintEntireMap();
     }
 
 
