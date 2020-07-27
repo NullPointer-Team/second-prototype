@@ -291,6 +291,7 @@ public class GameEngine {
     public void moveToRoom(String command) {
         if (rooms.get(getCurrentRoom()).containsKey(command.toLowerCase())) {
             setCurrentRoom(rooms.get(currentRoom).get(command));
+            // This will calll Start Timer method
             CountdownTimer time = new CountdownTimer();
             time.startTimer();
 
@@ -304,7 +305,7 @@ public class GameEngine {
         if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(item.toLowerCase())) {
             inventory.add(item);
             // My logic is now User has track of which inventory they have
-            userLocationTrack.add(item);
+//            userLocationTrack.add(item);
             rooms.get(currentRoom).remove("item");
             System.out.println(item + " acquired!!");
         } else {

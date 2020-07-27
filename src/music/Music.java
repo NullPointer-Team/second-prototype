@@ -109,7 +109,7 @@ public class Music {
 
     }
     public static void loseMusic() throws Exception {
-        //when user/Gamer enter in garden relex music will play
+        //when user/Gamer loose game , teasing music will play
         URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_CartoonHeadShake_4003_18_1.wav");
         Clip clip = AudioSystem.getClip();
 

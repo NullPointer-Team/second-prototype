@@ -27,22 +27,27 @@ public class CountdownTimer {
 ////                System.out.println("------------Your are running out of time----------------");
 //
 //            }
-             if (second >1 ){
-//                System.out.println("-----------Oops!!!! Time out----------");
+
 
                 try {
-                    game.setGameOver();
+                    //My logic is if less than 1 sec game will be over
+                    if (second <1 ) {
+//                System.out.println("-----------Oops!!!! Time out----------");
+                        game.terminateGame();
+                    }
+//
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 System.exit(0);
-            }
+
 
         }
     };
 
     public void startTimer(){
+
         time.scheduleAtFixedRate(task,1000,1000);
 
     }
