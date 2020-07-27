@@ -53,6 +53,7 @@ public class DisplayMap {
     private final String twentyDashes = "------------------";
     private final String twoSpaces = "  ";
     private final String singleSpace = " ";
+    private final String title = "    MAP    ";
 
 
     public void printMap(List<String> visitedRooms) {
@@ -83,6 +84,7 @@ public class DisplayMap {
     public void printFilteredRoomArray(String[] filteredRoomList) {
         int i = 0;
         System.out.println(getAnsiYellow());
+        System.out.println(title);
         //printMapTitle();
 
         while (i < 11) {

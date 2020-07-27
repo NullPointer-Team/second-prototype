@@ -70,7 +70,7 @@ public class GameEngine {
 
         while (!gameOver) {
 
-            showStatus();
+            showStatus_Horizontal();
             //playMusicIfAvailable();
             solveChallengeOrExplore();
             checkIfGameOver();
@@ -94,6 +94,13 @@ public class GameEngine {
         showInventory();
         System.out.println("For game rules, type \"rules\"");
         System.out.println(" -------------------- ");
+    }
+
+    void showStatus_Horizontal() {
+        System.out.println(" -------------------- ");
+        System.out.println("You are in the "+ getCurrentRoom());
+        listItemIfAvailable();
+        listChallengeIfAny();
     }
 
     //this little guy tells you when there's an item in the room
@@ -181,6 +188,9 @@ public class GameEngine {
             case "escape":
                 //method that returns them to previous room?
                 break;
+            case "inventory":
+                showInventory();
+                break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
                 gameMenu.startGame();
@@ -265,6 +275,9 @@ public class GameEngine {
                 break;
             case "use":
                 printCantUseItem(commandArgument);
+                break;
+            case "inventory":
+                showInventory();
                 break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
