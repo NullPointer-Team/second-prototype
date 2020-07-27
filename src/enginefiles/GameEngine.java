@@ -70,7 +70,7 @@ public class GameEngine {
 
         while (!gameOver) {
 
-            showStatus_Horizontal();
+            showStatus();
             //playMusicIfAvailable();
             solveChallengeOrExplore();
             checkIfGameOver();
