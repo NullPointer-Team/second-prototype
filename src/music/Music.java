@@ -43,7 +43,7 @@ public class Music {
         SwingUtilities.invokeLater(() -> {
             // Pop up will  display to user what user supposed to do.
 
-            JOptionPane.showMessageDialog(null, "You are in " + room + " Welcome to Adventure!!!!");
+            JOptionPane.showMessageDialog(null,  " Welcome to Adventure Game!!!!");
         });
 
     }

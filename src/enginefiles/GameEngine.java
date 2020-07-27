@@ -4,6 +4,7 @@ package enginefiles;
 
 import coregamefiles.*;
 import music.Music;
+import timer.CountdownTimer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +17,8 @@ import static coregamefiles.GameTextColors.*;
 public class GameEngine {
     //instantiate gameMapArtEngine
     GameMapArtEngine gameMapArtEngine = new GameMapArtEngine();
-    TrackingEngine track = new TrackingEngine();
+//    CountdownTimer time = new CountdownTimer();
+//    TrackingEngine track = new TrackingEngine();
     /************************
      ************************
      *THESE ARE OUR FIELDS
@@ -256,6 +258,7 @@ public class GameEngine {
         switch(command) {
             case "go":
                 moveToRoom(commandArgument);
+
                 break;
             case "get":
                 acquireItem(commandArgument);
@@ -272,6 +275,7 @@ public class GameEngine {
                 break;
             case "map":
                 gameMapArtEngine.mapEngine();
+
                 break;
             default:
                 System.out.println("I did not understand. Please re-enter your command.");
@@ -287,6 +291,9 @@ public class GameEngine {
     public void moveToRoom(String command) {
         if (rooms.get(getCurrentRoom()).containsKey(command.toLowerCase())) {
             setCurrentRoom(rooms.get(currentRoom).get(command));
+            CountdownTimer time = new CountdownTimer();
+            time.startTimer();
+
         } else {
             System.out.println("You can't go that way!");
         }
@@ -296,13 +303,15 @@ public class GameEngine {
     public void acquireItem(String item) {
         if (rooms.get(getCurrentRoom()).get("item").toLowerCase().equals(item.toLowerCase())) {
             inventory.add(item);
-//            userLocationTrack.add(inventory);
+            // My logic is now User has track of which inventory they have
+            userLocationTrack.add(item);
             rooms.get(currentRoom).remove("item");
             System.out.println(item + " acquired!!");
         } else {
             System.out.println("A " + item + " is not available in this room!");
         }
     }
+
 
     //this here fella uses an item or not
     public void printCantUseItem(String item) {
@@ -353,7 +362,8 @@ public class GameEngine {
         } else {
             WinLoseTextArt.loseArt();
             //Method will display how many room is visited currently not working
-            track.userVisited();
+//            GameMapArtEngine.roomHasBeenVisited();
+//            track.userVisited();
             //If user lose, teasing music will be played
 
             Music.loseMusic();
@@ -395,6 +405,7 @@ public class GameEngine {
 
         if (rooms.get(getCurrentRoom()).containsKey("url")) {
             String urlToMusicFile = rooms.get(getCurrentRoom()).get("url");
+
             Music.playMusicIfAvailable(urlToMusicFile);
         }
 

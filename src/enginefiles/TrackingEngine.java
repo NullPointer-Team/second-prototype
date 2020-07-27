@@ -12,6 +12,7 @@ import java.util.Map;
 import static coregamefiles.GameMapArtConditionEnum.*;
 
 public class TrackingEngine {
+    GameEngine game = new GameEngine();
     /************************
      ************************
      *THESE ARE OUR FIELDS
@@ -115,6 +116,7 @@ public class TrackingEngine {
                     break;
                 default:
                     throw new InvalidGameMapScenarioException();
+
             }
         } catch (InvalidGameMapScenarioException e) {
             System.out.println(e.getMessage());
@@ -129,8 +131,11 @@ public class TrackingEngine {
                 System.out.println("You have visited "+userLocation);
 
             }
+//            game.showInventory();
+
 
         }
+
     }
 
 
