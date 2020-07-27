@@ -69,7 +69,7 @@ public class GameEngine {
         GameIntroduction.gameInformation();
 
         while (!gameOver) {
-            gameMapArtEngine.roomHasBeenVisited();
+
             showStatus();
             //playMusicIfAvailable();
             solveChallengeOrExplore();
@@ -248,7 +248,7 @@ public class GameEngine {
             System.out.println("What do you want to do?");
             command = input.nextLine().trim();
         }
-
+        clearConsole();
         return command.toLowerCase().split("\\s+", 2);
     }
 
@@ -340,6 +340,11 @@ public class GameEngine {
         String[] roomsVisitedArray = roomsVisited.toArray(blankArray);
         displayMap.printMap(Arrays.asList(roomsVisitedArray));
     }
+
+    public void clearConsole() {
+        System.out.print("\033[H\033[2J");
+    }
+
 
     //do you have it in your satchel?
     public Boolean isItemInInventory(String item) {

@@ -28,49 +28,62 @@ public class DisplayMap {
             "Library"));
 
     private final List<String> formattedRoomList = new ArrayList<String>(Arrays.asList(
-                    "       Panic Room       ",
-                    "         Atrium         ",
-                    "     Breakfast Nook     ",
-                    "        Menagerie       ",
-                    "      Conservatory      ",
+                    "    Panic Room    ",
+                    "      Atrium      ",
+                    "  Breakfast Nook  ",
+                    "     Menagerie    ",
+                    "   Conservatory   ",
 
-                    "       Observatory      ",
-                    "       Fire Swamps      ",
-                    "          Hall          ",
-                    "       Dining Room      ",
-                    "         Arcade         ",
+                    "    Observatory   ",
+                    "    Fire Swamps   ",
+                    "       Hall       ",
+                    "    Dining Room   ",
+                    "      Arcade      ",
 
-                    "        Courtyard       ",
-                    "         Kitchen        ",
-                    "       Laboratory       ",
-                    "         Garden         ",
-                    "         Library        "));
+                    "     Courtyard    ",
+                    "      Kitchen     ",
+                    "    Laboratory    ",
+                    "      Garden      ",
+                    "      Library     "));
 
     private final String newLine = "\n";
     private final String sideBar = "|";
-    private final String twentySpaces = "                        ";
-    private final String twentyGreen = "█████████████████████████";
-    private final String twentyDashes = "----------------------- ";
+    private final String twentySpaces = "                  ";
+    private final String twentyGreen = "███████████████████";
+    private final String twentyDashes = "------------------";
+    private final String twoSpaces = "  ";
     private final String singleSpace = " ";
 
 
     public void printMap(List<String> visitedRooms) {
+        String[] modifiedArray = filterRoomArraybyVisited(visitedRooms);
+        printFilteredRoomArray(modifiedArray);
+    }
 
+    public void printMapTitle() {
+        System.out.println("\n" +
+                "                    ███    ███  █████  ███████ ███████     ███    ███  █████  ██████  \n" +
+                "                    ████  ████ ██   ██    ███  ██          ████  ████ ██   ██ ██   ██ \n" +
+                "                    ██ ████ ██ ███████   ███   █████       ██ ████ ██ ███████ ██████  \n" +
+                "                    ██  ██  ██ ██   ██  ███    ██          ██  ██  ██ ██   ██ ██      \n" +
+                "                    ██      ██ ██   ██ ███████ ███████     ██      ██ ██   ██ ██      \n");
+    }
+
+    public String[] filterRoomArraybyVisited(List<String> visitedRooms) {
         List<String> filteredArray = new ArrayList<String>();
 
-         for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 15; i++) {
             String formattedVisitedRoom = visitedRooms.contains(standardRoomList.get(i)) ? formattedRoomList.get(i) : "hidden";
             filteredArray.add(formattedVisitedRoom);
         }
 
-        String[] modifiedArray = filteredArray.toArray(new String[0]);
-        printFilteredRoomArray(modifiedArray);
+        return filteredArray.toArray(new String[0]);
     }
-
 
     public void printFilteredRoomArray(String[] filteredRoomList) {
         int i = 0;
-        System.out.println(getAnsiGreen());
+        System.out.println(getAnsiYellow());
+        //printMapTitle();
 
         while (i < 11) {
             String[] subarray = Arrays.asList(filteredRoomList).subList(i, i+5).toArray(new String[0]);
@@ -110,6 +123,9 @@ public class DisplayMap {
             // add side new line when reach the end
             if (remainder == 0) returnValue = returnValue + newLine;
 
+            // add a Right Side Bar if at the end of Row
+            if (remainder == 1) returnValue = twoSpaces + returnValue;
+
             //print the row chunk
             System.out.printf(returnValue);
 
@@ -120,6 +136,7 @@ public class DisplayMap {
 
     public void printBottomBorder(String[] lastRow) {
         int i=1;
+        System.out.printf(twoSpaces);
         while (i < 6) {
             int remainder = i % 5;
             String roomName = lastRow[remainder];
@@ -162,35 +179,5 @@ public class DisplayMap {
             i++;
         }
     }
-
-            /*
-            NEED TO WRITE SOME TESTS!!
-
-
-        DisplayMap displayMap = new DisplayMap();
-
-        List<String> visitedRooms = new ArrayList<String>();
-        visitedRooms.add("Atrium");
-
-        visitedRooms.add("Kitchen");
-        visitedRooms.add("Fire Swamps");
-        visitedRooms.add("Menagerie");
-        visitedRooms.add("Courtyard");
-        visitedRooms.add("Panic Room");
-
-        visitedRooms.add("Breakfast Nook");
-        visitedRooms.add("Observatory");
-        visitedRooms.add("Library");
-        visitedRooms.add("Garden");
-        visitedRooms.add("Laboratory");
-        visitedRooms.add("Conservatory");
-        visitedRooms.add("Hall");
-        visitedRooms.add("Dining Room");
-        visitedRooms.add("Arcade");
-
-        displayMap.printMap(visitedRooms);
-*/
-
-
 
 }
