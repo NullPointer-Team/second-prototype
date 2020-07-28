@@ -4,6 +4,7 @@ package enginefiles;
 
 import coregamefiles.*;
 import music.Music;
+import point.BonusPoint;
 import timer.CountdownTimer;
 
 import java.util.ArrayList;
@@ -216,8 +217,16 @@ public class GameEngine {
         challengeCongrats();
         System.out.println("You solved the challenge! Continue on your quest");
         rooms.get(getCurrentRoom()).replace("solved", "true");
+        BonusPoint bonus= new BonusPoint();
+        bonus.gamePoint();
         setGuesses(3);
     }
+//    public void BonusPoint(){
+//        int point = 0;
+//        if(rooms.get(getCurrentRoom()).replace("solved", "true")){
+//
+//        }
+//    }
 
     public void processFailedChallengeAttempt(String item) {
         diminishGuessesByOne();
@@ -293,7 +302,7 @@ public class GameEngine {
             setCurrentRoom(rooms.get(currentRoom).get(command));
             // This will calll Start Timer method
             CountdownTimer time = new CountdownTimer();
-            time.startTimer();
+//            time.startTimer();
 
         } else {
             System.out.println("You can't go that way!");

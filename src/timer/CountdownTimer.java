@@ -15,6 +15,7 @@ public class CountdownTimer {
     TimerTask task = new TimerTask() {
 
         public void run() {
+            try {
             second--;
             SwingUtilities.invokeLater(() -> {
                 // Pop up will  display to user what user supposed to do.
@@ -29,18 +30,24 @@ public class CountdownTimer {
 //            }
 
 
-                try {
+
                     //My logic is if less than 1 sec game will be over
-                    if (second <1 ) {
+                    if (second ==0 ) {
 //                System.out.println("-----------Oops!!!! Time out----------");
-                        game.terminateGame();
+
+                        game.setGameOver();
+                        System.exit(0);
+
+
                     }
 //
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                System.exit(0);
+                // if i enter system.exit problem is that after changing room system close it so I commneted out
+//            System.exit(0);
+
 
 
         }
