@@ -505,6 +505,11 @@ public class GameEngine {
         roomsVisited.add(currentRoom);
     }
 
+    //this is called in the ReadGameState class
+    public void setSavedRooms(String savedRoom) {
+        roomsVisited.add(savedRoom);
+    }
+
     //getchyo inventory
     public ArrayList<String> getInventory() {
         return inventory;
