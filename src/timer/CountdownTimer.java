@@ -36,7 +36,7 @@ public class CountdownTimer {
 //                System.out.println("-----------Oops!!!! Time out----------");
 
                         game.setGameOver();
-                        System.exit(0);
+//                        System.exit(0);
 
 
                     }

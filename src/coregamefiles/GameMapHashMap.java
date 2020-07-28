@@ -86,6 +86,7 @@ public class GameMapHashMap {
         breakfastNook.put("challenge", "Gold Beetles");
         breakfastNook.put("solution", "fighting skills");
         breakfastNook.put("solved", "false");
+        breakfastNook.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_Meltdown-Alarm_SPASE01004.wav");
 
         menagerie.put("west", "Breakfast Nook");
         menagerie.put("south", "Dining Room");
@@ -104,7 +105,7 @@ public class GameMapHashMap {
         panicRoom.put("challenge", "ghost");
         panicRoom.put("solution", "Book of Spells");
         panicRoom.put("solved", "false");
-        panicRoom.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_HumanBurp_CTE03_05_7.wav");
+        panicRoom.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_Fly-By-Sizzle_ZAPSE01126.wav");
 
         fireSwamps.put("north", "Atrium");
         fireSwamps.put("east", "Hall");

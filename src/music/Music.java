@@ -48,7 +48,7 @@ public class Music {
 
     }
     public static void panicMusic(String room) throws Exception {
-        //when user/Gamer enter in garden relex music will play
+
         URL url = new URL(room);
         Clip clip = AudioSystem.getClip();
 
@@ -63,7 +63,8 @@ public class Music {
 
     }
     public static void fireSwampMusic(String room) throws Exception {
-        //when user/Gamer enter in garden relex music will play
+        //when user/Gamer enter in room FireSwamp music will play
+
         URL url = new URL(room);
         Clip clip = AudioSystem.getClip();
 
@@ -78,7 +79,7 @@ public class Music {
 
     }
     public static void gardenMusic(String room) throws Exception {
-        //when user/Gamer enter in garden relex music will play
+        //when user/Gamer enter in garden relax music will play
         URL url = new URL(room);
         Clip clip = AudioSystem.getClip();
 
@@ -108,6 +109,23 @@ public class Music {
         });
 
     }
+
+    public static void beetleMusic(String room) throws Exception {
+        //when user/Gamer enter in breakfast noodle, music will play
+        URL url = new URL(room);
+        Clip clip = AudioSystem.getClip();
+
+        AudioInputStream ais = AudioSystem.getAudioInputStream(url);
+        clip.open(ais);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        SwingUtilities.invokeLater(() -> {
+            // Pop up will  display to user what user supposed to do.
+
+            JOptionPane.showMessageDialog(null, "You are in " + room + " Gold Beetles!!!!");
+        });
+
+    }
+
     public static void loseMusic() throws Exception {
         //when user/Gamer loose game , teasing music will play
         URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_CartoonHeadShake_4003_18_1.wav");

@@ -157,7 +157,6 @@ public class GameEngine {
      ************************/
     //this begins while loop to run the challenge
     public void solveChallenge() {
-
         while (getGuesses() > 0 && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
             String[] moves = getUserCommand();
             validateUserChallengeSolution(moves);
@@ -216,9 +215,10 @@ public class GameEngine {
         greatSuccess();
         challengeCongrats();
         System.out.println("You solved the challenge! Continue on your quest");
-        rooms.get(getCurrentRoom()).replace("solved", "true");
         BonusPoint bonus= new BonusPoint();
         bonus.gamePoint();
+        rooms.get(getCurrentRoom()).replace("solved", "true");
+
         setGuesses(3);
     }
 //    public void BonusPoint(){
@@ -301,7 +301,7 @@ public class GameEngine {
         if (rooms.get(getCurrentRoom()).containsKey(command.toLowerCase())) {
             setCurrentRoom(rooms.get(currentRoom).get(command));
             // This will calll Start Timer method
-            CountdownTimer time = new CountdownTimer();
+//            CountdownTimer time = new CountdownTimer();
 //            time.startTimer();
 
         } else {
@@ -408,6 +408,9 @@ public class GameEngine {
         }
         else if(rooms.get(getCurrentRoom()).containsKey("url")){
             Music.panicMusic(rooms.get(getCurrentRoom()).get("url"));
+        }
+        else if(rooms.get(getCurrentRoom()).containsKey("url")){
+            Music.beetleMusic(rooms.get(getCurrentRoom()).get("url"));
         }
     }
 
