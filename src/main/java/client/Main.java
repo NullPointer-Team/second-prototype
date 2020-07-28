@@ -1,10 +1,6 @@
 package client;
 
-import coregamefiles.DisplayMap;
 import coregamefiles.GameMenu;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 

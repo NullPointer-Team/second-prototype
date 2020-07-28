@@ -345,7 +345,6 @@ public class GameEngine {
         System.out.print("\033[H\033[2J");
     }
 
-
     //do you have it in your satchel?
     public Boolean isItemInInventory(String item) {
         return inventory.contains(item);

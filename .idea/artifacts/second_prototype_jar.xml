@@ -2,7 +2,12 @@
   <artifact type="jar" name="second-prototype:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/second_prototype_jar</output-path>
     <root id="archive" name="second-prototype.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="second-prototype" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/googlecode/lanterna/lanterna/3.0.3/lanterna-3.0.3.jar" path-in-jar="/" />
+      <element id="library" level="project" name="jcurses" />
     </root>
   </artifact>
 </component>
