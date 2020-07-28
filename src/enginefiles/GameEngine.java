@@ -14,6 +14,10 @@ package enginefiles;
 import coregamefiles.*;;
 import music.Music;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 import static coregamefiles.GameTextColors.*;
@@ -24,6 +28,45 @@ import static coregamefiles.SaveGameState.*;
 public class GameEngine {
     //instantiate gameMapArtEngine
     GameMapArtEngine gameMapArtEngine = new GameMapArtEngine();
+    GameMenu gameMenu = new GameMenu();
+
+    //TODO: put this here while I work on it and decide where it goes
+    /************************
+     ************************
+     * SAVE GAME STATE
+     ************************
+     ************************/
+    public void saveGame() {
+        try {
+            FileOutputStream fos = new FileOutputStream("saveGame.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(gameMapHashMap);
+            oos.flush();
+            oos.close();
+            System.out.println("Progress Saved\n");
+        } catch (Exception e) {
+            System.out.println("Serialization Error! Can't save data.\n" +
+                    e.getClass() + ": " + e.getMessage() + "\n");
+        }
+    }
+
+    /************************
+     ************************
+     * Load SAVED GAME STATE
+     ************************
+     ************************/
+    private void loadGame() {
+        try {
+            FileInputStream fis = new FileInputStream("saveGame.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            gameMapHashMap = (GameMapHashMap) ois.readObject();
+            ois.close();
+            System.out.println("\n---Game Loaded---\n");
+        } catch (Exception e) {
+            System.out.println("Serialization Error! Can't save data.\n" +
+                    e.getClass() + ": " + e.getMessage() + "\n");
+        }
+    }
 
     /************************
      ************************
@@ -87,7 +130,7 @@ public class GameEngine {
         //TODO: make the loadData method in this class to load data from savestate.saveGame.txt
         //TODO: make a saveData method, which saves game state to the savestate.saveGame.txt file
         //calling this method will load data from load date method
-        getGameState();
+//        getGameState();
 
         //this method runs the saved game
         while (!gameOver) {
@@ -215,8 +258,10 @@ public class GameEngine {
             case "inventory":
                 showInventory();
                 break;
+            case "save":
+                saveGame();
+                break;
             case "quit":
-                GameMenu gameMenu = new GameMenu();
                 gameMenu.startGame();
                 break;
             case "rules":
@@ -303,8 +348,9 @@ public class GameEngine {
             case "inventory":
                 showInventory();
                 break;
+            case "save":
+                saveGame();
             case "quit":
-                GameMenu gameMenu = new GameMenu();
                 gameMenu.startGame();
                 break;
             case "rules":
@@ -326,7 +372,8 @@ public class GameEngine {
 
     /************************
      ************************
-     * VALIDATE & EXECUTE USER COMMAND & HELPER METHODS
+     * VALIDATE & EXECUTE USER
+     * COMMAND & HELPER METHODS
      ************************
      ************************/
     //this dude lets you move room-to-room
@@ -411,10 +458,9 @@ public class GameEngine {
 
     /************************
      ************************
-     * TERMINATE GAME
+     * TERMINATE THE GAME
      ************************
      ************************/
-
     // getchyo win or lose art here
     public void terminateGame() throws Exception {
         if (gameWon) {

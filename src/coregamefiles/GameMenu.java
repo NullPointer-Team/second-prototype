@@ -14,6 +14,10 @@ package coregamefiles;
 import enginefiles.GameEngine;
 import exceptionfiles.InvalidGameMenuSelectionException;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 /**
@@ -47,7 +51,7 @@ public class GameMenu {
                         gameEngine.playGame();
                         break;
                     case "CONTINUE":
-                        gameEngine.continueGame();
+//                        loadGame();
                         break;
                     case "QUIT":
                         gameEngine.setGameOver();
