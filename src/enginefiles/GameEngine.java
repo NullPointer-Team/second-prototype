@@ -14,6 +14,10 @@ package enginefiles;
 import coregamefiles.*;
 import music.Music;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 import static coregamefiles.GameTextColors.*;
@@ -22,6 +26,44 @@ import static coregamefiles.GameTextColors.*;
 public class GameEngine {
     //instantiate gameMapArtEngine
     GameMapArtEngine gameMapArtEngine = new GameMapArtEngine();
+
+    //TODO: put this here while I work on it and decide where it goes
+    /************************
+     ************************
+     * SAVE GAME STATE
+     ************************
+     ************************/
+    public void saveGame() {
+        try {
+            FileOutputStream fos = new FileOutputStream("saveGame.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(gameMapHashMap);
+            oos.flush();
+            oos.close();
+            System.out.println("Progress Saved\n");
+        } catch (Exception e) {
+            System.out.println("Serialization Error! Can't save data.\n" +
+                    e.getClass() + ": " + e.getMessage() + "\n");
+        }
+    }
+
+    /************************
+     ************************
+     * Load SAVED GAME STATE
+     ************************
+     ************************/
+    public void loadGame() {
+        try {
+            FileInputStream fis = new FileInputStream("saveGame.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            gameMapHashMap = (GameMapHashMap) ois.readObject();
+            ois.close();
+            System.out.println("\n---Game Loaded---\n");
+        } catch (Exception e) {
+            System.out.println("Serialization Error! Can't save data.\n" +
+                    e.getClass() + ": " + e.getMessage() + "\n");
+        }
+    }
 
     /************************
      ************************
@@ -191,6 +233,9 @@ public class GameEngine {
             case "inventory":
                 showInventory();
                 break;
+            case "save":
+                saveGame();
+                break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();
                 gameMenu.startGame();
@@ -278,6 +323,9 @@ public class GameEngine {
                 break;
             case "inventory":
                 showInventory();
+                break;
+            case "save":
+                saveGame();
                 break;
             case "quit":
                 GameMenu gameMenu = new GameMenu();

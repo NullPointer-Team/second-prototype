@@ -46,6 +46,9 @@ public class GameMenu {
                     case "PLAY":
                         gameEngine.playGame();
                         break;
+                    case "CONTINUE":
+                        gameEngine.loadGame();
+                        break;
                     case "QUIT":
                         gameEngine.setGameOver();
                         GameMenuTextArt.goodbye();
