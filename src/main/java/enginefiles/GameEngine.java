@@ -11,9 +11,12 @@
 
 package enginefiles;
 
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 import coregamefiles.*;
 import music.Music;
 
+import java.io.IOException;
 import java.util.*;
 
 import static coregamefiles.GameTextColors.*;
@@ -38,7 +41,8 @@ public class GameEngine {
     private Map<String, HashMap<String, String>> rooms;
     private DisplayMap displayMap;
     private Set<String> roomsVisited;
-
+    private DefaultTerminalFactory defaultTerminalFactory;
+    private Terminal terminal;
 
     /************************
      ************************
@@ -67,7 +71,7 @@ public class GameEngine {
     //the here's the actual playGame method that... plays the game
     public void playGame() throws Exception {
         GameIntroduction.gameInformation();
-
+        createAndPrintToTerminal();
         while (!gameOver) {
 
             showStatus();
@@ -444,6 +448,43 @@ public class GameEngine {
             System.out.println(getAnsiBlue() + "Need a hint? try typing: \"hint\"" + getAnsiReset());
         }
     }
+
+
+    /************************
+     ************************
+     * LANTERNA LIBRARY IMPLEMENTATION
+     ************************
+     ************************/
+
+    private void createAndPrintToTerminal() throws IOException, InterruptedException {
+        defaultTerminalFactory = new DefaultTerminalFactory();
+        terminal = null;
+
+        try {
+            terminal = defaultTerminalFactory.createTerminal();
+            terminal.putCharacter('H');
+            terminal.putCharacter('e');
+            terminal.putCharacter('l');
+            terminal.putCharacter('l');
+            terminal.putCharacter('o');
+            terminal.putCharacter('\n');
+            terminal.flush();
+            Thread.sleep(2000);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (terminal != null) {
+                try {
+                    terminal.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
+
 
     /************************
      ************************
