@@ -12,8 +12,12 @@
 package enginefiles;
 
 import coregamefiles.*;
+import exceptionfiles.InvalidGameStateDataException;
 import music.Music;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.*;
 
 import static coregamefiles.GameTextColors.*;
@@ -79,6 +83,23 @@ public class GameEngine {
         terminateGame();
     }
 
+    //this method runs a saved game state
+    public void continueGame() throws Exception {
+        GameIntroduction.gameInformation();
+        //TODO: make the loadData method in this class to load data from savestate.saveGame.txt
+        //TODO: make a saveData method, which saves game state to the savestate.saveGame.txt file
+        loadData(); //calling this method will load data from load date method
+        while (!gameOver) {
+
+            showStatus();
+            //playMusicIfAvailable();
+            solveChallengeOrExplore();
+            checkIfGameOver();
+        }
+
+        terminateGame();
+    }
+
 
     /************************
      ************************
@@ -101,6 +122,18 @@ public class GameEngine {
         System.out.println("You are in the "+ getCurrentRoom());
         listItemIfAvailable();
         listChallengeIfAny();
+    }
+
+    //TODO: implement try/catch and custom exception to notify player when there is no saved game information;
+    ///there will be at least a blank game; this custom exception may be unnecessary – or at least, all we need to know
+    //is when it can't load the saveGame.txt file for some reason. even a blank savedGame will play as a new game at beginning
+    //loadData method loads saved state data
+    public void loadData() {
+        try {
+            BufferedReader gameState = new BufferedReader(new FileReader("saveGame.txt"));
+        } catch(FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     //this little guy tells you when there's an item in the room
