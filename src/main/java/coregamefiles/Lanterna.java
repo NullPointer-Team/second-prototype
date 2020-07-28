@@ -27,7 +27,9 @@ public class Lanterna {
     }
 
 
-    public void createMap() {
+
+
+    public void createMap(String room) {
         try {
 
             terminal = defaultTerminalFactory.createTerminal();

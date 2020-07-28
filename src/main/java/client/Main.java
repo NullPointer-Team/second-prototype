@@ -9,7 +9,7 @@ public class Main {
         //GameMenu gameMenu = new GameMenu();
         //gameMenu.startGame();
         Lanterna lanterna = new Lanterna();
-        lanterna.createMap();
+        lanterna.createMap("filler");
     }
 
 
