@@ -157,10 +157,22 @@ public class GameEngine {
      ************************/
     //this begins while loop to run the challenge
     public void solveChallenge() {
-        while (getGuesses() > 0 && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
-            String[] moves = getUserCommand();
-            validateUserChallengeSolution(moves);
+
+            while (getGuesses() > 0 && rooms.get(getCurrentRoom()).get("solved").equals("false")) {
+                String[] moves = getUserCommand();
+                validateUserChallengeSolution(moves);
+
+            }
+        try {
+            BonusPoint bonus = new BonusPoint();
+            bonus.gamePoint();
         }
+        catch(NullPointerException e)
+        {
+            System.out.print("NullPointerException Caught");
+        }
+
+
     }
 
     //this take and validates and processes user input to play the challenge
@@ -215,8 +227,7 @@ public class GameEngine {
         greatSuccess();
         challengeCongrats();
         System.out.println("You solved the challenge! Continue on your quest");
-        BonusPoint bonus= new BonusPoint();
-        bonus.gamePoint();
+
         rooms.get(getCurrentRoom()).replace("solved", "true");
 
         setGuesses(3);

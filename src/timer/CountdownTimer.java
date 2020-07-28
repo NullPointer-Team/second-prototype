@@ -7,7 +7,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class CountdownTimer {
-    GameEngine game = new GameEngine();
+
 
     //this seconds for, if character goes to some room where there is fire or sand has to finish task
     int second= 31;
@@ -35,7 +35,7 @@ public class CountdownTimer {
                     if (second ==0 ) {
 //                System.out.println("-----------Oops!!!! Time out----------");
 
-                        game.setGameOver();
+
 //                        System.exit(0);
 
 

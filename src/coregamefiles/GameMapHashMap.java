@@ -86,6 +86,9 @@ public class GameMapHashMap {
         breakfastNook.put("challenge", "Gold Beetles");
         breakfastNook.put("solution", "fighting skills");
         breakfastNook.put("solved", "false");
+        breakfastNook.put("hint", "HINT: It would help if you knew how to fight...");
+        breakfastNook.put("praise", "You really stuck it to that beetle! So glad it didn't burrow into your brain!\n" +
+                "Congrats on not dying!");
         breakfastNook.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_Meltdown-Alarm_SPASE01004.wav");
 
         menagerie.put("west", "Breakfast Nook");
@@ -96,6 +99,8 @@ public class GameMapHashMap {
         conservatory.put("south", "Arcade");
         conservatory.put("east", "Panic Room");
         conservatory.put("challenge", "Quick Sand");
+        conservatory.put("hint", "HINT: How would Indiana Jones get out this one? Maybe you don't have a whip, but...");
+        conservatory.put("praise", "Way to go! You looked like George of the Jungle swinging around on that rope.");
         conservatory.put("solution", "Rope");
         conservatory.put("solved", "false");
 
@@ -104,6 +109,8 @@ public class GameMapHashMap {
         panicRoom.put("item", "key");
         panicRoom.put("challenge", "ghost");
         panicRoom.put("solution", "Book of Spells");
+        panicRoom.put("hint", "HINT: Who you gonna call? You can't fight the metaphysical with physical objects, can you?");
+        panicRoom.put("praise", "Nice Work! Who needs the Ghostbusters when wise wizards like you roam these halls?");
         panicRoom.put("solved", "false");
         panicRoom.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_Fly-By-Sizzle_ZAPSE01126.wav");
 
@@ -111,6 +118,8 @@ public class GameMapHashMap {
         fireSwamps.put("east", "Hall");
         fireSwamps.put("challenge", "Rodents of Unusual Size (ROUS)");
         fireSwamps.put("solution", "fighting skills");
+        fireSwamps.put("hint", "HINT: Care for a bout of fisticuffs?");
+        fireSwamps.put("praise", "Excellent fighting! You were a regular Dread Pirate Roberts with that rat!");
         fireSwamps.put("solved", "false");
         fireSwamps.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ExplosionSharp_6048_97_1.wav");
 
@@ -130,6 +139,9 @@ public class GameMapHashMap {
         arcade.put("south", "Library");
         arcade.put("challenge", "fire");
         arcade.put("solution", "Super Soaker");
+        arcade.put("hint", "HINT: Are you gonna fight fire with weapons? What puts out fire?");
+        arcade.put("praise", "My hero! You put out the fire. Somebody call 9-1-1, cuz you looked HOT shooting that 80's" +
+                "\nplastic water gun at that fire... lol.\nCongrats, you get to live for now.");
         arcade.put("solved", "false");
 
         observatory.put("north", "Panic Room");
@@ -141,6 +153,8 @@ public class GameMapHashMap {
         courtyard.put("item", "sword");
         courtyard.put("solution", "key");
         courtyard.put("challenge", "lock");
+        courtyard.put("hint", "HINT: Do I have to say this? What opens locks?");
+        courtyard.put("praise", "Do you even deserve praise for knowing how to use a key? Nice work, dingus.");
         courtyard.put("solved", "false");
 
         library.put("east", "Courtyard");
@@ -161,6 +175,11 @@ public class GameMapHashMap {
         kitchen.put("challenge", "monster");
         kitchen.put("solution", "sword");
         kitchen.put("solved", "false");
+        kitchen.put("hint", "HINT: Would a knight fight a dragon with a super soaker? Or would he use a...");
+        kitchen.put("praise", "Where did you even learn to wield a sword like that? Excellent work!!!\n" +
+                "You live to see another day, and what is more, you are free to return to reality.\n" +
+                "But will you even want to? They don't let you sleigh monsters with swords in reality.");
+
         kitchen.put("url","https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_HumanBurp_CTE03_05_7.wav");
 
     }
