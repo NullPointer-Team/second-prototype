@@ -11,16 +11,14 @@
 
 package enginefiles;
 
-import coregamefiles.*;
-import exceptionfiles.InvalidGameStateDataException;
+import coregamefiles.*;;
 import music.Music;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.*;
 
 import static coregamefiles.GameTextColors.*;
+import static coregamefiles.ReadGameState.*;
+import static coregamefiles.SaveGameState.*;
 
 
 public class GameEngine {
@@ -88,7 +86,10 @@ public class GameEngine {
         GameIntroduction.gameInformation();
         //TODO: make the loadData method in this class to load data from savestate.saveGame.txt
         //TODO: make a saveData method, which saves game state to the savestate.saveGame.txt file
-        loadData(); //calling this method will load data from load date method
+        //calling this method will load data from load date method
+        getGameState();
+
+        //this method runs the saved game
         while (!gameOver) {
 
             showStatus();
@@ -124,17 +125,7 @@ public class GameEngine {
         listChallengeIfAny();
     }
 
-    //TODO: implement try/catch and custom exception to notify player when there is no saved game information;
-    ///there will be at least a blank game; this custom exception may be unnecessary – or at least, all we need to know
-    //is when it can't load the saveGame.txt file for some reason. even a blank savedGame will play as a new game at beginning
-    //loadData method loads saved state data
-    public void loadData() {
-        try {
-            BufferedReader gameState = new BufferedReader(new FileReader("saveGame.txt"));
-        } catch(FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+
 
     //this little guy tells you when there's an item in the room
     public void listItemIfAvailable() {
@@ -376,6 +367,7 @@ public class GameEngine {
         }
     }
 
+    //command for utilizing the secret tunnel
     public void executeSecretCommand() {
         setCurrentRoom(rooms.get(currentRoom).get("secret"));
         System.out.println("Good job!! You successfully used the Secret Passage. Don\'t tell anyone else about it.");
@@ -442,7 +434,7 @@ public class GameEngine {
      * PLAY MUSIC IF AVAILABLE
      ************************
      ************************/
-// This url key comes from GamMap
+    // This url key comes from GameMap
     public void playMusicIfUrl() throws Exception {
     if (rooms.get(getCurrentRoom()).containsKey("url")) {
         Music.monster(rooms.get(getCurrentRoom()).get("url"));
