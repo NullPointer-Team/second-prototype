@@ -23,7 +23,7 @@ import java.util.*;
 import static coregamefiles.GameTextColors.*;
 
 
-public class GameEngine {
+public class GameEngine implements java.io.Serializable {
     //instantiate gameMapArtEngine
     GameMapArtEngine gameMapArtEngine = new GameMapArtEngine();
 
@@ -110,6 +110,27 @@ public class GameEngine {
     public void playGame() throws Exception {
         GameIntroduction.gameInformation();
 
+        while (!gameOver) {
+
+            showStatus();
+            //playMusicIfAvailable();
+            solveChallengeOrExplore();
+            checkIfGameOver();
+        }
+
+        terminateGame();
+    }
+
+    /************************
+     ************************
+     * BUSINESS METHODS
+     * **********************
+     ************************/
+    //do you like to play games?
+    //the here's the actual playGame method that... plays the game
+    public void continueGame() throws Exception {
+        GameIntroduction.gameInformation();
+        loadGame();
         while (!gameOver) {
 
             showStatus();

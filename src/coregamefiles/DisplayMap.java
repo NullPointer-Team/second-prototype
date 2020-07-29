@@ -8,7 +8,7 @@ import java.util.List;
 import static coregamefiles.GameTextColors.*;
 
 
-public class DisplayMap {
+public class DisplayMap implements java.io.Serializable {
 
     private final List<String> standardRoomList = new ArrayList<String>(Arrays.asList(
             "Panic Room",

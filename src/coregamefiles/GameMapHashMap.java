@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GameMapHashMap {
+public class GameMapHashMap implements java.io.Serializable {
 
     // MAP
     private Map<String, HashMap<String, String>> rooms;
