@@ -283,6 +283,10 @@ class GameEngineTest {
         gameEngine.setCurrentRoom("Fire Swamps");
         assertTrue(gameEngine.roomHasUnsolvedChallenge());
 
+        ArrayList<String> inventory = new ArrayList<String>();
+        inventory.add("fighting skills");
+        gameEngine.setInventory(inventory);
+
         String correctItemForChallenge = "fighting skills";
         gameEngine.processChallengeAttempt(correctItemForChallenge);
 
@@ -387,6 +391,10 @@ class GameEngineTest {
         String[] useCorrectItem = {"use", "fighting skills"};
         gameEngine.setCurrentRoom("Breakfast Nook");
 
+        ArrayList<String> inventory = new ArrayList<String>();
+        inventory.add("fighting skills");
+        gameEngine.setInventory(inventory);
+
         gameEngine.validateUserChallengeSolution(useCorrectItem);
         String expectedOutput = getAnsiGreen() +
                 "_____________________________________________________________\n" +
@@ -416,6 +424,10 @@ class GameEngineTest {
         System.setOut(new PrintStream(outContent));
         String[] useWrongItem = {"use", "PowerPoint Skills"};
         gameEngine.setCurrentRoom("Breakfast Nook");
+
+        ArrayList<String> inventory = new ArrayList<String>();
+        inventory.add("sword");
+        gameEngine.setInventory(inventory);
 
         gameEngine.validateUserChallengeSolution(useWrongItem);
         String expectedOutput = "You don\'t even have PowerPoint Skills in your inventory to use!\n" +

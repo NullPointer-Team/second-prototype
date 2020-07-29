@@ -71,7 +71,7 @@ public class GameEngine {
         while (!gameOver) {
 
             showStatus();
-            //playMusicIfAvailable();
+            playMusicIfAvailable();
             solveChallengeOrExplore();
             checkIfGameOver();
         }
@@ -214,7 +214,7 @@ public class GameEngine {
 
         String challengeSolution = rooms.get(getCurrentRoom()).get("solution").toLowerCase();
 
-        if (challengeSolution.equals(item.toLowerCase())) {
+        if (challengeSolution.equals(item.toLowerCase()) && isItemInInventory(item)) {
             processSolvedChallenged();
         } else {
             processFailedChallengeAttempt(item);
