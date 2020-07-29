@@ -45,7 +45,20 @@ public class Lanterna {
             terminal.flush();
 
             textGraphics.setForegroundColor(TextColor.ANSI.YELLOW);
+            textGraphics.drawLine(new TerminalPosition(53,3),new TerminalPosition(53,5), '|');
+            textGraphics.drawLine(new TerminalPosition(55,3),new TerminalPosition(55,5), '|');
+            textGraphics.drawLine(new TerminalPosition(57,3),new TerminalPosition(57,5), '|');
+            textGraphics.drawLine(new TerminalPosition(59,3),new TerminalPosition(59,5), '|');
+            textGraphics.drawLine(new TerminalPosition(61,3),new TerminalPosition(61,5), '|');
+            textGraphics.drawLine(new TerminalPosition(63,3),new TerminalPosition(63,5), '|');
 
+            textGraphics.drawLine(new TerminalPosition(53,2),new TerminalPosition(63,2), '_');
+            textGraphics.drawLine(new TerminalPosition(53,6),new TerminalPosition(63,6), '-');
+
+            //textGraphics.drawLine(new TerminalPosition(5,5),new TerminalPosition(5,9), '-');
+            terminal.flush();
+            //textGraphics.drawLine(new TerminalPosition(3,6),new TerminalPosition(3,13), '-');
+            /*
             textGraphics.drawRectangle(new TerminalPosition(3,3), new TerminalSize(10, 5), '*');
             textGraphics.drawRectangle(new TerminalPosition(12,3), new TerminalSize(10, 5), '*');
             textGraphics.drawRectangle(new TerminalPosition(21,3), new TerminalSize(10, 5), '*');
@@ -62,7 +75,7 @@ public class Lanterna {
             textGraphics.drawRectangle(new TerminalPosition(30,11), new TerminalSize(10, 5), '*');
             textGraphics.drawRectangle(new TerminalPosition(39,11), new TerminalSize(10, 5), '*');
             terminal.flush();
-
+*/
 
         } catch (IOException e) {
             e.printStackTrace();
